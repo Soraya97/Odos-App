@@ -1,7 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, ReplaySubject } from "rxjs";
-import { map } from "rxjs/operators";
+import { Observable, ReplaySubject, from } from "rxjs";
+import { delayWhen, map } from "rxjs/operators";
+import { Storage } from "@ionic/storage";
 
 import { AuthResponse } from "../models/auth-response";
 import { User } from "../models/user";
@@ -15,10 +16,14 @@ export class AuthService {
   private auth$: Observable<AuthResponse>;
   private authSource: ReplaySubject<AuthResponse>;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private storage: Storage) {
     this.authSource = new ReplaySubject(1);
     this.auth$ = this.authSource.asObservable();
-    this.authSource.next(null);
+    // this.authSource.next(null);
+    this.storage.get('auth').then(auth => {
+    // Emit the loaded value into the auth$ stream.
+    this.authSource.next(auth);
+  });
   }
 
   isAuthenticated(): Observable<boolean> {
@@ -26,16 +31,17 @@ export class AuthService {
   }
 
   getUser(): Observable<User> {
-    return this.auth$.pipe(map((auth) => auth?.user));
+    return this.auth$.pipe(map((auth) => auth ?.user));
   }
 
   getToken(): Observable<string> {
-    return this.auth$.pipe(map((auth) => auth?.token));
+    return this.auth$.pipe(map((auth) => auth ?.token));
   }
 
   logIn(authRequest: AuthRequest): Observable<User> {
     const authUrl = "http://odos-archioweb.herokuapp.com/login";
     return this.http.post<AuthResponse>(authUrl, authRequest).pipe(
+      delayWhen(auth => this.saveAuth(auth)),
       map((auth) => {
         this.authSource.next(auth);
         console.log(`User ${auth.user.username} logged in`);
@@ -46,6 +52,11 @@ export class AuthService {
 
   logOut() {
     this.authSource.next(null);
+    this.storage.remove('auth');
     console.log("User logged out");
   }
+
+  private saveAuth(auth: AuthResponse): Observable<void> {
+  return from(this.storage.set('auth', auth));
+}
 }
