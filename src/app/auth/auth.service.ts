@@ -1,12 +1,15 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+
 import { Observable, ReplaySubject, from } from "rxjs";
 import { delayWhen, map } from "rxjs/operators";
+
 import { Storage } from "@ionic/storage";
 
 import { AuthResponse } from "../models/auth-response";
 import { User } from "../models/user";
 import { AuthRequest } from "../models/auth-request";
+import { environment } from "src/environments/environment";
 
 /**
  * Authentication service for login/logout.
@@ -39,7 +42,7 @@ export class AuthService {
   }
 
   logIn(authRequest: AuthRequest): Observable<User> {
-    const authUrl = "http://odos-archioweb.herokuapp.com/login";
+    const authUrl = `${environment.apiUrl}/login`;
     return this.http.post<AuthResponse>(authUrl, authRequest).pipe(
       delayWhen(auth => this.saveAuth(auth)),
       map((auth) => {

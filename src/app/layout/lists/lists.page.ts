@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
+
 import { ViewDidEnter } from '@ionic/angular';
+
 import { AuthService } from 'src/app/auth/auth.service';
+import { environment } from "src/environments/environment";
 
 @Component({
   selector: 'app-lists',
@@ -19,7 +22,7 @@ export class ListsPage implements ViewDidEnter {
 
   ionViewDidEnter(): void {
     // Make an HTTP request to retrieve the lists.
-    const url = "https://odos-archioweb.herokuapp.com/users/5fa158b5e22b7b0017539e6b/lists";
+    const url = `${environment.apiUrl}/users/5fa158b5e22b7b0017539e6b/lists`;
     this.http.get(url).subscribe((lists) => {
       console.log(`Lists loaded`, lists);
     });
