@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { LayoutPage } from './layout.page';
+import { AuthGuard } from "../auth/auth.guard";
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
       },
       {
         path: 'lists',
+        canActivate: [AuthGuard],
         loadChildren: () =>
           import('./lists/lists.module').then(
             m => m.ListsPageModule
@@ -25,6 +27,7 @@ const routes: Routes = [
       },
       {
         path: 'pictures',
+        canActivate: [AuthGuard],
         loadChildren: () =>
           import('./pictures/pictures.module').then(
             m => m.PicturesPageModule
@@ -32,16 +35,24 @@ const routes: Routes = [
       },
       {
         path: 'profile',
+        canActivate: [AuthGuard],
         loadChildren: () =>
           import('./profile/profile.module').then(
             m => m.ProfilePageModule
           ),
       },
       {
-       path: "",
-       redirectTo: "feed",
-       pathMatch: "full",
-     },
+        path: 'login',
+        loadChildren: () =>
+          import('./login/login.module').then(
+            m => m.LoginPageModule
+          ),
+      },
+      {
+        path: "",
+        redirectTo: "feed",
+        pathMatch: "full",
+      },
     ],
   },
 
