@@ -33,3 +33,6 @@ npm-debug.log*
 # Environment files
 src/environments/*
 !src/environments/environment.sample.ts
+
+capacitor.config.json
+android

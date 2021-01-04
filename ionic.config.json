@@ -1,5 +1,7 @@
 {
   "name": "Odos",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }
