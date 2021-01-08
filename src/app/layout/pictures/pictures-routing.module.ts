@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: PicturesPage
+  },
+  {
+    path: 'create-picture',
+    loadChildren: () => import('./create-picture/create-picture.module').then( m => m.CreatePicturePageModule)
   }
 ];
 

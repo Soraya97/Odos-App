@@ -1,10 +1,25 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Pictures</ion-title>
+
+    <ion-buttons slot="start">
+      <ion-icon name="close-outline"></ion-icon>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button routerLink="create-picture">Suivant</ion-button>
+    </ion-buttons>
+
+    <ion-title slot="secondary">Nouvelle photo</ion-title>
+
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content>
-<button ion-button (click)="takePicture()">Take picture</button>
+<ion-button color="medium" expand="block" size="large" (click)="takePicture()">Prendre une photo</ion-button>
   <img *ngIf="pictureData" src="data:image/jpeg;base64,{{ pictureData }}" />
+  <!-- <div id="container">
+<p>Welcome to the Home Page</p>
+<ion-button routerLink="create-picture">Go to User Page</ion-button>
+</div> -->
 </ion-content>

@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-buttons>
+    <!-- <ion-buttons slot="start">
+            <ion-back-button text="" icon="add"></ion-back-button>
+    </ion-buttons> -->
+
+    <ion-buttons slot="end">
+      <ion-button>Partager</ion-button>
+    </ion-buttons>
+
+    <ion-title slot="primary">Nouvelle photo</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-item>
+    <!-- <img *ngIf="pictureData" src="data:image/jpeg;base64,{{ pictureData }}" /> -->
+    <!-- <img src="http://chunkofstyles.com/wp-content/themes/Chunk%20of%20Styles/scripts/timthumb.php?src=http://chunkofstyles.com/wp-content/uploads/2017/05/Cute-Cat.jpg&w=162&h=162" height="125" width="125" /> -->
+    <ion-textarea placeholder="Écrire une description..."></ion-textarea>
+  </ion-item>
+
+  <a routerLink=".">Ajouter un lieu<ion-icon name="chevron-forward-outline"></ion-icon></a>
+
+
+</ion-content>
