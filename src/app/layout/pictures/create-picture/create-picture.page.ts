@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-// import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
+
+import { PictureService } from "../../../services/picture.service";
 
 @Component({
   selector: 'app-create-picture',
@@ -9,17 +11,24 @@ import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
   styleUrls: ['./create-picture.page.scss'],
 })
 export class CreatePicturePage implements OnInit {
-  // pictureData: string;
+  pictureData: string;
 
-  constructor(private geolocation: Geolocation) { } //private camera: Camera, 
+  constructor(private camera: Camera, private geolocation: Geolocation, private pictureService: PictureService) { } //private camera: Camera,
+
+  validatePicture() {
+    console.log("Photo à enregistrer");
+
+  }
 
   ngOnInit() {
-    this.geolocation.getCurrentPosition().then((position: Geoposition) => {
-      const coords = position.coords;
-      console.log(`User is at ${coords.longitude}, ${coords.latitude}`);
-    }).catch(err => {
-      console.warn(`Could not retrieve user position because: ${err.message}`);
-    });
+    console.log(this.pictureService.currentPictureURL);
+    // this.camera.getPicture().then(pictureData => {
+    //   this.pictureData = pictureData;
+    // }).catch(err => {
+    //   console.warn(`Could not take picture because: ${err.message}`);
+    // });
+
+
   }
 
   // takePicture() {

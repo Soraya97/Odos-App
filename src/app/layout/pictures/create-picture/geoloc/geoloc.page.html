@@ -9,7 +9,7 @@
     </ion-buttons> -->
 
     <ion-buttons slot="end">
-      <ion-button>Annuler</ion-button>
+      <ion-back-button text="Annuler" icon="" defaultHref></ion-back-button>
     </ion-buttons>
 
     <ion-title slot="secondary">Lieux</ion-title>
@@ -21,7 +21,7 @@
 <ion-searchbar showCancelButton="always" placeholder="Rechercher" cancelButtonIcon="search-outline">  </ion-searchbar>
 <ion-list>
   <ion-item>
-    <ion-label><a routerLink=".">Choix 2</a></ion-label>
+    <ion-label><a routerLink=".">{{ longitude }} {{ latitude }}</a></ion-label>
   </ion-item>
 
 </ion-list>

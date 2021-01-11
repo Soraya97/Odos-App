@@ -1,18 +1,18 @@
 <ion-header>
   <ion-toolbar>
 
-    <ion-buttons slot="start">
-      <ion-icon name="chevron-back-outline"></ion-icon>
-    </ion-buttons>
     <!-- <ion-buttons slot="start">
-            <ion-back-button text="" icon="add"></ion-back-button>
+      <ion-icon name="chevron-back-outline"></ion-icon>
     </ion-buttons> -->
+    <ion-buttons slot="start">
+      <ion-back-button text="" icon="chevron-back-outline" defaultHref></ion-back-button>
+    </ion-buttons>
 
     <ion-buttons slot="end">
-      <ion-button>Partager</ion-button>
+      <ion-button (click)="validatePicture()">Ok</ion-button>
     </ion-buttons>
 
-    <ion-title slot="primary">Nouvelle photo</ion-title>
+    <ion-title>Nouvelle photo</ion-title>
 
   </ion-toolbar>
 </ion-header>
@@ -25,7 +25,7 @@
     <ion-textarea placeholder="Écrire une description..."></ion-textarea>
   </ion-item>
 
-  <a routerLink=".">Ajouter un lieu<ion-icon name="chevron-forward-outline"></ion-icon></a>
+  <a routerLink="/pictures/create-picture/geoloc">Ajouter un lieu<ion-icon name="chevron-forward-outline"></ion-icon></a>
 
 
 </ion-content>
