@@ -21,7 +21,7 @@ export class CreatePicturePage implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.pictureService.currentPictureURL);
+    console.log("URL:" + this.pictureService.currentPictureURL);
     // this.camera.getPicture().then(pictureData => {
     //   this.pictureData = pictureData;
     // }).catch(err => {

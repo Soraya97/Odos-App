@@ -18,8 +18,8 @@ export class PictureService {
 
 
   constructor(private camera: Camera, private http: HttpClient) {
-    console.log('Hello PictureService Provider');
-    console.log('@@@ http client', !!this.http);
+    // console.log('Hello PictureService Provider');
+    // console.log('@@@ http client', !!this.http);
   }
 
   /**
@@ -65,8 +65,8 @@ export class PictureService {
         Authorization: `Bearer ${environment.qimgSecret}`
       }
     };
-    let currentPictureURL = environment.qimgUrl;
-    return this.http.post<QimgImage>(`${currentPictureURL}/images`, requestBody, requestOptions);
+    this.currentPictureURL = environment.qimgUrl;
+    return this.http.post<QimgImage>(`${this.currentPictureURL}/images`, requestBody, requestOptions);
   }
 
   /**

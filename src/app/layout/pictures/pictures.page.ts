@@ -21,13 +21,13 @@ export class PicturesPage implements OnInit {
   };
 
   takePicture() {
-  // this.pictureService.currentPictureURL = "http://example.com";
-  this.pictureService.takeAndUploadPicture().subscribe(picture => {
-    this.picture = picture;
-  }, err => {
-    console.warn('Could not take picture', err);
-  });
-  this.router.navigateByUrl("/pictures/create-picture");
+    // this.pictureService.currentPictureURL = "http://example.com";
+    this.pictureService.takeAndUploadPicture().subscribe(picture => {
+      this.picture = picture;
+    }, err => {
+      console.warn('Could not take picture', err);
+    });
+    this.router.navigateByUrl("/pictures/create-picture");
     // const options: CameraOptions = {
     //   quality: 100,
     //   destinationType: this.camera.DestinationType.DATA_URL,

@@ -18,11 +18,14 @@
 </ion-header>
 
 <ion-content>
-<ion-searchbar showCancelButton="always" placeholder="Rechercher" cancelButtonIcon="search-outline">  </ion-searchbar>
-<ion-list>
-  <ion-item>
-    <ion-label><a routerLink=".">{{ longitude }} {{ latitude }}</a></ion-label>
-  </ion-item>
+  <ion-searchbar showCancelButton="always" placeholder="Rechercher" cancelButtonIcon="search-outline" [(ngModel)]='citySearched'> </ion-searchbar>
+  <ion-list>
+    <ion-item *ngIf="citySearched">
+      <ion-label><a routerLink=".">{{ search(citySearched) }}</a></ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label><a routerLink=".">{{ city }}</a></ion-label>
+    </ion-item>
 
-</ion-list>
+  </ion-list>
 </ion-content>
