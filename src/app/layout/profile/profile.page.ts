@@ -11,7 +11,9 @@ export class ProfilePage implements OnInit {
   user: User;
 
   constructor(private auth: AuthService) {
+    // this.user = {_id: "1", username: "John Doe", email: "a@a.ch", password: "1234", registrationDate: "12.01.2021"};
   }
+
 
   ngOnInit() {
     this.auth.getUser().subscribe((user) => {
@@ -20,8 +22,6 @@ export class ProfilePage implements OnInit {
       console.warn(err);
       alert(err.message);
     });
-
-
   }
 
 }

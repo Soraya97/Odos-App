@@ -1,11 +1,14 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Profile</ion-title>
+    <ion-button slot="end" color="medium" fill="outline" expand="block" size="small">
+      <a routerLink="/profile/param">Paramètre du compte</a>
+    </ion-button>
+    <ion-title slot="start">John Doe</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-Profile
+Images du profil
 <div class="">
   {{user?.username}}
 </div>
