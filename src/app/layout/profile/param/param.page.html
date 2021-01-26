@@ -1,4 +1,5 @@
 <ion-header>
+<<<<<<< HEAD
     <ion-toolbar>
   
       <ion-buttons slot="start">
@@ -39,3 +40,44 @@
     <a routerLink="./">Suppression du compte</a>
   </ion-content>
   
+=======
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-back-button text="Annuler" icon="" defaultHref></ion-back-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button ion-button type="submit">Terminer</ion-button>
+    </ion-buttons>
+
+    <ion-title>Paramètres</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<!-- source : https://ionicframework.com/docs/v3/developer-resources/forms/ -->
+<ion-content>
+  <form (ngSubmit)="logForm()">
+    <ion-item>
+      <ion-label>Nom d'utilisateur</ion-label>
+      <ion-input type="text" [(ngModel)]="username" name="username"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Email</ion-label>
+      <ion-input type="email" [(ngModel)]="email" name="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Mot de passe</ion-label>
+      <ion-input type="password" [(ngModel)]="motDePasse" name="motDePasse"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Confirmation du mot de passe</ion-label>
+      <ion-input type="password" [(ngModel)]="confMotDePasse" name="confMotDePasse"></ion-input>
+    </ion-item>
+  </form>
+
+
+  <a routerLink="./">Suppression du compte</a>
+</ion-content>
+>>>>>>> 5ca39201f40866b0b4888e079a06a1cfa4e9a3dc

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 
-let BigDataCloudAPI = "https://api.bigdatacloud.net/data/reverse-geocode-client?";
+import { Geoposition } from '@ionic-native/geolocation/ngx';
+
+import { City } from 'src/app/models/city';
+import { GeolocationService } from 'src/app/services/geolocation.service';
+
 
 @Component({
   selector: 'app-geoloc',
@@ -11,56 +14,30 @@ let BigDataCloudAPI = "https://api.bigdatacloud.net/data/reverse-geocode-client?
 export class GeolocPage implements OnInit {
   longitude: Geoposition;
   latitude: Geoposition;
-  city: string;
+  city: City;
   citySearched: string;
 
-  constructor(private geolocation: Geolocation) {
-    this.city = 'Pomme';
+  constructor(private geolocationService: GeolocationService) {
   }
 
+  // function that show what the user is typing
   search(citySearched: string) {
     return `${citySearched}`;
   }
 
-  // https://www.bigdatacloud.com/blog/convert-getcurrentposition-free-reversegeocoding-api
-  getCity(x, y) {
-    const Http = new XMLHttpRequest();
-    const latitude = "latitude=" + x;
-    const longitude = "&longitude=" + y;
-    const query = latitude + longitude + "&localityLanguage=fr";
-    // const bigdatacloud_api =
-    //   "https://api.bigdatacloud.net/data/reverse-geocode-client?";
-
-    BigDataCloudAPI += query;
-
-    Http.open("GET", BigDataCloudAPI);
-    Http.send();
-
-    Http.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        const myObj = JSON.parse(this.responseText);
-        console.log(myObj.locality);
-        const city = myObj.locality;
-        console.log("City:" + city);
-        return city;
-      }
-    };
-  }
 
   ngOnInit() {
+    this.geolocationService.getGeolocation().then((coords: Coordinates) => {
+      this.geolocationService.getCity(coords.latitude, coords.longitude).subscribe(city => {
+        this.city = city
+        // console.log(city);
 
-    this.geolocation.getCurrentPosition().then((position: Geoposition) => {
-      const coords = position.coords;
-      console.log(`User is at ${coords.longitude}, ${coords.latitude}`);
-
-      this.getCity(coords.latitude, coords.longitude);
-
-      // console.log("this" + this.city);
-
-
-    }).catch(err => {
-      console.warn(`Could not retrieve user position because: ${err.message}`);
+      }), err => {
+        console.warn(err);
+        alert(err.message);
+      }
     });
+
   }
 
 }
