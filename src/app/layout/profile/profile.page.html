@@ -12,10 +12,17 @@
    <img size="20" src="https://www.mappingalong.com/wp-content/uploads/2018/01/Thailand-Islands-Article.jpg">
   </ion-thumbnail> -->
 
-  <ion-img width="80" height="80" src="https://www.mappingalong.com/wp-content/uploads/2018/01/Thailand-Islands-Article.jpg"></ion-img>
+  <!-- <ion-img width="80" height="80" src="https://www.mappingalong.com/wp-content/uploads/2018/01/Thailand-Islands-Article.jpg"></ion-img> -->
 
-{{picture?.picture}}
-<img id="myimage" [src]='thumbnail' />
+
+    <img width="25%" class="imageGallery" [src]="picture?.picture">
+    
+    <!-- 
+    <ion-item  *ngFor ="picture" >
+    </ion-item> 
+    -->
+
+<!-- <img id="myimage" [src]='thumbnail' /> -->
 <div class="">
  {{picture.description}}
 </div>
