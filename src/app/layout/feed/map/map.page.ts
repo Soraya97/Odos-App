@@ -26,7 +26,7 @@ export class MapPage implements OnInit {
   ngOnInit() {
 
   }
-  onMapReady(map: Map) {
-    setTimeout(() => map.invalidateSize(), 0);
-  }
+  // onMapReady(map: Map) {
+  //   setTimeout(() => map.invalidateSize(), 0);
+  // }
 }
