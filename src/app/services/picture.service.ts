@@ -8,6 +8,9 @@ import { switchMap, tap } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
 import { QimgImage } from '../models/qimg-image';
+import { Picture } from '../models/pictures';
+
+const API_URL = `${environment.apiUrl}/users/5fa158b5e22b7b0017539e6b/pictures/5fa15bd61401d800172fb05f`;
 
 @Injectable({
   providedIn: 'root'
@@ -95,7 +98,9 @@ export class PictureService {
     return debug$;
   }
 
-
+  getPicture(): Observable<Picture> {
+    return this.http.get<Picture>(API_URL);
+  }
 
 
 
