@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>map</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="leaflet-map"
+    leaflet
+    [leafletOptions]="options"
+    (leafletMapReady)="onMapReady($event)">
+  </div>
+</ion-content>

@@ -1,16 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { FeedPage } from './feed.page';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { MapPage } from './map.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: FeedPage
-  },
-  {
-    path: 'map',
-    loadChildren: () => import('./map/map.module').then( m => m.MapPageModule)
+    component: MapPage
   }
 ];
 
@@ -18,4 +15,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class FeedPageRoutingModule {}
+export class MapPageRoutingModule {}

@@ -96,7 +96,7 @@ export class PictureService {
     const debug$ = uploadedImage$.pipe(tap(image => console.log(`Successfully uploaded picture to ${image.url}`)));
 
     // this.currentPictureURL = uploadedImage$.url;
-    // this.currentPictureURL = "https://www.zooplus.fr/magazine/wp-content/uploads/2019/06/comprendre-le-langage-des-chats.jpg";
+    this.currentPictureURL = "https://www.zooplus.fr/magazine/wp-content/uploads/2019/06/comprendre-le-langage-des-chats.jpg";
     // Return the observable stream.
     return debug$;
   }
