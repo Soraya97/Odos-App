@@ -68,8 +68,10 @@ export class PictureService {
         Authorization: `Bearer ${environment.qimgSecret}`
       }
     };
-    this.currentPictureURL = environment.qimgUrl;
-    return this.http.post<QimgImage>(`${this.currentPictureURL}/images`, requestBody, requestOptions);
+    // this.currentPictureURL = `${environment.qimgUrl}/images`;
+    // console.log(this.currentPictureURL);
+
+    return this.http.post<QimgImage>(`${environment.qimgUrl}/images`, requestBody, requestOptions);
   }
 
   /**
@@ -88,12 +90,13 @@ export class PictureService {
     // Once the picture has been taken, upload it to the qimg API.
     // This returns a new observable of the resulting QimgImage object.
     const uploadedImage$ = pictureData$.pipe(switchMap(data => this.uploadPicture(data)));
-
     // Once the picture has been uploaded, log a message to the console
     // indicating that all went well.
     // This does not change the observable stream.
     const debug$ = uploadedImage$.pipe(tap(image => console.log(`Successfully uploaded picture to ${image.url}`)));
 
+    // this.currentPictureURL = uploadedImage$.url;
+    // this.currentPictureURL = "https://www.zooplus.fr/magazine/wp-content/uploads/2019/06/comprendre-le-langage-des-chats.jpg";
     // Return the observable stream.
     return debug$;
   }
