@@ -34,7 +34,16 @@
       <ion-input type="password" [(ngModel)]="confMotDePasse" name="confMotDePasse"></ion-input>
     </ion-item>
   </form>
+  
 
+  <p *ngIf="username"><i>
+    {{ hello(username)}}
+  </i>
+  </p>
 
   <a routerLink="./">Suppression du compte</a>
+
+
+
+
 </ion-content>

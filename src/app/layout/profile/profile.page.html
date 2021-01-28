@@ -15,12 +15,12 @@
   <!-- <ion-img width="80" height="80" src="https://www.mappingalong.com/wp-content/uploads/2018/01/Thailand-Islands-Article.jpg"></ion-img> -->
 
 
-    <img width="25%" class="imageGallery" [src]="picture?.picture">
+  <a routerLink="/profile/userPic"><img width="25%" class="imageGallery" [src]="picture?.picture"></a>
+
     
-    <!-- 
-    <ion-item  *ngFor ="picture" >
+    <ion-item  *ngFor ="let picture of pictures" >
     </ion-item> 
-    -->
+   
 
 <!-- <img id="myimage" [src]='thumbnail' /> -->
 <div class="">
