@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { latLng, MapOptions, tileLayer, map } from 'leaflet';
+import { latLng, MapOptions, tileLayer } from 'leaflet';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.page.html',
   styleUrls: ['./map.page.scss'],
 })
+
 export class MapPage implements OnInit {
   mapOptions: MapOptions;
 
@@ -26,7 +27,9 @@ export class MapPage implements OnInit {
   ngOnInit() {
 
   }
+
   // onMapReady(map: Map) {
   //   setTimeout(() => map.invalidateSize(), 0);
   // }
+
 }
