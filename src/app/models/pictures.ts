@@ -1,10 +1,12 @@
+import { Url } from "url";
+
 export class Picture {
   _id: string;
   description: string;
-  location: string;
-  coordinates: number;
-  picture: string;
-  creation_date: Date;
-  last_mod_date: Date;
+  location: String;
+  coordinates: [number, number];
+  picture: String;
+  creation_date: Date = new Date();  
+  last_mod_date: String;
   userId: number;
 }
