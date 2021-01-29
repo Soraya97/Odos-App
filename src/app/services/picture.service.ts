@@ -11,6 +11,7 @@ import { QimgImage } from '../models/qimg-image';
 import { Picture } from '../models/pictures';
 
 const API_URL = `${environment.apiUrl}/users/5fa158b5e22b7b0017539e6b/pictures/5fa15bd61401d800172fb05f`;
+const API_URL_CREATION = `${environment.apiUrl}/users/5fa158b5e22b7b0017539e6b/pictures`;
 
 @Injectable({
   providedIn: 'root'
@@ -100,9 +101,21 @@ export class PictureService {
     return debug$;
   }
 
-// Get a picture from the database
+  // Get a picture from the database
   getPicture(): Observable<Picture> {
     return this.http.get<Picture>(API_URL);
   }
 
+  createPicture() {
+    return console.log("Test: Create a picture");
+
+    //   const requestBody = {
+    //     _id: 1,
+    //     description: "test",
+    //     location: "test"
+    //   };
+    //   return this.http.post<Picture>(API_URL_CREATION, requestBody);
+    // }
+
+  }
 }

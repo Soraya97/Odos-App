@@ -17,10 +17,11 @@
 
   <a routerLink="/profile/userPic"><img width="25%" class="imageGallery" [src]="picture?.picture"></a>
 
-    
+
     <ion-item  *ngFor ="let picture of pictures" >
-    </ion-item> 
-   
+      {{picture.picture}}
+    </ion-item>
+
 
 <!-- <img id="myimage" [src]='thumbnail' /> -->
 <div class="">

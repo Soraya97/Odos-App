@@ -3,10 +3,10 @@ import { Url } from "url";
 export class Picture {
   _id: string;
   description: string;
-  location: String;
+  location: string;
   coordinates: [number, number];
-  picture: String;
-  creation_date: Date = new Date();  
-  last_mod_date: String;
+  picture: string;
+  creation_date: Date = new Date();
+  last_mod_date: string;
   userId: number;
 }
