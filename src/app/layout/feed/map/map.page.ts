@@ -28,8 +28,8 @@ export class MapPage implements OnInit {
 
   }
 
-  // onMapReady(map: Map) {
-  //   setTimeout(() => map.invalidateSize(), 0);
-  // }
+  onMapReady(map: Map) {
+    setTimeout(() => map.invalidateSize(), 0);
+  }
 
 }
