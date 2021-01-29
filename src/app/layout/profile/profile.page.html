@@ -15,11 +15,11 @@
   <!-- <ion-img width="80" height="80" src="https://www.mappingalong.com/wp-content/uploads/2018/01/Thailand-Islands-Article.jpg"></ion-img> -->
 
 
-  <a routerLink="/profile/userPic"><img width="25%" class="imageGallery" [src]="picture?.picture"></a>
+  <!-- <a routerLink="/profile/userPic"><img width="25%" class="imageGallery" [src]="picture?.picture"></a> -->
 
 
     <ion-item  *ngFor ="let picture of pictures" >
-      {{picture.picture}}
+      <a routerLink="/profile/userPic"><img width="25%" class="imageGallery" [src]="picture.picture"></a>
     </ion-item>
 
 
