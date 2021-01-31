@@ -5,14 +5,13 @@ import { PictureService } from 'src/app/services/picture.service';
 import { Picture } from 'src/app/models/pictures';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.page.html',
-  styleUrls: ['./profile.page.scss'],
+  selector: 'app-userPic',
+  templateUrl: './userPic.page.html',
+  styleUrls: ['./userPic.page.scss'],
 })
-export class ProfilePage implements OnInit {
+export class userPicPage implements OnInit {
   user: User;
-  // name = 'Test display image';
-  // thumbnail: any;
+  pictureData: string;
   pictures: Picture[];
 
   constructor(private auth: AuthService, private pictureService: PictureService) {
@@ -40,7 +39,6 @@ export class ProfilePage implements OnInit {
       }
     ];
   }
-
 
   ngOnInit() {
     this.auth.getUser().subscribe((user) => {

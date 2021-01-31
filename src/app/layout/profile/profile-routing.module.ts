@@ -10,7 +10,10 @@ const routes: Routes = [
   },
   {
     path: 'param',
-    loadChildren: () => import('./param/param.module').then( m => m.ParamPageModule)
+    loadChildren: () => import('./param/param.module').then( m => m.ParamPageModule),
+  },
+  {    path: 'userPic',
+  loadChildren: () => import('./userPic/userPic.module').then( m => m.userPicPageModule)
   }
 ];
 
