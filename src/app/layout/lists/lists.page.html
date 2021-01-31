@@ -6,4 +6,18 @@
 
 <ion-content>
 Lists
+  <!-- START GET ALL name liste -->
+  <!-- Start filter -->
+  <ion-list>
+    <ion-item>
+      <ion-label>Filter</ion-label>
+      <ion-select (ionChange)="filter($event)" placeholder="Select a filter">
+        <ion-select-option value="name">Name</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <!-- Stop filter -->
+
+
+  <!-- STOP GET ALL name liste -->
 </ion-content>
