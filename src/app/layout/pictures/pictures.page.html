@@ -17,7 +17,7 @@
 
 <ion-content>
 <ion-button color="medium" expand="block" size="large" (click)="takePicture()">Prendre une photo</ion-button>
-  <img *ngIf="pictureData" src="data:image/jpeg;base64,{{ pictureData }}" />
+  <!-- <img *ngIf='picture' [src]='picture.url' /> -->
   <!-- <div id="container">
 <p>Welcome to the Home Page</p>
 <ion-button routerLink="create-picture">Go to User Page</ion-button>

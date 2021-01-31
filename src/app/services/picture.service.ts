@@ -8,6 +8,10 @@ import { switchMap, tap } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
 import { QimgImage } from '../models/qimg-image';
+import { Picture } from '../models/pictures';
+
+const API_URL = `${environment.apiUrl}/users/5fa158b5e22b7b0017539e6b/pictures/5fa15bd61401d800172fb05f`;
+const API_URL_CREATION = `${environment.apiUrl}/users/5fa158b5e22b7b0017539e6b/pictures`;
 
 @Injectable({
   providedIn: 'root'
@@ -65,8 +69,8 @@ export class PictureService {
         Authorization: `Bearer ${environment.qimgSecret}`
       }
     };
-    this.currentPictureURL = environment.qimgUrl;
-    return this.http.post<QimgImage>(`${this.currentPictureURL}/images`, requestBody, requestOptions);
+
+    return this.http.post<QimgImage>(`${environment.qimgUrl}/images`, requestBody, requestOptions);
   }
 
   /**
@@ -85,27 +89,33 @@ export class PictureService {
     // Once the picture has been taken, upload it to the qimg API.
     // This returns a new observable of the resulting QimgImage object.
     const uploadedImage$ = pictureData$.pipe(switchMap(data => this.uploadPicture(data)));
-
-    // Once the picture has been uploaded, log a message to the console
-    // indicating that all went well.
+    // Once the picture has been uploaded, log a message to the console indicating that all went well.
     // This does not change the observable stream.
-    const debug$ = uploadedImage$.pipe(tap(image => console.log(`Successfully uploaded picture to ${image.url}`)));
+    const debug$ = uploadedImage$.pipe(tap(image => {
+      console.log(`Successfully uploaded picture to ${image.url}`);
+      this.currentPictureURL = image.url;
+    }
+    ));
 
     // Return the observable stream.
     return debug$;
   }
 
+  // Get a picture from the database
+  getPicture(): Observable<Picture> {
+    return this.http.get<Picture>(API_URL);
+  }
 
+  createPicture() {
+    return console.log("Test: Create a picture");
 
+    //   const requestBody = {
+    //     _id: 1,
+    //     description: "test",
+    //     location: "test"
+    //   };
+    //   return this.http.post<Picture>(API_URL_CREATION, requestBody);
+    // }
 
-
-  //   takeAndSavePicture() {
-  //     // prendre la photo
-  // takePicture();
-  // uploadPicture();
-  // takeAndUploadPicture();
-  //     // upload photo
-  //     // stocker url photo currentPictureURL
-  //
-  //   }
+  }
 }

@@ -11,17 +11,25 @@ import { PictureService } from "../../../services/picture.service";
   styleUrls: ['./create-picture.page.scss'],
 })
 export class CreatePicturePage implements OnInit {
-  pictureData: string;
+  picture: string;
 
-  constructor(private camera: Camera, private geolocation: Geolocation, private pictureService: PictureService) { } //private camera: Camera,
+  constructor(private camera: Camera, private geolocation: Geolocation, private pictureService: PictureService) {
+  } //private camera: Camera,
 
   validatePicture() {
     console.log("Photo à enregistrer");
-
+    // this.pictureService.createPicture().subscribe(
+    // //   picture => {
+    // //   this.picture = picture;
+    // // },
+    // err => {
+    //   console.warn('Could not take picture', err);
+    // });
   }
 
   ngOnInit() {
     console.log("URL:" + this.pictureService.currentPictureURL);
+    this.picture = this.pictureService.currentPictureURL;
     // this.camera.getPicture().then(pictureData => {
     //   this.pictureData = pictureData;
     // }).catch(err => {

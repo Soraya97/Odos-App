@@ -12,6 +12,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ParamPage implements OnInit {
   pictureData: string;
+  username: string;
+
+
+
+//test formulaire à suprimmer
+hello(username: string): string {
+  return `Bonjour ${username} !`;
+}
 
 //   constructor(private camera: Camera, private geolocation: Geolocation, private pictureService: PictureService) { } //private camera: Camera,
 
