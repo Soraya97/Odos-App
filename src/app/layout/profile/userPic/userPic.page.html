@@ -12,7 +12,7 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-icon name="navigate-circle-outline"></ion-icon>
-      Londres 
+      <a routerLink="/feed/map">Thailand {{picture?.location}}</a>
     </ion-buttons>
     <ion-buttons slot="end">
       <ion-icon name="ellipsis-horizontal-outline"></ion-icon>
@@ -26,9 +26,9 @@
     <ion-datetime value="{{picture?.creation_date}}" displayFormat="DD MMM, YYYY">
     </ion-datetime>
   </p>
-  <ion-buttons slot="end">
+  <ion-button slot="end">
     <ion-icon name="heart-outline"></ion-icon>
-  </ion-buttons>
+</ion-button>
 </ion-toolbar>
 
 <p>{{picture?.description}}</p>

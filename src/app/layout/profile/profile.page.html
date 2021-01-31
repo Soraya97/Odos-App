@@ -18,8 +18,8 @@
   <!-- <a routerLink="/profile/userPic"><img width="25%" class="imageGallery" [src]="picture?.picture"></a> -->
 
 
-    <ion-item  *ngFor ="let picture of pictures" >
-      <a routerLink="/profile/userPic"><img width="25%" class="imageGallery" [src]="picture.picture"></a>
+    <ion-item class="item-text-wrap" *ngFor ="let picture of pictures" >
+      <a routerLink="/profile/userPic"><img width="50%" class="imageGallery" [src]="picture.picture"></a>
     </ion-item>
 
 
