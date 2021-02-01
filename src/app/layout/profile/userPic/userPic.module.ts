@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { userPicPageRoutingModule } from './userPic-routing.module';
 
 import { userPicPage } from './userPic.page';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    userPicPageRoutingModule
+    userPicPageRoutingModule,
+    HttpClientModule
   ],
   declarations: [userPicPage]
 })

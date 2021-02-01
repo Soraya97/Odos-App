@@ -8,21 +8,7 @@
 </ion-header>
 
 <ion-content>
-  <!-- <ion-thumbnail>
-   <img size="20" src="https://www.mappingalong.com/wp-content/uploads/2018/01/Thailand-Islands-Article.jpg">
-  </ion-thumbnail> -->
-
-  <!-- <ion-img width="80" height="80" src="https://www.mappingalong.com/wp-content/uploads/2018/01/Thailand-Islands-Article.jpg"></ion-img> -->
-
-
-  <!-- <a routerLink="/profile/userPic"><img width="25%" class="imageGallery" [src]="picture?.picture"></a> -->
-
-
-    <ion-item class="item-text-wrap" *ngFor ="let picture of pictures" >
+    <ion-item *ngFor ="let picture of pictures" >
       <a routerLink="/profile/userPic"><img width="50%" class="imageGallery" [src]="picture.picture"></a>
     </ion-item>
-
-
-<!-- <img id="myimage" [src]='thumbnail' /> -->
-<!-- {{picture.description}} -->
 </ion-content>
