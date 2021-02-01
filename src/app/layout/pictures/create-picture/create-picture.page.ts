@@ -17,14 +17,14 @@ export class CreatePicturePage implements OnInit {
   } //private camera: Camera,
 
   validatePicture() {
-    console.log("Photo à enregistrer");
-    // this.pictureService.createPicture().subscribe(
-    // //   picture => {
-    // //   this.picture = picture;
-    // // },
-    // err => {
-    //   console.warn('Could not take picture', err);
-    // });
+    // console.log("Photo à enregistrer");
+    this.pictureService.createPicture().subscribe(
+    //   picture => {
+    //   this.picture = picture;
+    // },
+    err => {
+      console.warn('Could not take picture', err);
+    });
   }
 
   ngOnInit() {

@@ -9,9 +9,10 @@ import { switchMap, tap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { QimgImage } from '../models/qimg-image';
 import { Picture } from '../models/pictures';
+import { PictureRequest } from '../models/pictures-request';
 
 const API_URL = `${environment.apiUrl}/users/5fa158b5e22b7b0017539e6b/pictures/5fa15bd61401d800172fb05f`;
-const API_URL_CREATION = `${environment.apiUrl}/users/5fa158b5e22b7b0017539e6b/pictures`;
+const API_URL_CREATION = `${environment.apiUrl}/users/5fa158b5e22b7b0017539e6b/pictures/`;
 
 @Injectable({
   providedIn: 'root'
@@ -106,16 +107,16 @@ export class PictureService {
     return this.http.get<Picture>(API_URL);
   }
 
-  createPicture() {
-    return console.log("Test: Create a picture");
+  createPicture(): Observable<PictureRequest> {
+    // return console.log("Test: Create a picture");
 
-    //   const requestBody = {
-    //     _id: 1,
-    //     description: "test",
-    //     location: "test"
-    //   };
-    //   return this.http.post<Picture>(API_URL_CREATION, requestBody);
-    // }
+      const requestBody = {
+        description: "Test Soraya",
+        location: {type: "Point", coordinates: [6.631348200000001, 46.562677400000005]},
+        picture: "https://www.zooplus.fr/magazine/wp-content/uploads/2019/06/comprendre-le-langage-des-chats.jpg"
+      };
+      return this.http.post<PictureRequest>(API_URL_CREATION, requestBody);
+    }
 
   }
-}
+// }
