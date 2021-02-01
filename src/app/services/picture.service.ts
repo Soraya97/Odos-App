@@ -118,5 +118,13 @@ export class PictureService {
       return this.http.post<PictureRequest>(API_URL_CREATION, requestBody);
     }
 
+
+
+    // Get all pictures from the database
+    getAllPictures(): Observable<Picture> {
+      return this.http.get<Picture>(API_URL_CREATION);
+    }
   }
 // }
+
+

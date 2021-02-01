@@ -19,7 +19,7 @@
     </ion-buttons>
 </ion-toolbar>
   
-<ion-img width="80" height="80" src="https://www.mappingalong.com/wp-content/uploads/2018/01/Thailand-Islands-Article.jpg"></ion-img>
+<img width="50%" class="imageGallery" [src]="picture?.picture">
 
 <ion-toolbar>
   <p slot="start">Publié le 
@@ -27,7 +27,7 @@
     </ion-datetime>
   </p>
   <ion-button slot="end">
-    <ion-icon name="heart-outline"></ion-icon>
+    <ion-icon name="heart-outline" (click)="openMenu()"></ion-icon>
 </ion-button>
 </ion-toolbar>
 
