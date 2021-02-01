@@ -13,6 +13,7 @@ export class userPicPage implements OnInit {
   user: User;
   pictureData: string;
   pictures: Picture[];
+  picture: Picture;
 
   constructor(private auth: AuthService, private pictureService: PictureService) {
     // this.user = {_id: "1", username: "John Doe", email: "a@a.ch", password: "1234", registrationDate: "12.01.2021"};
