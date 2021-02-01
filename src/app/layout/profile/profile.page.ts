@@ -50,12 +50,12 @@ export class ProfilePage implements OnInit {
       alert(err.message);
     });
 
-    this.pictureService.getPicture().subscribe((picture) => {
-      this.picture = picture;
-    }, err => {
-      console.warn(err);
-      alert(err.message);
-    });
+    // this.pictureService.getPicture().subscribe((picture) => {
+    //   this.picture = picture;
+    // }, err => {
+    //   console.warn(err);
+    //   alert(err.message);
+    // });
 
   }
 
