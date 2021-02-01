@@ -119,7 +119,6 @@ export class PictureService {
     }
 
 
-
     // Get all pictures from the database
     getAllPictures(): Observable<Picture> {
       return this.http.get<Picture>(API_URL_CREATION);
