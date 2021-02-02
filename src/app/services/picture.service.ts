@@ -14,6 +14,8 @@ import { PictureRequest } from '../models/pictures-request';
 const API_URL = `${environment.apiUrl}/users/5fa158b5e22b7b0017539e6b/pictures/5fa15bd61401d800172fb05f`;
 const API_URL_CREATION = `${environment.apiUrl}/users/5fa158b5e22b7b0017539e6b/pictures/`;
 
+// const API_URL_FINALE = `${environment.apiUrl}/users/`;
+// return this.http.get<Picture>(API_URL+`${idUser}/pictures`);
 @Injectable({
   providedIn: 'root'
 })
@@ -126,16 +128,16 @@ export class PictureService {
   }
 
   // TO DO
-  patchPicture(description): Observable<Picture> {
+  patchPicture(description, idPicture): Observable<Picture> {
     const requestBody = {
       description: description
     }
-    return this.http.patch<Picture>(API_URL, requestBody);
+    return this.http.patch<Picture>(API_URL_CREATION+idPicture, requestBody);
   }
 
   // TO DO
-  deletePicture(description): Observable<Picture> {
-    return this.http.delete<Picture>(API_URL);
+  deletePicture(description, idPicture): Observable<Picture> {
+    return this.http.delete<Picture>(API_URL_CREATION+idPicture);
   }
 }
 // }
