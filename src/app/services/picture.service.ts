@@ -107,23 +107,21 @@ export class PictureService {
     return this.http.get<Picture>(API_URL);
   }
 
-  createPicture(): Observable<PictureRequest> {
+  createPicture(description, x, y): Observable<PictureRequest> {
     // return console.log("Test: Create a picture");
 
-      const requestBody = {
-        description: "Test Soraya",
-        location: {type: "Point", coordinates: [6.631348200000001, 46.562677400000005]},
-        picture: "https://www.zooplus.fr/magazine/wp-content/uploads/2019/06/comprendre-le-langage-des-chats.jpg"
-      };
-      return this.http.post<PictureRequest>(API_URL_CREATION, requestBody);
-    }
-
-
-    // Get all pictures from the database
-    getAllPictures(): Observable<Picture> {
-      return this.http.get<Picture>(API_URL_CREATION);
-    }
+    const requestBody = {
+      description: description,
+      location: { type: "Point", coordinates: [x, y] },
+      picture: this.currentPictureURL
+    };
+    return this.http.post<PictureRequest>(API_URL_CREATION, requestBody);
   }
+
+
+  // Get all pictures from the database
+  getAllPictures(): Observable<Picture> {
+    return this.http.get<Picture>(API_URL_CREATION);
+  }
+}
 // }
-
-

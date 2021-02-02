@@ -4,6 +4,8 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 
 import { PictureService } from "../../../services/picture.service";
+import { GeolocationService } from 'src/app/services/geolocation.service';
+import { City } from 'src/app/models/city';
 
 @Component({
   selector: 'app-create-picture',
@@ -12,45 +14,51 @@ import { PictureService } from "../../../services/picture.service";
 })
 export class CreatePicturePage implements OnInit {
   picture: string;
+  city: City;
+  citySearched: string;
+  lat: number;
+  long: number;
+  descr: string;
+  displayedDescr: string;
 
-  constructor(private camera: Camera, private geolocation: Geolocation, private pictureService: PictureService) {
-  } //private camera: Camera,
+  constructor(private camera: Camera, private geolocation: Geolocation, private pictureService: PictureService, private geolocationService: GeolocationService) {
+  }
 
   validatePicture() {
     // console.log("Photo à enregistrer");
-    this.pictureService.createPicture().subscribe(
-    //   picture => {
-    //   this.picture = picture;
-    // },
-    err => {
-      console.warn('Could not take picture', err);
-    });
+    this.displayedDescr = this.descr;
+    let description = this.displayedDescr;
+    let x = this.long;
+    let y = this.lat;
+    // this.pictureService.createPicture(description, x, y).subscribe(
+    // //   picture => {
+    // //   this.picture = picture;
+    // // },
+    // err => {
+    //   console.warn('Could not take picture', err);
+    // });
+  }
+
+  // function that show what the user is typing
+  search(citySearched: string) {
+    return `${citySearched}`;
   }
 
   ngOnInit() {
     console.log("URL:" + this.pictureService.currentPictureURL);
     this.picture = this.pictureService.currentPictureURL;
-    // this.camera.getPicture().then(pictureData => {
-    //   this.pictureData = pictureData;
-    // }).catch(err => {
-    //   console.warn(`Could not take picture because: ${err.message}`);
-    // });
+    this.geolocationService.getGeolocation().then((coords: Coordinates) => {
+      this.geolocationService.getCity(coords.latitude, coords.longitude).subscribe(city => {
+        this.city = city,
+        this.lat = coords.latitude,
+        this.long = coords.longitude
+        // console.log(city);
 
-
+      }), err => {
+        console.warn(err);
+        alert(err.message);
+      }
+    });
   }
-
-  // takePicture() {
-  //   const options: CameraOptions = {
-  //     quality: 100,
-  //     destinationType: this.camera.DestinationType.DATA_URL,
-  //     encodingType: this.camera.EncodingType.JPEG,
-  //     mediaType: this.camera.MediaType.PICTURE
-  //   };
-  //   this.camera.getPicture(options).then(pictureData => {
-  //     this.pictureData = pictureData;
-  //   }).catch(err => {
-  //     console.warn(`Could not take picture because: ${err.message}`);
-  //   });
-  // }
 
 }

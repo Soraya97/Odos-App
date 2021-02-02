@@ -8,7 +8,8 @@
 </ion-header>
 
 <ion-content>
-    <ion-item *ngFor ="let picture of pictures" >
+    <ion-item *ngFor="let picture of pictures">
       <a routerLink="/profile/userPic"><img width="50%" class="imageGallery" [src]="picture.picture"></a>
     </ion-item>
+    
 </ion-content>

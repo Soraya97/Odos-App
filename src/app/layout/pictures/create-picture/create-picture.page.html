@@ -19,14 +19,14 @@
 
 
 <ion-content>
-
   <img *ngIf='picture' [src]='picture' />
   <!-- <img src="http://chunkofstyles.com/wp-content/themes/Chunk%20of%20Styles/scripts/timthumb.php?src=http://chunkofstyles.com/wp-content/uploads/2017/05/Cute-Cat.jpg&w=162&h=162" height="125" width="125" /> -->
+  <form (submit)="validatePicture()">
+    <ion-input type="text" placeholder="Écrire une description..." [(ngModel)]="descr" name="descr" required></ion-input>
+  </form>
+  <!-- <a routerLink="/pictures/create-picture/geoloc">Ajouter un lieu<ion-icon name="chevron-forward-outline"></ion-icon></a> -->
 
   <ion-item>
-    <ion-textarea placeholder="Écrire une description..."></ion-textarea>
+    <ion-label><a routerLink=".">{{ city?.locality }}</a></ion-label>
   </ion-item>
-  <a routerLink="/pictures/create-picture/geoloc">Ajouter un lieu<ion-icon name="chevron-forward-outline"></ion-icon></a>
-
-
 </ion-content>

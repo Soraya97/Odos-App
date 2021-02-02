@@ -1,12 +1,12 @@
 import { Url } from "url";
+import { User } from "./user";
 
 export class Picture {
-  _id: string;
+  id: string;
   description: string;
-  location: string;
-  coordinates: [number, number];
+  location: { type: "Point", coordinates: [number, number] };
   picture: string;
-  creation_date: Date = new Date();
+  creation_date: string;
   last_mod_date: string;
   userId: number;
 }

@@ -27,16 +27,16 @@ export class GeolocPage implements OnInit {
 
 
   ngOnInit() {
-    this.geolocationService.getGeolocation().then((coords: Coordinates) => {
-      this.geolocationService.getCity(coords.latitude, coords.longitude).subscribe(city => {
-        this.city = city
-        // console.log(city);
-
-      }), err => {
-        console.warn(err);
-        alert(err.message);
-      }
-    });
+    // this.geolocationService.getGeolocation().then((coords: Coordinates) => {
+    //   this.geolocationService.getCity(coords.latitude, coords.longitude).subscribe(city => {
+    //     this.city = city
+    //     // console.log(city);
+    //
+    //   }), err => {
+    //     console.warn(err);
+    //     alert(err.message);
+    //   }
+    // });
 
   }
 
