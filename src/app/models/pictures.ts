@@ -6,7 +6,7 @@ export class Picture {
   description: string;
   location: { type: "Point", coordinates: [number, number] };
   picture: string;
-  creation_date: Date = new Date();
-  last_mod_date: Date = new Date();
+  creation_date: string;
+  last_mod_date: string;
   userId: number;
 }
