@@ -17,10 +17,25 @@
 <ion-content>
   <!-- START GET ALL name list -->
 
-
-    <ion-nav expand="full" (click)="presentModal()">Nom de la liste 1</ion-nav>
-    <ion-nav expand="full" (click)="presentModal()">Nom de la liste 2</ion-nav>
-    <ion-nav expand="full" (click)="presentModal()">Nom de la liste 3</ion-nav>
+  <ion-list  *ngFor="let page of techs"> 
+      <ion-item-sliding>
+          <ion-item>
+            <ion-label>Item</ion-label>
+          </ion-item>
+          <ion-item-options side="end">
+            <ion-item-option (click)="unread(item)">Unread</ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      
+        <ion-item-sliding>
+          <ion-item>
+            <ion-label>Item</ion-label>
+          </ion-item>
+          <ion-item-options side="end">
+            <ion-item-option (click)="unread(item)">Unread</ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
 
   <!-- STOP GET ALL name list -->
 </ion-content>
