@@ -47,6 +47,7 @@ export class CreatePicturePage implements OnInit {
   ngOnInit() {
     console.log("URL:" + this.pictureService.currentPictureURL);
     this.picture = this.pictureService.currentPictureURL;
+    
     this.geolocationService.getGeolocation().then((coords: Coordinates) => {
       this.geolocationService.getCity(coords.latitude, coords.longitude).subscribe(city => {
         this.city = city,

@@ -22,24 +22,24 @@ export class ProfilePage implements OnInit {
     // this.user = {_id: "1", username: "John Doe", email: "a@a.ch", password: "1234", registrationDate: "12.01.2021"};
 
     // this.pictures = [
-    //   { _id: '1',
+    //   {
+    //     id: '1',
     //     description: 'Tokyo en été',
-    //     location: "Tokyo",
-    //     coordinates: [100.878393, 12.930719],
+    //     location: { type: "Point", coordinates: [100.878393, 12.930719] },
     //     picture: 'https://www.nacel.fr/medias/_cache/produits/585/imagePrincipale/1920_1440/sejour-linguistique-encadre-japon-tokyo.jpg',
-    //     creation_date: new Date("2020-11-10T13:12:46.832Z"),
+    //     creation_date: "2020-11-10T13:12:46.832Z",
     //     last_mod_date: "2019.01.16",
     //     userId: 1,
-    // },
+    //   },
     //   // },
-    //   { _id: '2',
-    //   description: 'Seoul en été',
-    //   location: 'Corée',
-    //   coordinates: [100.878393, 12.930719],
-    //   picture: 'https://pvtistes.net/wp-content/uploads/2018/02/centre-ville-seoul-coree-du-sud.jpg',
-    //   creation_date: new Date("2020-11-10T13:12:46.832Z"),
-    //   last_mod_date: "2021-12-04",
-    //   userId: 1,
+    //   {
+    //     id: '2',
+    //     description: 'Seoul en été',
+    //     location: { type: "Point", coordinates: [100.878393, 12.930719] },
+    //     picture: 'https://pvtistes.net/wp-content/uploads/2018/02/centre-ville-seoul-coree-du-sud.jpg',
+    //     creation_date: "2020-11-10T13:12:46.832Z",
+    //     last_mod_date: "2021-12-04",
+    //     userId: 1,
     //   }
     // ];
   }

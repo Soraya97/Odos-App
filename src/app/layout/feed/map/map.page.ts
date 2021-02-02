@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { latLng, MapOptions, tileLayer, Map, marker, Marker } from 'leaflet';
 
 import { defaultIcon } from './default-marker';
+import { Picture } from 'src/app/models/pictures';
+import { PictureService } from 'src/app/services/picture.service';
 
 @Component({
   selector: 'app-map',
@@ -13,8 +15,11 @@ export class MapPage implements OnInit {
   mapOptions: MapOptions;
   mapMarkers: Marker[];
   map: Map;
+  picture: Picture;
 
-  constructor() {
+  constructor(private pictureService: PictureService) {
+
+
     this.mapOptions = {
       layers: [
         tileLayer(
@@ -27,14 +32,19 @@ export class MapPage implements OnInit {
     };
 
     this.mapMarkers = [
-      marker([46.778186, 6.641524], { icon: defaultIcon }).bindTooltip('Hello'),
-      marker([46.780796, 6.647395], { icon: defaultIcon }),
-      marker([46.784992, 6.652267], { icon: defaultIcon })
+      marker([46.778186, 6.641524], { icon: defaultIcon }).bindTooltip('Hello')
     ];
 
   }
 
   ngOnInit() {
+
+    this.pictureService.getPicture().subscribe(picture => {
+      this.picture = picture;
+    }, err => {
+      console.warn(err);
+      alert(err.message);
+    });
 
   }
 

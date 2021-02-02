@@ -107,6 +107,7 @@ export class PictureService {
     return this.http.get<Picture>(API_URL);
   }
 
+  // Save a picture in the database
   createPicture(description, x, y): Observable<PictureRequest> {
     // return console.log("Test: Create a picture");
 
@@ -122,6 +123,19 @@ export class PictureService {
   // Get all pictures from the database
   getAllPictures(): Observable<Picture> {
     return this.http.get<Picture>(API_URL_CREATION);
+  }
+
+  // TO DO
+  patchPicture(description): Observable<Picture> {
+    const requestBody = {
+      description: description
+    }
+    return this.http.patch<Picture>(API_URL, requestBody);
+  }
+
+  // TO DO
+  deletePicture(description): Observable<Picture> {
+    return this.http.delete<Picture>(API_URL);
   }
 }
 // }
