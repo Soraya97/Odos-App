@@ -18,38 +18,6 @@ export class userPicPage implements OnInit {
   user: User;
   picture: Picture;
 
-<<<<<<< HEAD
-  constructor(private auth: AuthService, private pictureService: PictureService, public actionsheetCtrl: ActionSheetController) {
-  }
-    // async openMenu(){  
-    //   const actionSheet = await this.actionsheetCtrl.create({  
-    //     header: 'Add to a list',  
-    //     buttons: [  
-    //       {  
-    //         text: 'Destructive',  
-    //         role: 'destructive',  
-    //         handler: () => {  
-    //           console.log('Destructive clicked');  
-    //         }  
-    //       },{  
-    //         text: 'Archive',  
-    //         handler: () => {  
-    //           console.log('Archive clicked');  
-    //         }  
-    //       }, {  
-    //         text: 'Cancel',  
-    //         role: 'cancel',  
-    //         handler: () => {  
-    //           console.log('Cancel clicked');  
-    //         }  
-    //       }  
-    //     ]  
-    //   });  
-    //   await actionSheet.present();  
-    // }  
-
-
-=======
   constructor(private auth: AuthService, private pictureService: PictureService, public actionsheetCtrl: ActionSheetController) {}
 
     async openMenu(){
@@ -80,7 +48,6 @@ export class userPicPage implements OnInit {
     }
 
 
->>>>>>> 5a01d826179010a3a0af39891a7ba4b9806a16b2
 
   ngOnInit() {
     this.auth.getUser().subscribe((user) => {
