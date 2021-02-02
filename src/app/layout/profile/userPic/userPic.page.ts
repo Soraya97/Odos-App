@@ -19,7 +19,7 @@ export class userPicPage implements OnInit {
   picture: Picture;
 
   constructor(private auth: AuthService, private pictureService: PictureService, public actionsheetCtrl: ActionSheetController) {
-    
+  }
     // async openMenu(){  
     //   const actionSheet = await this.actionsheetCtrl.create({  
     //     header: 'Add to a list',  
@@ -47,7 +47,7 @@ export class userPicPage implements OnInit {
     //   await actionSheet.present();  
     // }  
 
-  }
+
 
   ngOnInit() {
     this.auth.getUser().subscribe((user) => {
