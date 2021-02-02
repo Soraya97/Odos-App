@@ -6,7 +6,7 @@
       </ion-buttons> -->
 
       <ion-buttons slot="end">
-        <ion-button (click)="createList()">+</ion-button>
+        <ion-button (click)="createList()"><ion-icon name="add-circle-outline"></ion-icon></ion-button>
       </ion-buttons>
 
       <ion-title>Listes</ion-title>
@@ -18,7 +18,9 @@
   <!-- START GET ALL name list -->
 
 
-    <ion-button expand="full" (click)="presentModal()">Nom de la liste</ion-button>
+    <ion-nav expand="full" (click)="presentModal()">Nom de la liste 1</ion-nav>
+    <ion-nav expand="full" (click)="presentModal()">Nom de la liste 2</ion-nav>
+    <ion-nav expand="full" (click)="presentModal()">Nom de la liste 3</ion-nav>
 
   <!-- STOP GET ALL name list -->
 </ion-content>
