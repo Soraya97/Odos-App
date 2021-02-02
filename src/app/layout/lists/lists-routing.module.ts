@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: ListsPage
+  },
+  {
+    path: 'create-list',
+    loadChildren: () => import('./create-list/create-list.module').then( m => m.CreateListPageModule)
   }
 ];
 

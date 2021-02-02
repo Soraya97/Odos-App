@@ -6,15 +6,19 @@
       </ion-buttons> -->
 
     <ion-buttons slot="end">
-      <ion-button (click)="createList()">
-        <ion-icon name="add-circle-outline"></ion-icon>
+      <ion-button>
+        <ion-icon name="add-circle-outline"> <a routerLink="/ists/create-list"></a></ion-icon>
+       
       </ion-button>
     </ion-buttons>
+      <!-- fab placed to the top end -->
+
 
     <ion-title>Listes</ion-title>
 
   </ion-toolbar>
 </ion-header>
+
 
 <ion-content>
   <!-- START GET ALL name list -->
