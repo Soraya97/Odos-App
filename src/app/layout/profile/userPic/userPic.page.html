@@ -11,26 +11,26 @@
 <ion-content>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-icon name="navigate-circle-outline"></ion-icon>
+      <ion-icon class="geoBtn" size="small" name="navigate-circle-outline"></ion-icon>
       <a routerLink="/feed/map">Thailand {{picture?.location}}</a>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-icon (click)="openMenuPic()" name="ellipsis-horizontal-outline"></ion-icon>
+      <ion-icon (click)="openMenuPic()" size="large" name="ellipsis-horizontal-outline"></ion-icon>
     </ion-buttons>
 </ion-toolbar>
 
-<img width="100%" class="imageGallery" [src]="picture?.picture">
+<ion-img width="100%" class="imageGallery" [src]="picture?.picture"> </ion-img>
 
 <ion-toolbar>
-  <p slot="start">Publié le
-    <ion-datetime value="{{picture?.creation_date}}" displayFormat="DD MMM, YYYY">
+  <p slot="start" class="date">Publié le</p>
+    <ion-datetime readonly="true" value="{{picture?.creation_date}}" displayFormat="DD MMM, YYYY">
     </ion-datetime>
+ 
+  <p slot="end">
+    <ion-icon class="listBtn" size="large" name="heart-outline"></ion-icon>
   </p>
-  <ion-button slot="end">
-    <ion-icon name="heart-outline"></ion-icon>
-</ion-button>
 </ion-toolbar>
 
-<p>{{picture?.description}}</p>
+<p class="description">{{picture?.description}}</p>
 
 </ion-content>

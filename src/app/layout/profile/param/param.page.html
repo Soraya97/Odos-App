@@ -37,12 +37,12 @@
     </ion-item>
   </form>
 
-  <p *ngIf="username"><i>
+  <!-- <p *ngIf="username"><i>
     {{ hello(username)}}
   </i>
-  </p>
+  </p> -->
 
-  <a routerLink="./">Suppression du compte</a>
+  <a routerLink="./" ><p (click)="presentAlertConfirm()">Suppression du compte</p></a>
 
 
 
