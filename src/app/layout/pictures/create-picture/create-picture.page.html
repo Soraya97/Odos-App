@@ -9,7 +9,7 @@
     </ion-buttons>
 
     <ion-buttons slot="end">
-      <ion-button (click)="validatePicture()">Ok</ion-button>
+      <ion-button (click)="validatePicture(descrForm)" [disabled]="descrForm.invalid">Ok</ion-button>
     </ion-buttons>
 
     <ion-title>Nouvelle photo</ion-title>
@@ -19,14 +19,26 @@
 
 
 <ion-content>
-  <img *ngIf='picture' [src]='picture' />
-  <!-- <img src="http://chunkofstyles.com/wp-content/themes/Chunk%20of%20Styles/scripts/timthumb.php?src=http://chunkofstyles.com/wp-content/uploads/2017/05/Cute-Cat.jpg&w=162&h=162" height="125" width="125" /> -->
-  <form (submit)="validatePicture()">
-    <ion-input type="text" placeholder="Écrire une description..." [(ngModel)]="descr" name="descr" required></ion-input>
-  </form>
-  <!-- <a routerLink="/pictures/create-picture/geoloc">Ajouter un lieu<ion-icon name="chevron-forward-outline"></ion-icon></a> -->
-
-  <ion-item>
-    <ion-label><a routerLink=".">{{ city?.locality }}</a></ion-label>
-  </ion-item>
+  <ion-grid>
+    <ion-row>
+      <ion-chip>
+        <ion-icon name="location-outline" color="dark"></ion-icon>
+        <ion-label>{{ city?.locality }}</ion-label>
+      </ion-chip>
+    </ion-row>
+    <ion-row>
+      <ion-col class="ion-align-self-start" size="auto">
+        <img *ngIf='picture' [src]='picture' />
+        <!-- <img src="http://chunkofstyles.com/wp-content/themes/Chunk%20of%20Styles/scripts/timthumb.php?src=http://chunkofstyles.com/wp-content/uploads/2017/05/Cute-Cat.jpg&w=162&h=162" height="125" width="125" /> -->
+      </ion-col>
+      <ion-col>
+        <form #descrForm="ngForm">
+          <ion-textarea type="text" placeholder="Écrire une description..." [(ngModel)]="descr" name="descr" required #descrInput="ngModel"></ion-textarea>
+          <p *ngIf="descrInput.invalid && descrInput.dirty" class="small">
+            Une description est requise
+          </p>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
