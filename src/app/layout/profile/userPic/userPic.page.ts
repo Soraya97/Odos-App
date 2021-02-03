@@ -20,20 +20,21 @@ export class userPicPage implements OnInit {
 
   constructor(private auth: AuthService, private pictureService: PictureService, public actionsheetCtrl: ActionSheetController) {}
 
-    async openMenu(){
+    async openMenuPic(){
       const actionSheet = await this.actionsheetCtrl.create({
-        header: 'Add to a list',
+        header: 'Picture options',
         buttons: [
           {
-            text: 'Destructive',
+            text: 'Delete',
             role: 'destructive',
             handler: () => {
-              console.log('Destructive clicked');
+              console.log('Delete clicked');
             }
           },{
-            text: 'Archive',
+            text: 'Modify',
+            role: 'modify',
             handler: () => {
-              console.log('Archive clicked');
+              console.log('Modify clicked');
             }
           }, {
             text: 'Cancel',

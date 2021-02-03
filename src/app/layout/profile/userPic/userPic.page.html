@@ -15,11 +15,11 @@
       <a routerLink="/feed/map">Thailand {{picture?.location}}</a>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-icon name="ellipsis-horizontal-outline"></ion-icon>
+      <ion-icon (click)="openMenuPic()" name="ellipsis-horizontal-outline"></ion-icon>
     </ion-buttons>
 </ion-toolbar>
 
-<img width="50%" class="imageGallery" [src]="picture?.picture">
+<img width="100%" class="imageGallery" [src]="picture?.picture">
 
 <ion-toolbar>
   <p slot="start">Publié le
@@ -27,7 +27,7 @@
     </ion-datetime>
   </p>
   <ion-button slot="end">
-    <ion-icon name="heart-outline" (click)="openMenu()"></ion-icon>
+    <ion-icon name="heart-outline"></ion-icon>
 </ion-button>
 </ion-toolbar>
 

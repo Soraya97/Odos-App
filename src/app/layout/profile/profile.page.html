@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-button slot="end" color="medium" fill="outline" expand="block" size="small">
+    <ion-button class="paramBtn" slot="end" color="medium" fill="outline" expand="block" size="small">
       <a routerLink="/profile/param">Paramètre du compte</a>
     </ion-button>
     <ion-title slot="start"> {{user?.username}}</ion-title>
@@ -8,7 +8,11 @@
 </ion-header>
 
 <ion-content>
-    <ion-item *ngFor="let picture of pictures">
-      <a routerLink="/profile/userPic"><img width="50%" class="imageGallery" [src]="picture?.picture"></a>
-    </ion-item>
+  <ion-grid>
+    <ion-row>
+  <ion-col size="6" *ngFor="let picture of pictures">
+      <a routerLink="/profile/userPic"><img [src]="picture?.picture"></a>
+  </ion-col>
+  </ion-row>
+</ion-grid>
 </ion-content>
