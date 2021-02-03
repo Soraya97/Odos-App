@@ -9,7 +9,7 @@
     </ion-buttons>
 
     <ion-buttons slot="end">
-      <ion-button (click)="validatePicture()">Ok</ion-button>
+      <ion-button (click)="validatePicture(descrForm)" [disabled]="descrForm.invalid">Ok</ion-button>
     </ion-buttons>
 
     <ion-title>Nouvelle photo</ion-title>
@@ -32,8 +32,11 @@
         <!-- <img src="http://chunkofstyles.com/wp-content/themes/Chunk%20of%20Styles/scripts/timthumb.php?src=http://chunkofstyles.com/wp-content/uploads/2017/05/Cute-Cat.jpg&w=162&h=162" height="125" width="125" /> -->
       </ion-col>
       <ion-col>
-        <form (submit)="validatePicture()">
-          <ion-textarea type="text" placeholder="Écrire une description..." [(ngModel)]="descr" name="descr" required></ion-textarea>
+        <form #descrForm="ngForm">
+          <ion-textarea type="text" placeholder="Écrire une description..." [(ngModel)]="descr" name="descr" required #descrInput="ngModel"></ion-textarea>
+          <p *ngIf="descrInput.invalid && descrInput.dirty" class="small">
+            Une description est requise
+          </p>
         </form>
       </ion-col>
     </ion-row>

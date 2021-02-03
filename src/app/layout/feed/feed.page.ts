@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
+
 import { AuthService } from "src/app/auth/auth.service";
+import { WebsocketService } from 'src/app/services/websocket.service';
 
 @Component({
   selector: 'app-feed',
@@ -9,12 +11,22 @@ import { AuthService } from "src/app/auth/auth.service";
 })
 export class FeedPage implements OnInit {
 
-  constructor(
-    // Inject the authentication provider.
-    private auth: AuthService,
-    // Inject the router
-    private router: Router
-  ) { }
+  constructor(private auth: AuthService, private router: Router, private wsService: WebsocketService) {
+    // this.wsService
+    //   .listen()
+    //   .subscribe(message => {
+    //     // Do something when a message is received
+    //   });
+  }
+
+  doRefresh(event) {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 2000);
+  }
 
   ngOnInit() {
   }

@@ -12,6 +12,8 @@
 </ion-header>
 
 <ion-content class="ion-padding"> Feeeeeed
-
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content refreshingSpinner="crescent"></ion-refresher-content>
+  </ion-refresher>
   <a routerLink="/feed/map">Carte</a>
 </ion-content>
