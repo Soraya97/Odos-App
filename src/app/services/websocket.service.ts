@@ -31,6 +31,10 @@ export class WebsocketService {
   //   )
   // };
 
+  public refreshPage() {
+    return console.log("Refreshing the page");
+  }
+
   constructor() {
     const socket = new WebSocket(WS_SERVER_URL);
     socket.onopen = () => {
