@@ -16,7 +16,7 @@ export class ProfilePage implements OnInit {
   // name = 'Test display image';
   // thumbnail: any;
   // picture: Picture;
-  pictures: Picture[] = [];
+  pictures: Picture;
 
   constructor(private auth: AuthService, private pictureService: PictureService) {
     // this.user = {_id: "1", username: "John Doe", email: "a@a.ch", password: "1234", registrationDate: "12.01.2021"};
@@ -54,7 +54,9 @@ export class ProfilePage implements OnInit {
     });
 
     this.pictureService.getAllPictures().subscribe((picture) => {
-      this.pictures.push(picture);
+      this.pictures = picture;
+      console.log(this.pictures);
+
     }, err => {
       console.warn(err);
       alert(err.message);
