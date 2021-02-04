@@ -62,7 +62,7 @@ export class PictureService {
   }
 
   // TO DO
-  patchPicture(description, idPicture): Observable<Picture> {
+  updatePicture(description, idPicture) {
     const requestBody = {
       description: description
     }

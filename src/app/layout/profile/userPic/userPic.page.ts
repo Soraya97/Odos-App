@@ -39,7 +39,13 @@ export class userPicPage implements OnInit {
             text: 'Modify',
             role: 'modify',
             handler: () => {
-              console.log('Modify clicked');
+              let idPicture = "TO DO";
+              let description = "TO DO";
+              this.pictureService.updatePicture(description, idPicture).subscribe(
+              err => {
+                console.warn(err);
+                // alert(err.message);
+              });
             }
           }, {
             text: 'Cancel',

@@ -4,6 +4,8 @@ import { latLng, MapOptions, tileLayer, Map, marker, Marker } from 'leaflet';
 import { defaultIcon } from './default-marker';
 import { Picture } from 'src/app/models/pictures';
 import { PictureService } from 'src/app/services/picture.service';
+import { City } from 'src/app/models/city';
+import { GeolocationService } from 'src/app/services/geolocation.service';
 
 @Component({
   selector: 'app-map',
@@ -16,16 +18,11 @@ export class MapPage implements OnInit {
   mapMarkers: Marker[];
   map: Map;
   picture: Picture;
-  location: { long: number, lat: number }[];
+  long: number;
+  lat: number;
+  city: City;
 
-  constructor(private pictureService: PictureService) {
-    this.location = [{
-      long: 46.778186, lat: 6.641524
-    },
-    {
-      long: 46.7782, lat: 6.65
-    }]
-
+  constructor(private pictureService: PictureService, private geolocationService: GeolocationService) {
     this.mapOptions = {
       layers: [
         tileLayer(
@@ -33,20 +30,26 @@ export class MapPage implements OnInit {
           { maxZoom: 18 }
         )
       ],
-      zoom: 13,
-      center: latLng(46.778186, 6.641524)
+      zoom: 12,
+      center: latLng(48.862725, 2.287592)
     };
-    // for (var i = 0; i < this.location.length; i++) {
-      this.mapMarkers = [
-        marker([this.location[0].long, this.location[0].lat], { icon: defaultIcon }).bindTooltip('Hello')
-      ];
-    // }
-  }
-
-  ngOnInit() {
 
     this.pictureService.getPicture().subscribe(picture => {
       this.picture = picture;
+      this.long = this.picture.location.coordinates[0];
+      this.lat = this.picture.location.coordinates[1];
+
+      this.geolocationService.getCity(this.long, this.lat).subscribe(city => {
+        this.city = city;
+        // console.log(city.continent);
+
+      this.mapMarkers = [
+        marker([this.long, this.lat], { icon: defaultIcon }).bindTooltip(`${this.city}`)
+      ];
+    }), err => {
+      console.warn(err);
+      alert(err.message);
+    }
     }, err => {
       console.warn(err);
       alert(err.message);
@@ -54,9 +57,16 @@ export class MapPage implements OnInit {
 
   }
 
+  ngOnInit() {
+
+
+
+  }
+
   onMapReady(map: Map) {
     setTimeout(() => map.invalidateSize(), 0);
     this.map = map;
+
     // this.map.on('moveend', () => {
     //   const center = this.map.getCenter();
     //   console.log(`Map moved to ${center.lng}, ${center.lat}`);
