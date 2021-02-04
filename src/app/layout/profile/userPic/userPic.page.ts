@@ -28,7 +28,12 @@ export class userPicPage implements OnInit {
             text: 'Delete',
             role: 'destructive',
             handler: () => {
-              console.log('Delete clicked');
+              let idPicture = "TO DO";
+              this.pictureService.deletePicture(idPicture).subscribe(
+              err => {
+                console.warn(err);
+                // alert(err.message);
+              });
             }
           },{
             text: 'Modify',

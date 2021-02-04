@@ -11,7 +11,7 @@
   <ion-grid>
     <ion-row>
   <ion-col size="6" *ngFor="let picture of pictures">
-      <a routerLink="/profile/userPic"><img [src]="picture?.picture"></a>
+      <a routerLink="/profile/userPic"><img [src]="picture?.picture" [id]="picture?.id" (click)="getId(this.picture.id)"></a>
   </ion-col>
   </ion-row>
 </ion-grid>

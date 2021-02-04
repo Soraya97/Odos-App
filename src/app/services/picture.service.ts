@@ -10,23 +10,68 @@ import { environment } from '../../environments/environment';
 import { QimgImage } from '../models/qimg-image';
 import { Picture } from '../models/pictures';
 import { PictureRequest } from '../models/pictures-request';
+import { AuthService } from '../auth/auth.service';
 
 const API_URL = `${environment.apiUrl}/users/5fa158b5e22b7b0017539e6b/pictures/5fa15bd61401d800172fb05f`;
 const API_URL_CREATION = `${environment.apiUrl}/users/5fa158b5e22b7b0017539e6b/pictures/`;
 
-// const API_URL_FINALE = `${environment.apiUrl}/users/`;
-// return this.http.get<Picture>(API_URL+`${idUser}/pictures`);
+const API_URL_FINALE = `${environment.apiUrl}/users/`;
+
 @Injectable({
   providedIn: 'root'
 })
 
 export class PictureService {
   currentPictureURL: string;
+  idUser: string;
 
 
-  constructor(private camera: Camera, private http: HttpClient) {
+  constructor(private camera: Camera, private http: HttpClient, private auth: AuthService) {
     // console.log('Hello PictureService Provider');
     // console.log('@@@ http client', !!this.http);
+    this.auth.getUser().subscribe((user) => {
+      this.idUser = user._id;
+    }, err => {
+      console.warn(err);
+      alert(err.message);
+    });
+  }
+
+  // Get a picture from the database
+  getPicture(): Observable<Picture> {
+    return this.http.get<Picture>(API_URL);
+  }
+
+  // Save a picture in the database
+  createPicture(description, x, y): Observable<PictureRequest> {
+    // return console.log("Test: Create a picture");
+
+    const requestBody = {
+      description: description,
+      location: { type: "Point", coordinates: [x, y] },
+      picture: this.currentPictureURL
+    };
+    return this.http.post<PictureRequest>(API_URL_CREATION, requestBody);
+  }
+
+
+  // Get all pictures from the database
+  getAllPictures(): Observable<Picture> {
+    // return this.http.get<Picture>(API_URL_CREATION);
+    return this.http.get<Picture>(API_URL_FINALE+`${this.idUser}/pictures`);
+  }
+
+  // TO DO
+  patchPicture(description, idPicture): Observable<Picture> {
+    const requestBody = {
+      description: description
+    }
+    return this.http.patch<Picture>(API_URL_CREATION+idPicture, requestBody);
+  }
+
+  // TO DO
+  deletePicture(idPicture) : Observable<Picture> {
+    return this.http.delete<Picture>(API_URL_CREATION+idPicture);
   }
 
   /**
@@ -104,40 +149,6 @@ export class PictureService {
     return debug$;
   }
 
-  // Get a picture from the database
-  getPicture(): Observable<Picture> {
-    return this.http.get<Picture>(API_URL);
-  }
 
-  // Save a picture in the database
-  createPicture(description, x, y): Observable<PictureRequest> {
-    // return console.log("Test: Create a picture");
-
-    const requestBody = {
-      description: description,
-      location: { type: "Point", coordinates: [x, y] },
-      picture: this.currentPictureURL
-    };
-    return this.http.post<PictureRequest>(API_URL_CREATION, requestBody);
-  }
-
-
-  // Get all pictures from the database
-  getAllPictures(): Observable<Picture> {
-    return this.http.get<Picture>(API_URL_CREATION);
-  }
-
-  // TO DO
-  patchPicture(description, idPicture): Observable<Picture> {
-    const requestBody = {
-      description: description
-    }
-    return this.http.patch<Picture>(API_URL_CREATION+idPicture, requestBody);
-  }
-
-  // TO DO
-  deletePicture(description, idPicture): Observable<Picture> {
-    return this.http.delete<Picture>(API_URL_CREATION+idPicture);
-  }
 }
 // }

@@ -15,8 +15,9 @@ export class ProfilePage implements OnInit {
   user: User;
   // name = 'Test display image';
   // thumbnail: any;
-  // picture: Picture;
+  picture: Picture;
   pictures: Picture;
+  router: any;
 
   constructor(private auth: AuthService, private pictureService: PictureService) {
     // this.user = {_id: "1", username: "John Doe", email: "a@a.ch", password: "1234", registrationDate: "12.01.2021"};
@@ -42,6 +43,11 @@ export class ProfilePage implements OnInit {
     //     userId: 1,
     //   }
     // ];
+  }
+
+  getId(id){
+    console.log(id);
+    // TROUVER COMMENT REDIRIGER L'UTILISATEUR 
   }
 
 
