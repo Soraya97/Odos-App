@@ -13,8 +13,6 @@ import { Picture } from 'src/app/models/pictures';
 })
 export class ProfilePage implements OnInit {
   user: User;
-  // name = 'Test display image';
-  // thumbnail: any;
   picture: Picture;
   pictures: Picture;
   router: any;
@@ -62,7 +60,6 @@ export class ProfilePage implements OnInit {
     this.pictureService.getAllPictures().subscribe((picture) => {
       this.pictures = picture;
       console.log(this.pictures);
-
     }, err => {
       console.warn(err);
       alert(err.message);
