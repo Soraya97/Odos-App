@@ -28,4 +28,10 @@ export class UserService {
   //   }
   //   return this.http.patch<User>(API_URL_UPDATE+idUser, requestBody);
   // }
+
+
+    // TO DO
+    deleteUser(idUser) : Observable<User> {
+      return this.http.delete<User>(API_URL+idUser);
+    }
 }

@@ -8,7 +8,9 @@ import { AlertController } from '@ionic/angular';
 import { PopoverController } from '@ionic/angular';
 // import { PopoverComponent } from '../../component/popover/popover.component';
 
-// import { userService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/services/user.service';
+
+
 
 @Component({
   selector: 'app-param',
@@ -19,7 +21,7 @@ export class ParamPage implements OnInit {
   user: User;
   // username: string;
 
-  constructor(private auth: AuthService, public alertController: AlertController, public popoverController: PopoverController) {
+  constructor(private auth: AuthService, private userService: UserService, public alertController: AlertController, public popoverController: PopoverController) {
   }
 
 //test formulaire à suprimmer
@@ -44,6 +46,11 @@ async presentAlertConfirm() {
         text: 'Confirmer',
         handler: (oui) => {
           console.log('Confirm Yes: oui');
+          // this.userService.deleteUser().subscribe(
+          // err => {
+          //   console.warn(err);
+          //   // alert(err.message);
+          // });
         }
       }
     ]
