@@ -8,6 +8,8 @@ import { AlertController } from '@ionic/angular';
 import { PopoverController } from '@ionic/angular';
 // import { PopoverComponent } from '../../component/popover/popover.component';
 
+// import { userService } from 'src/app/services/user.service';
+
 @Component({
   selector: 'app-param',
   templateUrl: './param.page.html',
@@ -15,8 +17,7 @@ import { PopoverController } from '@ionic/angular';
 })
 export class ParamPage implements OnInit {
   user: User;
-  // pictureData: string;
-  username: string;
+  // username: string;
 
   constructor(private auth: AuthService, public alertController: AlertController, public popoverController: PopoverController) {
   }
@@ -62,6 +63,23 @@ async presentAlertConfirm() {
 //   return await popover.present();
 // }
 
+
+
+
+// ESSAI FORMULAIRE
+// paramForm(value){
+//   this.userService.updateUser(value)
+//   .then( res => {
+//     let toast = this.toastCtrl.patch({
+//       message: 'User was modified successfully',
+//       duration: 3000
+//     });
+//     toast.present();
+//     this.resetFields();
+//   }, err => {
+//     console.log(err)
+//   })
+// }
 
 
   ngOnInit() {
