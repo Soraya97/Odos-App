@@ -42,6 +42,11 @@ export class PictureService {
     return this.http.get<Picture>(API_URL);
   }
 
+    // // Get a picture from the database
+    // getPicture(): Observable<Picture> {
+    //   return this.http.get<Picture>(API_URL_FINALE+`${this.idUser}/pictures/${this.idPicture}`);
+    // }
+
   // Save a picture in the database
   createPicture(description, x, y): Observable<PictureRequest> {
     // return console.log("Test: Create a picture");

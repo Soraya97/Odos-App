@@ -46,6 +46,7 @@ export class ProfilePage implements OnInit {
   getId(id){
     console.log(id);
     // TROUVER COMMENT REDIRIGER L'UTILISATEUR 
+    // let selectedPicture: any = this.picture.filter((picture) => picture.id === id)[0]; 
   }
 
 
