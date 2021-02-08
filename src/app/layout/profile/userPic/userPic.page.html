@@ -1,10 +1,10 @@
 <ion-header>
   <ion-toolbar>
-  <ion-buttons slot="start">
-    <ion-back-button text="" icon="chevron-back-outline" defaultHref="profile"></ion-back-button>
-  </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-back-button text="" icon="chevron-back-outline" defaultHref="profile"></ion-back-button>
+    </ion-buttons>
 
-  <ion-title>{{user?.username}}</ion-title>
+    <ion-title>{{user?.username}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -17,23 +17,25 @@
     <ion-buttons slot="end">
       <ion-icon (click)="openMenuPic()" size="large" name="ellipsis-horizontal-outline"></ion-icon>
     </ion-buttons>
-</ion-toolbar>
+  </ion-toolbar>
 
-<ion-img width="100%" class="imageGallery" [src]="picture?.picture" [id]="picture?.id" (click)="getId(this.picture.id)"> </ion-img>
+  <ion-img width="100%" class="imageGallery" [src]="picture?.picture" [id]="picture?.id" (click)="getId(this.picture.id)"> </ion-img>
 
-<ion-toolbar>
-  <p slot="start" class="date">Publié le</p>
+  <ion-toolbar>
+    <p slot="start" class="date">Publié le</p>
     <ion-datetime readonly="true" value="{{picture?.creation_date}}" displayFormat="DD MMM, YYYY">
     </ion-datetime>
 
-  <p slot="end">
-    <ion-icon class="listBtn" size="large" name="heart-outline" (click)="addToList()"></ion-icon>
-  </p>
-</ion-toolbar>
+    <p slot="end">
+      <ion-icon class="listBtn" size="large" name="heart-outline" (click)="addToList()"></ion-icon>
+    </p>
+  </ion-toolbar>
 
-<p class="description" *ngIf='notEditable'>{{picture?.description}}</p>
-<form #descrForm="ngForm" *ngIf='editable'>
-  <ion-input type="text" [(ngModel)]="descr" name="descr" required #descrInput="ngModel" placeholder="{{picture?.description}}"></ion-input>
-  <ion-button (click)=savePictureUpdated() type="submit">Valider</ion-button>
-</form>
+  <p class="description" *ngIf='notEditable'>{{picture?.description}}</p>
+  <form #descrForm="ngForm" *ngIf='editable'>
+    <ion-input type="text" [(ngModel)]="descr" name="descr" required #descrInput="ngModel" placeholder="{{picture?.description}}"></ion-input>
+    <ion-button (click)=savePictureUpdated(descrForm) type="submit" [disabled]="descrForm.invalid">Valider</ion-button>
+    <ion-button (click)=notEditPicture() type="cancel" fill="outline">Annuler</ion-button>
+  </form>
+
 </ion-content>

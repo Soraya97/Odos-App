@@ -9,6 +9,7 @@ import { ActionSheetController, AlertController, ToastController, ModalControlle
 import { async } from '@angular/core/testing';
 import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-userPic',
@@ -30,17 +31,18 @@ export class userPicPage implements OnInit {
     this.notEditable = true;
   }
 
-  addToList(){
+  // TO DO
+  addToList() {
     console.log("Add to list");
   }
 
-
+  // Open the menu of options: Delete or Update
   async openMenuPic() {
     const actionSheet = await this.actionsheetCtrl.create({
       header: 'Picture options',
       buttons: [
         {
-          text: 'Delete',
+          text: 'Supprimer',
           role: 'destructive',
           handler: () => {
             console.log("Deleted");
@@ -48,13 +50,13 @@ export class userPicPage implements OnInit {
           }
         }, {
           // TODO: warn if name already taken
-          text: 'Modify',
+          text: 'Modifier',
           role: 'modify',
           handler: () => {
             this.editPicture();
           }
         }, {
-          text: 'Cancel',
+          text: 'Annuler',
           role: 'cancel',
           handler: () => {
             console.log('Cancel clicked');
@@ -65,26 +67,32 @@ export class userPicPage implements OnInit {
     await actionSheet.present();
   }
 
+  // Active the update mode
   editPicture() {
     this.editable = true;
     this.notEditable = false;
   }
 
-  savePictureUpdated() {
+  // Disable the update mode
+  notEditPicture() {
     this.editable = false;
     this.notEditable = true;
-    console.log(this.descr);
-
-    let description = this.descr;
-    let idPicture = this.idPicture;
-    this.pictureService.updatePicture(description, idPicture).subscribe(
-      err => {
-        console.warn(err);
-        // alert(err.message);
-      });
-      this.updatedPictureToast();
   }
 
+  // Save the new picture in the db
+  savePictureUpdated(form: NgForm) {
+    if (form.valid) {
+      this.editable = false;
+      this.notEditable = true;
+      console.log(this.descr);
+
+      let description = this.descr;
+      let idPicture = this.idPicture;
+      this.pictureService.updatePicture(description, idPicture).subscribe();
+    }
+  }
+
+  // Alert activated when Delete selected on the menu of options
   async deletePhotoAlert() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
@@ -118,6 +126,7 @@ export class userPicPage implements OnInit {
     await alert.present();
   }
 
+  // Confirmation that the picture is deleted
   async deletedPictureToast() {
     const toast = await this.toastController.create({
       message: 'La photo a bien été supprimée',
@@ -126,6 +135,7 @@ export class userPicPage implements OnInit {
     toast.present();
   }
 
+  // Confirmation that the picture is updated
   async updatedPictureToast() {
     const toast = await this.toastController.create({
       message: 'La photo a bien été modifiée',
@@ -133,6 +143,7 @@ export class userPicPage implements OnInit {
     });
     toast.present();
   }
+
 
   ngOnInit() {
     this.auth.getUser().subscribe((user) => {

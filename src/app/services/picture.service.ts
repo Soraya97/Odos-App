@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
@@ -11,6 +12,8 @@ import { QimgImage } from '../models/qimg-image';
 import { Picture } from '../models/pictures';
 import { PictureRequest } from '../models/pictures-request';
 import { AuthService } from '../auth/auth.service';
+import { throwError } from 'rxjs';
+import { retry, catchError } from 'rxjs/operators';
 
 const API_URL = `${environment.apiUrl}/users/5fa158b5e22b7b0017539e6b/pictures/5fa15bd61401d800172fb05f`;
 const API_URL_CREATION = `${environment.apiUrl}/users/5fa158b5e22b7b0017539e6b/pictures/`;
@@ -37,10 +40,28 @@ export class PictureService {
     });
   }
 
-  // // Get a picture from the database
-  // getPicture(): Observable<Picture> {
-  //   return this.http.get<Picture>(API_URL);
-  // }
+  handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error.message);
+      alert(error.error.message);
+    }
+    else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+      console.error(`Backend returned code ${error.status}, ` +
+        `body was: ${error.message}`);
+        alert(error.message);
+      // if (error.status == 422) {
+      //   alert("Ce mot est déjà utilisé");
+      // }
+
+    }
+    // return an observable with a user-facing error message
+    return throwError('Something bad happened; please try again later.');
+  };
+
+
 
   // Get a picture from the database
   getPicture(idPicture): Observable<Picture> {
@@ -56,7 +77,8 @@ export class PictureService {
       location: { type: "Point", coordinates: [x, y] },
       picture: this.currentPictureURL || "https://source.unsplash.com/random"
     };
-    return this.http.post<PictureRequest>(API_URL_CREATION, requestBody);
+    return this.http.post<PictureRequest>(API_URL_CREATION, requestBody)
+      .pipe(retry(2), catchError(this.handleError));
   }
 
 
@@ -66,12 +88,13 @@ export class PictureService {
     return this.http.get<Picture>(API_URL_FINALE + `${this.idUser}/pictures`);
   }
 
-  // TO DO
-  updatePicture(description, idPicture) {
+  // Update the description of a photo
+  updatePicture(description, idPicture): Observable<Picture> {
     const requestBody = {
       description: description
     }
-    return this.http.patch<Picture>(API_URL_CREATION + idPicture, requestBody);
+    return this.http.patch<Picture>(API_URL_CREATION + idPicture, requestBody)
+      .pipe(retry(2), catchError(this.handleError));
   }
 
   // TO DO

@@ -8,7 +8,7 @@ import { GeolocationService } from 'src/app/services/geolocation.service';
 import { City } from 'src/app/models/city';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-create-picture',
@@ -23,23 +23,34 @@ export class CreatePicturePage implements OnInit {
   long: number;
   descr: string;
 
-  constructor(private camera: Camera, private geolocation: Geolocation, private pictureService: PictureService, private geolocationService: GeolocationService, private router: Router, public alertController: AlertController) {
+  constructor(private camera: Camera, private geolocation: Geolocation, private pictureService: PictureService, private geolocationService: GeolocationService, private router: Router, public alertController: AlertController, public toastController: ToastController) {
   }
 
   validatePicture(form: NgForm) {
     if (form.valid) {
       // console.log("Photo à enregistrer");
       let description = this.descr;
-      let x = this.long;
-      let y = this.lat;
-      this.pictureService.createPicture(description, x, y).subscribe(
-        err => {
-          console.warn('Could not take picture', err);
-        });
-        // this.descrAlreadyTaken();
-      // this.router.navigateByUrl("/");
+      let x = this.lat;
+      let y = this.long;
+      if (x === undefined && y === undefined) {
+        x = 90.000000;
+        y = -135.000000;
+      }
+
+      this.pictureService.createPicture(description, x, y).subscribe();
+      // TODO: if no errors
+      this.newPictureToast();
+      this.router.navigateByUrl("/profile");
     }
 
+  }
+
+  async newPictureToast() {
+    const toast = await this.toastController.create({
+      message: 'La photo a bien été ajoutée',
+      duration: 2000
+    });
+    toast.present();
   }
 
   // function that show what the user is typing
@@ -73,6 +84,7 @@ export class CreatePicturePage implements OnInit {
       }), err => {
         console.warn(err);
         alert(err.message);
+
       }
     });
   }
