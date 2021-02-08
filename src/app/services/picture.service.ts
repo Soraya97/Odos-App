@@ -42,10 +42,10 @@ export class PictureService {
   //   return this.http.get<Picture>(API_URL);
   // }
 
-    // Get a picture from the database
-    getPicture(idPicture): Observable<Picture> {
-      return this.http.get<Picture>(API_URL_FINALE+`${this.idUser}/pictures/${idPicture}`);
-    }
+  // Get a picture from the database
+  getPicture(idPicture): Observable<Picture> {
+    return this.http.get<Picture>(API_URL_FINALE + `${this.idUser}/pictures/${idPicture}`);
+  }
 
   // Save a picture in the database
   createPicture(description, x, y): Observable<PictureRequest> {
@@ -63,7 +63,7 @@ export class PictureService {
   // Get all pictures from the database
   getAllPictures(): Observable<Picture> {
     // return this.http.get<Picture>(API_URL_CREATION);
-    return this.http.get<Picture>(API_URL_FINALE+`${this.idUser}/pictures`);
+    return this.http.get<Picture>(API_URL_FINALE + `${this.idUser}/pictures`);
   }
 
   // TO DO
@@ -71,12 +71,12 @@ export class PictureService {
     const requestBody = {
       description: description
     }
-    return this.http.patch<Picture>(API_URL_CREATION+idPicture, requestBody);
+    return this.http.patch<Picture>(API_URL_CREATION + idPicture, requestBody);
   }
 
   // TO DO
-  deletePicture(idPicture) : Observable<Picture> {
-    return this.http.delete<Picture>(API_URL_FINALE+`${this.idUser}/pictures/`+idPicture);
+  deletePicture(idPicture): Observable<Picture> {
+    return this.http.delete<Picture>(API_URL_FINALE + `${this.idUser}/pictures/` + idPicture);
   }
 
   /**

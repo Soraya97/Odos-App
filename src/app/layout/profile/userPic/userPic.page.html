@@ -25,12 +25,15 @@
   <p slot="start" class="date">Publié le</p>
     <ion-datetime readonly="true" value="{{picture?.creation_date}}" displayFormat="DD MMM, YYYY">
     </ion-datetime>
- 
+
   <p slot="end">
     <ion-icon class="listBtn" size="large" name="heart-outline"></ion-icon>
   </p>
 </ion-toolbar>
 
-<p class="description">{{picture?.description}}</p>
-
+<p class="description" *ngIf='notEditable'>{{picture?.description}}</p>
+<form #descrForm="ngForm" *ngIf='editable'>
+  <ion-input type="text" [(ngModel)]="descr" name="descr" required #descrInput="ngModel" placeholder="{{picture?.description}}"></ion-input>
+  <ion-button (click)=savePictureUpdated() type="submit">Valider</ion-button>
+</form>
 </ion-content>

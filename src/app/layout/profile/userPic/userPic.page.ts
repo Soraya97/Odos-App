@@ -19,12 +19,15 @@ export class userPicPage implements OnInit {
   user: User;
   picture: Picture;
   idPicture: string;
+  editable: boolean;
+  descr: string;
+  notEditable: boolean;
 
   constructor(private auth: AuthService, private pictureService: PictureService, public actionsheetCtrl: ActionSheetController, public alertController: AlertController, private router: Router, public toastController: ToastController) {
     let urlcourante = document.location.href;
     urlcourante = urlcourante.replace(/\/$/, "");
     this.idPicture = urlcourante.substring(urlcourante.lastIndexOf("/") + 1);
-
+    this.notEditable = true;
   }
 
   async openMenuPic() {
@@ -36,25 +39,14 @@ export class userPicPage implements OnInit {
           role: 'destructive',
           handler: () => {
             console.log("Deleted");
-            this.presentAlert();
-            // let idPicture = "TO DO";
-            // this.pictureService.deletePicture(idPicture).subscribe(
-            // err => {
-            //   console.warn(err);
-            //   // alert(err.message);
-            // });
+            this.deletePhotoAlert();
           }
         }, {
+          // TODO: warn if name already taken
           text: 'Modify',
           role: 'modify',
           handler: () => {
-            let idPicture = "TO DO";
-            let description = "TO DO";
-            this.pictureService.updatePicture(description, idPicture).subscribe(
-              err => {
-                console.warn(err);
-                // alert(err.message);
-              });
+            this.editPicture();
           }
         }, {
           text: 'Cancel',
@@ -68,7 +60,27 @@ export class userPicPage implements OnInit {
     await actionSheet.present();
   }
 
-  async presentAlert() {
+  editPicture() {
+    this.editable = true;
+    this.notEditable = false;
+  }
+
+  savePictureUpdated() {
+    this.editable = false;
+    this.notEditable = true;
+    console.log(this.descr);
+
+    let description = this.descr;
+    let idPicture = this.idPicture;
+    this.pictureService.updatePicture(description, idPicture).subscribe(
+      err => {
+        console.warn(err);
+        // alert(err.message);
+      });
+      this.updatedPictureToast();
+  }
+
+  async deletePhotoAlert() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Supprimer cette photo',
@@ -91,7 +103,7 @@ export class userPicPage implements OnInit {
                 console.warn(err);
                 // alert(err.message);
               });
-            this.presentToast();
+            this.deletedPictureToast();
             this.router.navigateByUrl("profile");
           }
         }
@@ -101,7 +113,7 @@ export class userPicPage implements OnInit {
     await alert.present();
   }
 
-  async presentToast() {
+  async deletedPictureToast() {
     const toast = await this.toastController.create({
       message: 'La photo a bien été supprimée',
       duration: 2000
@@ -109,10 +121,12 @@ export class userPicPage implements OnInit {
     toast.present();
   }
 
-  getId(id) {
-    console.log(id);
-    // TROUVER COMMENT REDIRIGER L'UTILISATEUR
-    // let selectedPicture: any = this.picture.filter((picture) => picture.id === id)[0];
+  async updatedPictureToast() {
+    const toast = await this.toastController.create({
+      message: 'La photo a bien été modifiée',
+      duration: 2000
+    });
+    toast.present();
   }
 
   ngOnInit() {
