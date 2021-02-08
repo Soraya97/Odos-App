@@ -1,33 +1,29 @@
 <ion-header>
-    <ion-toolbar>
-  
-      <ion-buttons slot="start">
-        <ion-back-button text="Annuler" icon="" defaultHref></ion-back-button>
-      </ion-buttons>
-  
-      <ion-buttons slot="end">
-        <ion-button ion-button type="submit">Terminer</ion-button>
-      </ion-buttons>
-  
-      <ion-title>Nouvelle Liste</ion-title>
-  
-    </ion-toolbar>
-  </ion-header>
-  
-  <!-- source : https://ionicframework.com/docs/v3/developer-resources/forms/ -->
-  <ion-content>
-    <form (ngSubmit)="logForm()">
-      <ion-item>
-          <ion-label position="stacked">Nom de la liste</ion-label>
-          <ion-input type="text" [(ngModel)]="name" name="name"></ion-input>
-        </ion-item>
-    </form>
-    
-  
- 
-  
-  
-  
-  
-  </ion-content>
-  
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-back-button text="Annuler" icon="" defaultHref></ion-back-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="validateList(nameForm)" [disabled]="nameForm.invalid" type="submit">Terminer</ion-button>
+    </ion-buttons>
+
+    <ion-title>Nouvelle Liste</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<!-- source : https://ionicframework.com/docs/v3/developer-resources/forms/ -->
+<ion-content>
+  <form (ngSubmit)="nameForm()">
+    <ion-item>
+      <ion-label position="stacked">Nom de la liste</ion-label>
+      <ion-input type="text" [(ngModel)]="name" name="name" required #nameInput="ngModel"></ion-input>
+      <p *ngIf="nameInput.invalid && nameInput.dirty" class="small">
+          Un nom est requis
+        </p>
+    </ion-item>
+  </form>
+
+</ion-content>

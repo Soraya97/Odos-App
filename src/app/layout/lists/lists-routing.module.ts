@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'create-list',
     loadChildren: () => import('./create-list/create-list.module').then( m => m.CreateListPageModule)
+  },
+  {
+    path: 'piclist',
+    loadChildren: () => import('./piclist/piclist.module').then( m => m.PiclistPageModule)
   }
 ];
 

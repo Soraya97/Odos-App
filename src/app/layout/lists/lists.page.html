@@ -1,16 +1,10 @@
 <ion-header>
   <ion-toolbar>
-
-    <!-- <ion-buttons slot="start">
-        <ion-back-button text="" icon="chevron-back-outline" defaultHref></ion-back-button>
-      </ion-buttons> -->
-
     <ion-buttons slot="end">
       <ion-button>
-        <a routerLink="/lists/create-list"><ion-icon name="add-circle-outline"></ion-icon> </a>
+        <a routerLink="/lists/create-list"><ion-icon name="add-circle-outline"></ion-icon></a>
       </ion-button>
     </ion-buttons>
-
 
 
     <ion-title>Listes</ion-title>
@@ -20,19 +14,14 @@
 
 
 <ion-content>
-  <!-- START GET ALL name list -->
 
-  <ion-list>
-    <ion-button color="light" expand="block" (click)="getOneList()">
-      <ion-label>Nouvelle liste 1</ion-label>
+  <!-- START GET ALL name's list -->
+
+  <ion-list *ngFor='let list of lists'>
+    <ion-button color="light" expand="block" (click)="getAllList()">
+      <ion-label [routerLink]="['/lists/piclist', list.id]">{{list?.name}}</ion-label>
     </ion-button>
-    <ion-button color="light" expand="block" (click)="getOneList()">
-        <ion-label>Nouvelle liste 2</ion-label>
-      </ion-button>
-      <ion-button color="light" expand="block" (click)="getOneList()">
-          <ion-label>Nouvelle liste 3</ion-label>
-        </ion-button>
   </ion-list>
 
-  <!-- STOP GET ALL name list -->
+  <!-- STOP GET ALL name's list -->
 </ion-content>
