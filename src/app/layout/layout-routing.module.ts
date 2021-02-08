@@ -49,11 +49,22 @@ const routes: Routes = [
           ),
       },
       {
+        path: '**',
+        loadChildren: () =>
+          import('./errors/page404/page404.module').then(
+            m => m.Page404PageModule
+          ),
+      },
+      {
         path: "",
         redirectTo: "feed",
         pathMatch: "full",
       },
     ],
+  },
+  {
+    path: 'page404',
+    loadChildren: () => import('./errors/page404/page404.module').then( m => m.Page404PageModule)
   },
 
 ];

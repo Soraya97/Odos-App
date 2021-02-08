@@ -17,7 +17,7 @@ export class MapPage implements OnInit {
   mapOptions: MapOptions;
   mapMarkers: Marker[];
   map: Map;
-  picture: Picture;
+  pictures: Picture;
   long: number;
   lat: number;
   city: City;
@@ -30,14 +30,19 @@ export class MapPage implements OnInit {
           { maxZoom: 18 }
         )
       ],
-      zoom: 12,
+      zoom: 2,
       center: latLng(48.862725, 2.287592)
     };
+
     let idPicture = "601928d4831c7b00170ce306";
-    this.pictureService.getPicture(idPicture).subscribe(picture => {
-      this.picture = picture;
-      this.long = this.picture.location.coordinates[1];
-      this.lat = this.picture.location.coordinates[0];
+    this.pictureService.getAllPictures().subscribe(picture => {
+      this.pictures = picture;
+      for (let i = 0; i <= 3; i++) {
+        console.log(i);
+        this.long = this.pictures[i].location.coordinates[0];
+        this.lat = this.pictures[i].location.coordinates[1];
+      }
+
 
       this.geolocationService.getCity(this.long, this.lat).subscribe(city => {
         this.city = city;

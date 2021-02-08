@@ -5,7 +5,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { PictureService } from 'src/app/services/picture.service';
 import { Picture } from 'src/app/models/pictures';
 
-import { ActionSheetController, AlertController, ToastController } from '@ionic/angular';
+import { ActionSheetController, AlertController, ToastController, ModalController } from '@ionic/angular';
 import { async } from '@angular/core/testing';
 import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
@@ -23,12 +23,17 @@ export class userPicPage implements OnInit {
   descr: string;
   notEditable: boolean;
 
-  constructor(private auth: AuthService, private pictureService: PictureService, public actionsheetCtrl: ActionSheetController, public alertController: AlertController, private router: Router, public toastController: ToastController) {
+  constructor(private auth: AuthService, private pictureService: PictureService, public actionsheetCtrl: ActionSheetController, public alertController: AlertController, private router: Router, public toastController: ToastController, public modalController: ModalController) {
     let urlcourante = document.location.href;
     urlcourante = urlcourante.replace(/\/$/, "");
     this.idPicture = urlcourante.substring(urlcourante.lastIndexOf("/") + 1);
     this.notEditable = true;
   }
+
+  addToList(){
+    console.log("Add to list");
+  }
+
 
   async openMenuPic() {
     const actionSheet = await this.actionsheetCtrl.create({
