@@ -20,7 +20,7 @@ export class userPicPage implements OnInit {
   idPicture: string;
 
   constructor(private auth: AuthService, private pictureService: PictureService, public actionsheetCtrl: ActionSheetController) {
-    var urlcourante = document.location.href;
+    let urlcourante = document.location.href;
     urlcourante = urlcourante.replace(/\/$/, "");
     this.idPicture = urlcourante.substring (urlcourante.lastIndexOf( "/" )+1 );
 
