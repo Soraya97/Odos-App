@@ -6,6 +6,7 @@ import { Picture } from 'src/app/models/pictures';
 import { PictureService } from 'src/app/services/picture.service';
 import { City } from 'src/app/models/city';
 import { GeolocationService } from 'src/app/services/geolocation.service';
+import * as L from 'leaflet';
 
 @Component({
   selector: 'app-map',
@@ -34,27 +35,33 @@ export class MapPage implements OnInit {
       center: latLng(48.862725, 2.287592)
     };
 
-    let idPicture = "601928d4831c7b00170ce306";
     this.pictureService.getAllPictures().subscribe(picture => {
-      this.pictures = picture;
-      for (let i = 0; i <= 3; i++) {
-        console.log(i);
-        this.long = this.pictures[i].location.coordinates[0];
-        this.lat = this.pictures[i].location.coordinates[1];
-      }
 
+      this.pictures = picture;
+
+      // for (let i = 0; i <= 3; i++) {
+      //   console.log(i);
+        this.long = this.pictures[3].location.coordinates[0];
+        this.lat = this.pictures[3].location.coordinates[1];
+      // }
 
       this.geolocationService.getCity(this.long, this.lat).subscribe(city => {
-        this.city = city;
-        // console.log(city.continent);
+        this.city = city.locality;
+        console.log(city);
+
+        // for (let i = 0; i < 2; i++) {
+        //  marker([this.pictures[i].location.coordinates[0], this.pictures[i].location.coordinates[1]], { icon: defaultIcon }).addTo(this.mapMarkers);
+        // }
 
         this.mapMarkers = [
-          marker([this.long, this.lat], { icon: defaultIcon }).bindTooltip(`${this.city}`)
+          marker([this.long, this.lat], { icon: defaultIcon }).bindPopup(`${this.city}`)
         ];
+
       }), err => {
         console.warn(err);
         alert(err.message);
       }
+
     }, err => {
       console.warn(err);
       alert(err.message);
