@@ -3,12 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { User } from "../../../models/user";
 import { AuthService } from 'src/app/auth/auth.service';
 
-import { AlertController } from '@ionic/angular';
+import {AlertController, ToastController} from '@ionic/angular';
 
 import { PopoverController } from '@ionic/angular';
 // import { PopoverComponent } from '../../component/popover/popover.component';
 
 import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
 
 
 
@@ -21,8 +22,9 @@ export class ParamPage implements OnInit {
   user: User;
   username: string;
   email: string;
+  idUser: string;
 
-  constructor(private auth: AuthService, private userService: UserService, public alertController: AlertController, public popoverController: PopoverController) {
+  constructor(private auth: AuthService, private userService: UserService, public alertController: AlertController, public toastController: ToastController, private router: Router, public popoverController: PopoverController) {
   }
 
   //test formulaire à suprimmer
@@ -50,13 +52,17 @@ export class ParamPage implements OnInit {
           }
         }, {
           text: 'Confirmer',
-          handler: (oui) => {
+          handler: () => {
             console.log('Confirm Yes: oui');
-            // this.userService.deleteUser().subscribe(
-            // err => {
-            //   console.warn(err);
-            //   // alert(err.message);
-            // });
+            this.userService.deleteUser().subscribe(
+             
+              err => {
+                console.warn(err);
+                // alert(err.message);
+              });
+              this.deletedUserToast();
+            this.router.navigateByUrl("login");
+          
           }
         }
       ]
@@ -65,7 +71,14 @@ export class ParamPage implements OnInit {
     await alert.present();
   }
 
-
+  // Confirmation that the user is deleted
+  async deletedUserToast() {
+    const toast = await this.toastController.create({
+      message: 'Votre compte a été supprimé',
+      duration: 2000
+    });
+    toast.present();
+  }
   // async presentPopover(ev: any) {
   //   const popover = await this.popoverController.create({
   //     component: PopoverComponent,

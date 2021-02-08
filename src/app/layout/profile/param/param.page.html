@@ -25,7 +25,7 @@
     </ion-item>
     <ion-item>
       <ion-label>Email</ion-label>
-      <ion-input type="email" [(ngModel)]="email" name="email" [placeholder]="user?.email"></ion-input>
+      <ion-input type="email" [(ngModel)]="email" [placeholder]="user?.email" name="email"></ion-input>
     </ion-item>
     <!-- <ion-item>
       <ion-label>Mot de passe</ion-label>
@@ -43,7 +43,7 @@
   </i>
   </p> -->
 
-  <a routerLink="./" ><p (click)="presentAlertConfirm()">Suppression du compte</p></a>
+  <a (click)="presentAlertConfirm()">Suppression du compte</a>
 
 
 
