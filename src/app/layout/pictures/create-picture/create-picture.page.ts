@@ -7,6 +7,8 @@ import { PictureService } from "../../../services/picture.service";
 import { GeolocationService } from 'src/app/services/geolocation.service';
 import { City } from 'src/app/models/city';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-create-picture',
@@ -20,31 +22,41 @@ export class CreatePicturePage implements OnInit {
   lat: number;
   long: number;
   descr: string;
-  displayedDescr: string;
 
-  constructor(private camera: Camera, private geolocation: Geolocation, private pictureService: PictureService, private geolocationService: GeolocationService) {
+  constructor(private camera: Camera, private geolocation: Geolocation, private pictureService: PictureService, private geolocationService: GeolocationService, private router: Router, public alertController: AlertController) {
   }
 
   validatePicture(form: NgForm) {
     if (form.valid) {
       // console.log("Photo à enregistrer");
-      this.displayedDescr = this.descr;
-      let description = this.displayedDescr;
+      let description = this.descr;
       let x = this.long;
       let y = this.lat;
-      // this.pictureService.createPicture(description, x, y).subscribe(
-      // //   picture => {
-      // //   this.picture = picture;
-      // // },
-      // err => {
-      //   console.warn('Could not take picture', err);
-      // });
+      this.pictureService.createPicture(description, x, y).subscribe(
+        err => {
+          console.warn('Could not take picture', err);
+        });
+        // this.descrAlreadyTaken();
+      // this.router.navigateByUrl("/");
     }
+
   }
 
   // function that show what the user is typing
   search(citySearched: string) {
     return `${citySearched}`;
+  }
+
+  async descrAlreadyTaken() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Attention',
+      subHeader: `Nom ${this.descr} déjà utilisé`,
+      message: "Merci d'en choisir un autre",
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
   ngOnInit() {

@@ -54,7 +54,7 @@ export class PictureService {
     const requestBody = {
       description: description,
       location: { type: "Point", coordinates: [x, y] },
-      picture: this.currentPictureURL
+      picture: this.currentPictureURL || "https://source.unsplash.com/random"
     };
     return this.http.post<PictureRequest>(API_URL_CREATION, requestBody);
   }
@@ -76,7 +76,7 @@ export class PictureService {
 
   // TO DO
   deletePicture(idPicture) : Observable<Picture> {
-    return this.http.delete<Picture>(API_URL_CREATION+idPicture);
+    return this.http.delete<Picture>(API_URL_FINALE+`${this.idUser}/pictures/`+idPicture);
   }
 
   /**

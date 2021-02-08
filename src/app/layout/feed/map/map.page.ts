@@ -33,23 +33,23 @@ export class MapPage implements OnInit {
       zoom: 12,
       center: latLng(48.862725, 2.287592)
     };
-let idPicture = "601928d4831c7b00170ce306";
+    let idPicture = "601928d4831c7b00170ce306";
     this.pictureService.getPicture(idPicture).subscribe(picture => {
       this.picture = picture;
-      this.long = this.picture.location.coordinates[0];
-      this.lat = this.picture.location.coordinates[1];
+      this.long = this.picture.location.coordinates[1];
+      this.lat = this.picture.location.coordinates[0];
 
       this.geolocationService.getCity(this.long, this.lat).subscribe(city => {
         this.city = city;
         // console.log(city.continent);
 
-      this.mapMarkers = [
-        marker([this.long, this.lat], { icon: defaultIcon }).bindTooltip(`${this.city}`)
-      ];
-    }), err => {
-      console.warn(err);
-      alert(err.message);
-    }
+        this.mapMarkers = [
+          marker([this.long, this.lat], { icon: defaultIcon }).bindTooltip(`${this.city}`)
+        ];
+      }), err => {
+        console.warn(err);
+        alert(err.message);
+      }
     }, err => {
       console.warn(err);
       alert(err.message);
