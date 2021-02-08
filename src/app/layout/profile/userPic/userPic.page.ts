@@ -17,8 +17,14 @@ import { User } from 'src/app/models/user';
 export class userPicPage implements OnInit {
   user: User;
   picture: Picture;
+  idPicture: string;
 
-  constructor(private auth: AuthService, private pictureService: PictureService, public actionsheetCtrl: ActionSheetController) {}
+  constructor(private auth: AuthService, private pictureService: PictureService, public actionsheetCtrl: ActionSheetController) {
+    var urlcourante = document.location.href;
+    urlcourante = urlcourante.replace(/\/$/, "");
+    this.idPicture = urlcourante.substring (urlcourante.lastIndexOf( "/" )+1 );
+
+  }
 
     async openMenuPic(){
       const actionSheet = await this.actionsheetCtrl.create({
@@ -61,8 +67,8 @@ export class userPicPage implements OnInit {
 
     getId(id){
       console.log(id);
-      // TROUVER COMMENT REDIRIGER L'UTILISATEUR 
-      // let selectedPicture: any = this.picture.filter((picture) => picture.id === id)[0]; 
+      // TROUVER COMMENT REDIRIGER L'UTILISATEUR
+      // let selectedPicture: any = this.picture.filter((picture) => picture.id === id)[0];
     }
 
   ngOnInit() {
@@ -73,7 +79,7 @@ export class userPicPage implements OnInit {
       alert(err.message);
     });
 
-    this.pictureService.getPicture().subscribe((picture) => {
+    this.pictureService.getPicture(this.idPicture).subscribe((picture) => {
       this.picture = picture;
     }, err => {
       console.warn(err);

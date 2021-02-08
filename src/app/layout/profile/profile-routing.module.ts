@@ -10,10 +10,11 @@ const routes: Routes = [
   },
   {
     path: 'param',
-    loadChildren: () => import('./param/param.module').then( m => m.ParamPageModule),
+    loadChildren: () => import('./param/param.module').then(m => m.ParamPageModule),
   },
-  {    path: 'userPic',
-  loadChildren: () => import('./userPic/userPic.module').then( m => m.userPicPageModule)
+  {
+    path: 'userPic/:id',
+    loadChildren: () => import('./userPic/userPic.module').then(m => m.userPicPageModule)
   }
 ];
 
@@ -21,4 +22,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class ProfilePageRoutingModule {}
+export class ProfilePageRoutingModule { }

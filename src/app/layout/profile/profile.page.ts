@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 
 import { PictureService } from 'src/app/services/picture.service';
 import { Picture } from 'src/app/models/pictures';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -16,10 +17,11 @@ export class ProfilePage implements OnInit {
   picture: Picture;
   pictures: Picture;
   router: any;
+  pictureId: string;
 
-  constructor(private auth: AuthService, private pictureService: PictureService) {
+  constructor(private auth: AuthService, private pictureService: PictureService, private route: ActivatedRoute) {
     // this.user = {_id: "1", username: "John Doe", email: "a@a.ch", password: "1234", registrationDate: "12.01.2021"};
-
+    this.pictureId = this.route.snapshot.paramMap.get('id');
     // this.pictures = [
     //   {
     //     id: '1',
@@ -43,10 +45,10 @@ export class ProfilePage implements OnInit {
     // ];
   }
 
-  getId(id){
+  getId(id) {
     console.log(id);
-    // TROUVER COMMENT REDIRIGER L'UTILISATEUR 
-    // let selectedPicture: any = this.picture.filter((picture) => picture.id === id)[0]; 
+    // TROUVER COMMENT REDIRIGER L'UTILISATEUR
+    // let selectedPicture: any = this.picture.filter((picture) => picture.id === id)[0];
   }
 
 

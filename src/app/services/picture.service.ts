@@ -37,15 +37,15 @@ export class PictureService {
     });
   }
 
-  // Get a picture from the database
-  getPicture(): Observable<Picture> {
-    return this.http.get<Picture>(API_URL);
-  }
+  // // Get a picture from the database
+  // getPicture(): Observable<Picture> {
+  //   return this.http.get<Picture>(API_URL);
+  // }
 
-    // // Get a picture from the database
-    // getPicture(): Observable<Picture> {
-    //   return this.http.get<Picture>(API_URL_FINALE+`${this.idUser}/pictures/${this.idPicture}`);
-    // }
+    // Get a picture from the database
+    getPicture(idPicture): Observable<Picture> {
+      return this.http.get<Picture>(API_URL_FINALE+`${this.idUser}/pictures/${idPicture}`);
+    }
 
   // Save a picture in the database
   createPicture(description, x, y): Observable<PictureRequest> {

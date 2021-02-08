@@ -33,8 +33,8 @@ export class MapPage implements OnInit {
       zoom: 12,
       center: latLng(48.862725, 2.287592)
     };
-
-    this.pictureService.getPicture().subscribe(picture => {
+let idPicture = "601928d4831c7b00170ce306";
+    this.pictureService.getPicture(idPicture).subscribe(picture => {
       this.picture = picture;
       this.long = this.picture.location.coordinates[0];
       this.lat = this.picture.location.coordinates[1];
