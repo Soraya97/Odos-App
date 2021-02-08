@@ -20,9 +20,7 @@ import { UserService } from 'src/app/services/user.service';
 export class ParamPage implements OnInit {
   user: User;
   username: string;
-  displayedUsername: string;
   email: string;
-  displayedEmail: string;
 
   constructor(private auth: AuthService, private userService: UserService, public alertController: AlertController, public popoverController: PopoverController) {
   }
@@ -33,10 +31,8 @@ export class ParamPage implements OnInit {
   }
 
   paramForm() {
-    this.displayedUsername = this.username;
-    this.displayedEmail = this.email;
-    console.log(this.displayedEmail);
-
+    console.log(this.username);
+    console.log(this.email);
   }
 
   async presentAlertConfirm() {
