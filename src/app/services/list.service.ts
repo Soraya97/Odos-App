@@ -19,53 +19,78 @@ const API_URL_FINALE = `${environment.apiUrl}/users/`;
 })
 export class ListService {
     currentListURL: string;
-  idUser: string;
+    idUser: string;
 
-  constructor(private http: HttpClient, private auth: AuthService) {
-    // console.log('Hello ListService Provider');
-    // console.log('@@@ http client', !!this.http);
-    this.auth.getUser().subscribe((user) => {
-      this.idUser = user._id;
-    }, err => {
-      console.warn(err);
-      alert(err.message);
-    });
-  }
-
-  // Get a list from the database
-  getList(): Observable<List> {
-    return this.http.get<List>(API_URL);
-  }
-
-  // Save a list in the database
-  createList(name): Observable<ListRequest> {
-    // return console.log("Test: Create a list");
-
-    const requestBody = {
-      name: name,
-    };
-    return this.http.post<ListRequest>(API_URL_CREATION, requestBody);
-  }
-
-
-  // Get all lists from the database
-  getAllLists(): Observable<List> {
-    // return this.http.get<List>(API_URL_CREATION);
-    return this.http.get<List>(API_URL_FINALE+`${this.idUser}/lists`);
-  }
-
-  // TO DO
-  patchList(description, idList): Observable<List> {
-    const requestBody = {
-      name: name
+    constructor(private http: HttpClient, private auth: AuthService) {
+        // console.log('Hello ListService Provider');
+        // console.log('@@@ http client', !!this.http);
+        this.auth.getUser().subscribe((user) => {
+            this.idUser = user._id;
+        }, err => {
+            console.warn(err);
+            alert(err.message);
+        });
     }
-    return this.http.patch<List>(API_URL_CREATION+idList, requestBody);
-  }
 
-  // TO DO
-  deleteList(idList) : Observable<List> {
-    return this.http.delete<List>(API_URL_CREATION+idList);
-  }
+
+    handleError(error: HttpErrorResponse) {
+        if (error.error instanceof ErrorEvent) {
+          // A client-side or network error occurred. Handle it accordingly.
+          console.error('An error occurred:', error.error.message);
+          alert(error.error.message);
+        }
+        else {
+          // The backend returned an unsuccessful response code.
+          // The response body may contain clues as to what went wrong,
+          console.error(`Backend returned code ${error.status}, ` +
+            `body was: ${error.message}`);
+          alert(error.message);
+          // if (error.status == 422) {
+          //   alert("Ce mot est déjà utilisé");
+          // }
+    
+        }
+        // return an observable with a user-facing error message
+        return throwError('Something bad happened; please try again later.');
+      };
+    
+
+    // Get a list from the database
+    getList(idList): Observable<List> {
+        return this.http.get<List>(API_URL_FINALE+ `${this.idUser}/pictures/${idList}`);
+    }
+
+    // Save a list in the database
+    createList(name): Observable<ListRequest> {
+        // return console.log("Test: Create a list");
+
+        const requestBody = {
+            name: name,
+        };
+        return this.http.post<ListRequest>(API_URL_CREATION, requestBody)
+        .pipe(retry(2), catchError(this.handleError));
+    }
+
+
+    // Get all lists from the database
+    getAllLists(): Observable<List> {
+        // return this.http.get<List>(API_URL_CREATION);
+        return this.http.get<List>(API_URL_FINALE + `${this.idUser}/lists`);
+    }
+
+    // TO DO
+    updateList(name, idList): Observable<List> {
+        const requestBody = {
+            name: name
+        }
+        return this.http.patch<List>(API_URL_CREATION + idList, requestBody)
+        .pipe(retry(2), catchError(this.handleError));
+    }
+
+    // TO DO
+    deleteList(idList): Observable<List> {
+        return this.http.delete<List>(API_URL_FINALE + `${this.idUser}/pictures/` + idList);
+    }
 
     // // Update item by id
     // updateList(id, item): Observable<List> {

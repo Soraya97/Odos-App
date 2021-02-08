@@ -16,7 +16,7 @@
 
 <!-- source : https://ionicframework.com/docs/v3/developer-resources/forms/ -->
 <ion-content>
-  <form (ngSubmit)="nameForm()">
+  <form #nameForm="ngForm">
     <ion-item>
       <ion-label position="stacked">Nom de la liste</ion-label>
       <ion-input type="text" [(ngModel)]="name" name="name" required #nameInput="ngModel"></ion-input>
