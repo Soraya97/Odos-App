@@ -6,6 +6,7 @@ import { Picture } from 'src/app/models/pictures';
 import { PictureService } from 'src/app/services/picture.service';
 import { City } from 'src/app/models/city';
 import { GeolocationService } from 'src/app/services/geolocation.service';
+import { FeedService } from 'src/app/services/feed.service';
 
 @Component({
   selector: 'app-map',
@@ -21,19 +22,8 @@ export class MapPage implements OnInit {
   long: number;
   lat: number;
   city: City;
-  locations: {long: number, lat: number}[]
 
-  constructor(private pictureService: PictureService, private geolocationService: GeolocationService) {
-    this.locations = [
-      {
-        long: 48.862725,
-        lat: 2.287592
-      },
-      {
-        long: 50,
-        lat: 2.287592
-      }
-    ]
+  constructor(private feedService: FeedService, private geolocationService: GeolocationService) {
 
     this.mapOptions = {
       layers: [
@@ -46,14 +36,16 @@ export class MapPage implements OnInit {
       center: latLng(48.862725, 2.287592)
     };
 
-    this.pictureService.getAllPictures().subscribe(picture => {
+    this.feedService.getAllPictures().subscribe(picture => {
 
       this.pictures = picture;
+      // console.log(this.pictures[0].location.coordinates[0]);
+
 
       // for (let i = 0; i <= 3; i++) {
       //   console.log(i);
-        this.long = this.pictures[2].location.coordinates[0];
-        this.lat = this.pictures[2].location.coordinates[1];
+        this.long = this.pictures[0].location.coordinates[0];
+        this.lat = this.pictures[0].location.coordinates[1];
       // }
 
       this.geolocationService.getCity(this.long, this.lat).subscribe(city => {
@@ -65,8 +57,9 @@ export class MapPage implements OnInit {
         // }
 
         this.mapMarkers = [
-          marker([this.locations[0].long, this.locations[0].lat], { icon: defaultIcon }).bindPopup(`${this.city}`),
-          marker([this.locations[1].long, this.locations[1].lat], { icon: defaultIcon }).bindPopup(`${this.city}`)
+          marker([this.pictures[0].location.coordinates[0], this.pictures[0].location.coordinates[1]], { icon: defaultIcon }).bindPopup(`${this.city}`),
+          marker([this.pictures[1].location.coordinates[0], this.pictures[1].location.coordinates[1]], { icon: defaultIcon }).bindPopup(`${this.city}`),
+          marker([this.pictures[3].location.coordinates[0], this.pictures[3].location.coordinates[1]], { icon: defaultIcon }).bindPopup(`${this.city}`)
         ];
 
       }), err => {
