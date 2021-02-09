@@ -34,11 +34,6 @@ export class ListsPage implements OnInit {
     this.listId = this.route.snapshot.paramMap.get('id');
   }
 
-  getId(id) {
-    console.log(id);
-    // TROUVER COMMENT REDIRIGER L'UTILISATEUR 
-  }
-
 
   ngOnInit() {
     this.auth.getUser().subscribe((user) => {

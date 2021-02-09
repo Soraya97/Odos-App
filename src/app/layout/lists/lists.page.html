@@ -17,10 +17,14 @@
 
   <!-- START GET ALL name's list -->
 
-  <ion-list size="6" *ngFor='let list of lists'>
+  <!-- <ion-list size="6" *ngFor='let list of lists'>
     <ion-button color="light" expand="block" (click)="getList()">
         <ion-label [src]="list?.list" [id]="list?.id" [routerLink]="['/lists/piclist', list.id]">{{list?.name}}</ion-label>
     </ion-button>
+  </ion-list> -->
+
+  <ion-list size="6" *ngFor='let list of lists'>
+    <ion-button color="light" expand="block" [id]="list?._id" [routerLink]="['/lists/piclist', list._id]">{{list?.name}}</ion-button>
   </ion-list>
 
   <!-- STOP GET ALL name's list -->

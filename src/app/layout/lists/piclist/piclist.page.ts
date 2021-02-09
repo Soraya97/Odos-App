@@ -45,7 +45,7 @@ export class PiclistPage implements OnInit {
     private router: Router,
     public toastController: ToastController,
     public modalController: ModalController
-  ) { 
+  ) {
     let urlcourante = document.location.href;
     urlcourante = urlcourante.replace(/\/$/, "");
     this.idList = urlcourante.substring(urlcourante.lastIndexOf("/") + 1);
@@ -95,18 +95,13 @@ export class PiclistPage implements OnInit {
     this.notEditable = true;
   }
 
-  getId(id) {
-    console.log(id);
-    // TROUVER COMMENT REDIRIGER L'UTILISATEUR 
-  }
-
     // Save the new name list in the db
     saveListUpdated(form: NgForm) {
       if (form.valid) {
         this.editable = false;
         this.notEditable = true;
         console.log(this.name);
-  
+
         let name = this.name;
         let idList = this.idList;
         this.listService.updateList(name, idList).subscribe();
@@ -183,13 +178,13 @@ export class PiclistPage implements OnInit {
     });
 
 
-    this.pictureService.getPicture(this.idPicture).subscribe((picture) => {
-      this.pictures = picture;
-      console.log(this.pictures);
-    }, err => {
-      console.warn(err);
-      alert(err.message);
-    });
+    // this.pictureService.getPicture(this.idPicture).subscribe((picture) => {
+    //   this.pictures = picture;
+    //   console.log(this.pictures);
+    // }, err => {
+    //   console.warn(err);
+    //   alert(err.message);
+    // });
 
   }
 

@@ -48,16 +48,16 @@ export class ListService {
           // if (error.status == 422) {
           //   alert("Ce mot est déjà utilisé");
           // }
-    
+
         }
         // return an observable with a user-facing error message
         return throwError('Something bad happened; please try again later.');
       };
-    
+
 
     // Get a list from the database
     getList(idList): Observable<List> {
-        return this.http.get<List>(API_URL_FINALE+ `${this.idUser}/pictures/${idList}`);
+        return this.http.get<List>(API_URL_FINALE+ `${this.idUser}/lists/${idList}`);
     }
 
     // Save a list in the database

@@ -3,7 +3,7 @@
         <ion-buttons slot="start">
           <ion-back-button text="" icon="chevron-back-outline" defaultHref="lists"></ion-back-button>
         </ion-buttons>
-      
+
         <ion-title>{{list?.name}}</ion-title>
 
         <ion-buttons slot="end">
@@ -16,7 +16,7 @@
     <ion-grid>
         <ion-row>
       <ion-col size="6" *ngFor="let picture of pictures">
-          <a routerLink="./profile/userPic"><img [src]="picture?.picture" [id]="picture?.id" (click)="getId(this.picture.id)"></a>
+        <img [src]="picture?.picture" [id]="picture?.id" (click)="getId(this.picture.id)">
       </ion-col>
       </ion-row>
     </ion-grid>
