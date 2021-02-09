@@ -13,12 +13,8 @@ import { Picture } from '../models/pictures';
 import { PictureRequest } from '../models/pictures-request';
 import { AuthService } from '../auth/auth.service';
 import { throwError } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
 
-const API_URL = `${environment.apiUrl}/users/5fa158b5e22b7b0017539e6b/pictures/5fa15bd61401d800172fb05f`;
-const API_URL_CREATION = `${environment.apiUrl}/users/5fa158b5e22b7b0017539e6b/pictures/`;
-
-const API_URL_FINALE = `${environment.apiUrl}/users/`;
+const API_URL = `${environment.apiUrl}/users/`;
 
 @Injectable({
   providedIn: 'root'
@@ -65,7 +61,7 @@ export class PictureService {
 
   // Get a picture from the database
   getPicture(idPicture): Observable<Picture> {
-    return this.http.get<Picture>(API_URL_FINALE + `${this.idUser}/pictures/${idPicture}`);
+    return this.http.get<Picture>(API_URL + `${this.idUser}/pictures/${idPicture}`);
   }
 
   // Save a picture in the database
@@ -77,15 +73,14 @@ export class PictureService {
       location: { type: "Point", coordinates: [x, y] },
       picture: this.currentPictureURL || "https://source.unsplash.com/random"
     };
-    return this.http.post<PictureRequest>(API_URL_CREATION, requestBody);
+    return this.http.post<PictureRequest>(API_URL + `${this.idUser}/pictures/`, requestBody);
       // .pipe(retry(2), catchError(this.handleError));
   }
 
 
   // Get all pictures from the database
   getAllPictures(): Observable<Picture> {
-    // return this.http.get<Picture>(API_URL_CREATION);
-    return this.http.get<Picture>(API_URL_FINALE + `${this.idUser}/pictures`);
+    return this.http.get<Picture>(API_URL + `${this.idUser}/pictures`);
   }
 
   // Update the description of a photo
@@ -93,13 +88,13 @@ export class PictureService {
     const requestBody = {
       description: description
     }
-    return this.http.patch<Picture>(API_URL_CREATION + idPicture, requestBody);
+    return this.http.patch<Picture>(API_URL + `${this.idUser}/pictures/` + idPicture, requestBody);
       // .pipe(retry(2), catchError(this.handleError));
   }
 
   // TO DO
   deletePicture(idPicture): Observable<Picture> {
-    return this.http.delete<Picture>(API_URL_FINALE + `${this.idUser}/pictures/` + idPicture);
+    return this.http.delete<Picture>(API_URL + `${this.idUser}/pictures/` + idPicture);
   }
 
   /**
