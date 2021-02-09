@@ -3,10 +3,11 @@ import { User } from "./user";
 import { Picture } from "./pictures";
 
 export class List {
-    name: string;
-    creationDate: Date;
-    modifiactionDate: Date;
-    user: {type:"User"};
-    picture: {type:"Picture"};
-    public: boolean;
-  }
+  _id: string;
+  name: string;
+  creationDate: string;
+  modificationDate: String;
+  user: number;
+  picture: [number];
+  public: boolean;
+}

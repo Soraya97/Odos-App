@@ -55,7 +55,7 @@ export class PiclistPage implements OnInit {
 
   async openMenuList() {
     const actionSheet = await this.actionsheetCtrl.create({
-      header: 'Picture options',
+      header: 'List options',
       buttons: [
         {
           text: 'Supprimer',
@@ -142,7 +142,7 @@ export class PiclistPage implements OnInit {
     await alert.present();
   }
 
-  // Confirmation that the picture is deleted
+  // Confirmation that the liste is deleted
   async deletedListToast() {
     const toast = await this.toastController.create({
       message: 'La liste a bien été supprimée',
@@ -151,7 +151,7 @@ export class PiclistPage implements OnInit {
     toast.present();
   }
 
-  // Confirmation that the picture is updated
+  // Confirmation that the liste is updated
   async updatedListToast() {
     const toast = await this.toastController.create({
       message: 'La liste a bien été modifiée',

@@ -30,7 +30,8 @@ export class AddPicListPage implements OnInit {
     //   console.log(elements);
     // }
     let idList = "602273117b36d20017fb416e";
-    this.listService.updateList(null, this.idPicture, idList).subscribe(err => {
+    let name = "Test";
+    this.listService.updateList(name, this.idPicture, idList).subscribe(err => {
       console.warn(err);
       // alert(err.message);
     });
