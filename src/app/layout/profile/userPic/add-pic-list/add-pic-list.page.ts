@@ -12,7 +12,16 @@ export class AddPicListPage implements OnInit {
 
   constructor(private listService: ListService) { }
 
-    ngOnInit() {
+  addPicsList() {
+    console.log("BRUH");
+
+}
+
+
+
+
+
+  ngOnInit() {
     this.listService.getAllLists().subscribe((list) => {
       this.lists = list;
       console.log(this.lists);
