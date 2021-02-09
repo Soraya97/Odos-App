@@ -7,6 +7,7 @@ import { ListService } from 'src/app/services/list.service';
 import { List } from 'src/app/models/list';
 import { AuthService } from 'src/app/auth/auth.service';
 import { environment } from "src/environments/environment";
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-lists',
@@ -18,6 +19,7 @@ export class ListsPage implements OnInit {
   list: List;
   lists: List;
   router: any;
+  listId: string;
 
   constructor(
     // Inject the AuthService
@@ -25,8 +27,12 @@ export class ListsPage implements OnInit {
     // Inject the HTTP client
     public http: HttpClient,
     // Inject the ListService
-    private listService: ListService
-  ) { }
+    private listService: ListService,
+    // Inject the ActivatedRoute
+    private route: ActivatedRoute
+  ) {
+    this.listId = this.route.snapshot.paramMap.get('id');
+  }
 
   getId(id) {
     console.log(id);
@@ -52,12 +58,6 @@ export class ListsPage implements OnInit {
 
   }
 
-  // ionViewDidEnter(): void {
-  //   // Make an HTTP request to retrieve the lists.
-  //   const url = `${environment.apiUrl}/users/5fa158b5e22b7b0017539e6b/lists`;
-  //   this.http.get(url).subscribe((lists) => {
-  //     console.log(`Lists loaded`, lists);
-  //   });
-  // }
+
 
 }

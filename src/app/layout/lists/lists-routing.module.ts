@@ -13,7 +13,7 @@ const routes: Routes = [
     loadChildren: () => import('./create-list/create-list.module').then( m => m.CreateListPageModule)
   },
   {
-    path: 'piclist',
+    path: 'piclist/:id',
     loadChildren: () => import('./piclist/piclist.module').then( m => m.PiclistPageModule)
   }
 ];

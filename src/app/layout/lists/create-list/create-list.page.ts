@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ListService } from "../../../services/list.service";
 import { NgForm } from '@angular/forms';
 
+import { Router } from '@angular/router';
+import { AlertController, ToastController } from '@ionic/angular';
+
 @Component({
   selector: 'app-create-list',
   templateUrl: './create-list.page.html',
@@ -20,26 +23,52 @@ export class CreateListPage implements OnInit {
 
   constructor(
     // Inject the ListService
-    private listService: ListService,
+    private listService: ListService, private router: Router, public alertController: AlertController, public toastController: ToastController
   ) { }
-  
+
   validateList(form: NgForm) {
     if (form.valid) {
       // console.log("Liste à enregistrer");
-      this.displayedName = this.name;
-      let name = this.displayedName;
+      this.name = this.name;
 
     }
+
+    this.listService.createList(name).subscribe();
+    // TODO: if no errors
+    this.newListToast();
+    this.router.navigateByUrl("/profile");
+  }
+
+  async newListToast() {
+    const toast = await this.toastController.create({
+      message: 'La liste a bien été ajoutée',
+      duration: 2000
+    });
+    toast.present();
+  }
+
+  async nameAlreadyTaken() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Attention',
+      subHeader: `Le nom ${this.name} est déjà utilisé`,
+      message: "Merci d'en choisir un autre",
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
   ngOnInit() {
     console.log("URL:" + this.listService.currentListURL);
     this.list = this.listService.currentListURL;
+
+    // console.log(city);
+
     err => {
       console.warn(err);
       alert(err.message);
+
     }
   };
 }
-
-

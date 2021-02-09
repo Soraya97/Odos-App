@@ -40,7 +40,7 @@ export class userPicPage implements OnInit {
   // Open the menu of options: Delete or Update
   async openMenuPic() {
     const actionSheet = await this.actionsheetCtrl.create({
-      header: 'Picture options',
+      header: 'Options de la photo',
       buttons: [
         {
           text: 'Supprimer',

@@ -51,7 +51,7 @@ export class PictureService {
       // The response body may contain clues as to what went wrong,
       console.error(`Backend returned code ${error.status}, ` +
         `body was: ${error.message}`);
-        alert(error.message);
+      alert(error.message);
       // if (error.status == 422) {
       //   alert("Ce mot est déjà utilisé");
       // }

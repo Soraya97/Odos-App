@@ -43,7 +43,7 @@ export class LoginPage implements OnInit {
 
     // Perform the authentication request to the API.
     this.auth.logIn(this.authRequest).subscribe({
-      next: () => this.router.navigateByUrl("/"),
+      next: () => this.router.navigateByUrl("/profile"),
       error: (err) => {
         this.loginError = true;
         console.warn(`Authentication failed: ${err.message}`);
