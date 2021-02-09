@@ -34,19 +34,22 @@
       <ion-button ion-button type="submit">Terminer</ion-button>
   </form> -->
  
-    <a class="deleteAccount" (click)="presentAlertConfirm()">Suppression du compte</a>
+  <ion-item class="username" *ngIf='notEditable'>Nom d'utilisateur : {{user?.username}}</ion-item>
+  <ion-item class="email" *ngIf='notEditable'>Email : {{user?.email}}</ion-item>
 
+  <form #paramForm="ngForm" *ngIf='editable'>
+    <ion-item>
+      <ion-label>Username</ion-label>
+      <ion-input type="text" [(ngModel)]="username" name="username" #paramInput="ngModel" placeholder="{{user?.username}}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>email</ion-label>
+      <ion-input type="email" [(ngModel)]="email" name="email" #paramInput="ngModel" placeholder="{{user?.email}}"></ion-input>
+    </ion-item>
+    <ion-button (click)=saveUserUpdated(paramForm) type="submit" [disabled]="paramForm.invalid">Valider</ion-button>
+    <ion-button (click)=notEditUser() type="cancel" fill="outline">Annuler</ion-button>
+  </form>
 
-
-    <p class="username" *ngIf='notEditable'>{{user?.username}}</p>
-    <p class="email" *ngIf='notEditable'>{{user?.email}}</p>
-
-    <form #descrForm="ngForm" *ngIf='editable'>
-      <ion-input type="text" [(ngModel)]="username" name="username"  #descrInput="ngModel" placeholder="{{user?.username}}"></ion-input>
-      <ion-input type="email" [(ngModel)]="email" name="email"  #descrInput="ngModel" placeholder="{{user?.email}}"></ion-input>
-
-      <ion-button (click)=saveUserUpdated(descrForm) type="submit" [disabled]="descrForm.invalid">Valider</ion-button>
-      <ion-button (click)=notEditUser() type="cancel" fill="outline">Annuler</ion-button>
-    </form>
-
+  <br>
+  <a class="deleteAccount" (click)="presentAlertConfirm()">Suppression du compte</a>
 </ion-content>

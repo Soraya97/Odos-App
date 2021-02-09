@@ -38,13 +38,6 @@ export class UserService {
     return this.http.patch<User>(API_URL_FINALE + `${this.idUser}`, requestBody);
   }
 
-  // updatePicture(description, idPicture): Observable<Picture> {
-  //   const requestBody = {
-  //     description: description
-  //   }
-  //   return this.http.patch<Picture>(API_URL + `${this.idUser}/pictures/` + idPicture, requestBody);
-  //     // .pipe(retry(2), catchError(this.handleError));
-  // }
   // delete an user
   deleteUser() : Observable<User> {
     return this.http.delete<User>(API_URL_FINALE + `${this.idUser}`);

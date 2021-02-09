@@ -25,7 +25,6 @@ export class ParamPage implements OnInit {
   email: string;
   idUser: string;
   editable: boolean;
-  descr: string;
   notEditable: boolean;
 
   constructor(private auth: AuthService, private userService: UserService, public actionsheetCtrl: ActionSheetController, public alertController: AlertController, public toastController: ToastController, private router: Router, public popoverController: PopoverController) {
@@ -60,14 +59,12 @@ export class ParamPage implements OnInit {
           handler: () => {
             console.log('Confirm Yes: oui');
             this.userService.deleteUser().subscribe(
-             
               err => {
                 console.warn(err);
                 // alert(err.message);
               });
               this.deletedUserToast();
             this.router.navigateByUrl("login");
-          
           }
         }
       ]
@@ -84,18 +81,7 @@ export class ParamPage implements OnInit {
     });
     toast.present();
   }
-  // async presentPopover(ev: any) {
-  //   const popover = await this.popoverController.create({
-  //     component: PopoverComponent,
-  //     cssClass: 'my-custom-class',
-  //     event: ev,
-  //     translucent: true
-  //   });
-  //   return await popover.present();
-  // }
 
-
-  // Open the menu of options: Delete or Update
   async openMenuPic() {
     const actionSheet = await this.actionsheetCtrl.create({
       header: 'Options du compte',
@@ -143,24 +129,18 @@ export class ParamPage implements OnInit {
       this.userService.updateUser(username, email).subscribe();
     }
 
-  }
-
-  // ESSAI FORMULAIRE
-  // paramForm(value){
-  //   this.userService.updateUser(value)
-  //   .then( res => {
-  //     let toast = this.toastCtrl.patch({
-  //       message: 'User was modified successfully',
-  //       duration: 3000
-  //     });
-  //     toast.present();
-  //     this.resetFields();
-  //   }, err => {
-  //     console.log(err)
-  //   })
+      // async presentPopover(ev: any) {
+  //   const popover = await this.popoverController.create({
+  //     component: PopoverComponent,
+  //     cssClass: 'my-custom-class',
+  //     event: ev,
+  //     translucent: true
+  //   });
+  //   return await popover.present();
   // }
 
-
+  // Open the menu of options: Delete or Update
+  }
   ngOnInit() {
     this.auth.getUser().subscribe((user) => {
       this.user = user;
@@ -168,15 +148,6 @@ export class ParamPage implements OnInit {
       console.warn(err);
       alert(err.message);
     });
-
-    /**
- * Process the form we have. Send to whatever backend
- * Only alerting for now
- */
-    // paramForm() {
-    //   const allInfo = `My name is {{user?.username}}. My email is {{user?.email}}`;
-    //   alert(allInfo);
-    // }
   }
 
 }
