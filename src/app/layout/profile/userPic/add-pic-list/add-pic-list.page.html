@@ -18,9 +18,10 @@
     <ion-list>
       <ion-item *ngFor="let list of lists">
         <ion-label>{{list?.name}}</ion-label>
-        <ion-checkbox slot="start" name="lists" [value]="list?._id" type="checkbox"></ion-checkbox>
+        <ion-checkbox class="messageCheckbox" slot="start" name="lists" [value]="list?.name" type="checkbox" [id]="list?._id"></ion-checkbox>
       </ion-item>
     </ion-list>
     <ion-button type="submit" (click)=addPicsList(picListForm)>Valider</ion-button>
   </form>
+
 </ion-content>

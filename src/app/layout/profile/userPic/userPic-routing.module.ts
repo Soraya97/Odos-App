@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: userPicPage
+  },
+  {
+    path: 'add-pic-list/:id',
+    loadChildren: () => import('./add-pic-list/add-pic-list.module').then( m => m.AddPicListPageModule)
   }
 ];
 

@@ -44,22 +44,23 @@ export class MapPage implements OnInit {
 
       // for (let i = 0; i <= 3; i++) {
       //   console.log(i);
-        this.long = this.pictures[0].location.coordinates[0];
-        this.lat = this.pictures[0].location.coordinates[1];
+      this.long = this.pictures[0].location.coordinates[0];
+      this.lat = this.pictures[0].location.coordinates[1];
       // }
 
       this.geolocationService.getCity(this.long, this.lat).subscribe(city => {
         this.city = city.locality;
         console.log(city);
 
-        // for (let i = 0; i < 2; i++) {
-        //  marker([this.pictures[i].location.coordinates[0], this.pictures[i].location.coordinates[1]], { icon: defaultIcon }).addTo(this.mapMarkers);
-        // }
+        for (let i = 0; i < 2; i++) {
+          // this.mapMarkers[i] = marker([this.pictures[i].location.coordinates[0], this.pictures[i].location.coordinates[1]], { icon: defaultIcon });
+          // marker([this.pictures[i].location.coordinates[0], this.pictures[i].location.coordinates[1]], { icon: defaultIcon }).addTo(this.mapMarkers);
+        }
 
         this.mapMarkers = [
           marker([this.pictures[0].location.coordinates[0], this.pictures[0].location.coordinates[1]], { icon: defaultIcon }).bindPopup(`${this.city}`),
           marker([this.pictures[1].location.coordinates[0], this.pictures[1].location.coordinates[1]], { icon: defaultIcon }).bindPopup(`${this.city}`),
-          marker([this.pictures[3].location.coordinates[0], this.pictures[3].location.coordinates[1]], { icon: defaultIcon }).bindPopup(`${this.city}`)
+          marker([this.pictures[5].location.coordinates[0], this.pictures[5].location.coordinates[1]], { icon: defaultIcon }).bindPopup(`${this.city}`)
         ];
 
       }), err => {

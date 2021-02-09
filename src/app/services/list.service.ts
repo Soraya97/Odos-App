@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 
 
 const API_URL = `${environment.apiUrl}/users/5fa158b5e22b7b0017539e6b/pictures/5fa15bd61401d800172fb05f`;
-const API_URL_CREATION = `${environment.apiUrl}/users/5fa158b5e22b7b0017539e6b/pictures/`;
+const API_URL_CREATION = `${environment.apiUrl}/users/5fa158b5e22b7b0017539e6b/lists/`;
 
 const API_URL_FINALE = `${environment.apiUrl}/users/`;
 
@@ -79,12 +79,13 @@ export class ListService {
     }
 
     // TO DO
-    updateList(name, idList): Observable<List> {
+    updateList(name, idPicture, idList): Observable<ListRequest> {
         const requestBody = {
-            name: name
+            name: name,
+            picture: idPicture
         }
-        return this.http.patch<List>(API_URL_CREATION + idList, requestBody)
-        .pipe(retry(2), catchError(this.handleError));
+        return this.http.patch<ListRequest>(API_URL_CREATION + idList, requestBody);
+        // .pipe(retry(2), catchError(this.handleError));
     }
 
     // TO DO

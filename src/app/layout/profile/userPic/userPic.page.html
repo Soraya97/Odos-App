@@ -27,7 +27,7 @@
     </ion-datetime>
 
     <p slot="end">
-      <ion-icon class="listBtn" size="large" name="heart-outline" (click)="addToList()"></ion-icon>
+      <ion-icon class="listBtn" size="large" name="heart-outline" [routerLink]="['add-pic-list', picture?.id]"></ion-icon>
     </p>
   </ion-toolbar>
 

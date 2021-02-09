@@ -9,17 +9,33 @@ import { List } from 'src/app/models/list';
 })
 export class AddPicListPage implements OnInit {
   lists: List;
+  ids: string[];
+  idPicture: string;
 
-  constructor(private listService: ListService) { }
+  constructor(private listService: ListService) {
+
+    let urlcourante = document.location.href;
+    urlcourante = urlcourante.replace(/\/$/, "");
+    this.idPicture = urlcourante.substring(urlcourante.lastIndexOf("/") + 1);
+    console.log(this.idPicture);
+
+  }
 
   addPicsList() {
     console.log("BRUH");
+    // for (let i = 0; i < 2; i++) {
+    //   let elements = document.getElementById(this.lists[i]._id);
+    //   elements = elements.checked;
+    //   elements = elements.value;
+    //   console.log(elements);
+    // }
+    let idList = "602273117b36d20017fb416e";
+    this.listService.updateList(null, this.idPicture, idList).subscribe(err => {
+      console.warn(err);
+      // alert(err.message);
+    });
 
-}
-
-
-
-
+  }
 
   ngOnInit() {
     this.listService.getAllLists().subscribe((list) => {
@@ -29,6 +45,7 @@ export class AddPicListPage implements OnInit {
       console.warn(err);
       alert(err.message);
     });
+
   }
 
 }

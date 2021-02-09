@@ -15,10 +15,6 @@ const routes: Routes = [
   {
     path: 'userPic/:id',
     loadChildren: () => import('./userPic/userPic.module').then(m => m.userPicPageModule)
-  },
-  {
-    path: 'add-pic-list',
-    loadChildren: () => import('./userPic/add-pic-list/add-pic-list.module').then( m => m.AddPicListPageModule)
   }
 
 ];
