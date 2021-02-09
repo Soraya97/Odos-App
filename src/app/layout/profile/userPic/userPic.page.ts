@@ -8,7 +8,7 @@ import { Picture } from 'src/app/models/pictures';
 import { ActionSheetController, AlertController, ToastController, ModalController } from '@ionic/angular';
 import { async } from '@angular/core/testing';
 import { User } from 'src/app/models/user';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -23,18 +23,20 @@ export class userPicPage implements OnInit {
   editable: boolean;
   descr: string;
   notEditable: boolean;
+  productId: string;
 
-  constructor(private auth: AuthService, private pictureService: PictureService, public actionsheetCtrl: ActionSheetController, public alertController: AlertController, private router: Router, public toastController: ToastController, public modalController: ModalController) {
+  constructor(private auth: AuthService, private pictureService: PictureService, private route: ActivatedRoute, public actionsheetCtrl: ActionSheetController, public alertController: AlertController, private router: Router, public toastController: ToastController, public modalController: ModalController) {
     let urlcourante = document.location.href;
     urlcourante = urlcourante.replace(/\/$/, "");
     this.idPicture = urlcourante.substring(urlcourante.lastIndexOf("/") + 1);
     this.notEditable = true;
+    // this.productId = this.route.snapshot.paramMap.get('id');
   }
 
   // TO DO
   addToList() {
     console.log("Add to list");
-    this.router.navigateByUrl("/profile/add-pic-list");
+    this.router.navigateByUrl("profile/userPic/add-pic-list");
   }
 
   // Open the menu of options: Delete or Update

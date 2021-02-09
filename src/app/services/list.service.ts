@@ -76,11 +76,12 @@ export class ListService {
     }
 
     // Update the name of a list
-    updateList(name, idList): Observable<List> {
+    updateList(name, picture, idList): Observable<List> {
         const requestBody = {
-            name: name
+            name: name,
+            picture: picture
         }
-        return this.http.patch<List>(API_URL + `${this.idUser}/lists`+ idList, requestBody)
+        return this.http.patch<List>(API_URL + `${this.idUser}/lists/`+ idList, requestBody)
         //.pipe(retry(2), catchError(this.handleError));
     }
 

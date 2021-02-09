@@ -1,17 +1,27 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>AddPicList</ion-title>
+
+    <ion-buttons slot="start">
+      <ion-back-button text="" icon="chevron-back-outline" defaultHref></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Odos</ion-title>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-<!-- <ul>
+  <!-- <ul>
   <li *ngFor='let list of lists'>{{list?.name}}</li>
 </ul> -->
-<ion-list>
-  <ion-item *ngFor="let list of lists">
-    <ion-label>{{list?.name}}</ion-label>
-    <ion-checkbox slot="start"></ion-checkbox>
-  </ion-item>
-</ion-list>
+  <form #picListForm="ngForm">
+    <ion-list>
+      <ion-item *ngFor="let list of lists">
+        <ion-label>{{list?.name}}</ion-label>
+        <ion-checkbox class="messageCheckbox" slot="start" name="lists" [value]="list?.name" type="checkbox" [id]="list?._id"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+    <ion-button type="submit" (click)=addPicsList(picListForm)>Valider</ion-button>
+  </form>
+<button type="button" (click)=addPicsList()>Bonjour</button>
 </ion-content>
