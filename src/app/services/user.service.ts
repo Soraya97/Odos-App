@@ -30,10 +30,11 @@ export class UserService {
   }
 
   // Update an user
-  updateUser(username, email) : Observable<User> {
+  updateUser(username, email, password) : Observable<User> {
     const requestBody = {
       username: username,
-      email: email
+      email: email,
+      password: password
     }
     return this.http.patch<User>(API_URL_FINALE + `${this.idUser}`, requestBody);
   }
@@ -42,17 +43,4 @@ export class UserService {
   deleteUser() : Observable<User> {
     return this.http.delete<User>(API_URL_FINALE + `${this.idUser}`);
   }
-
-
-
-
-      // ESSAI FORMULAIRE
-  // updateUser(username, email, password, idUser) {
-  //   const requestBody = {
-  //     username: username,
-  //     email: email,
-  //     password: password
-  //   }
-  //   return this.http.patch<User>(API_URL_UPDATE+idUser, requestBody);
-  // }
 }

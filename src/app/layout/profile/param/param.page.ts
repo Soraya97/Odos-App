@@ -12,8 +12,6 @@ import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
-
-
 @Component({
   selector: 'app-param',
   templateUrl: './param.page.html',
@@ -23,6 +21,7 @@ export class ParamPage implements OnInit {
   user: User;
   username: string;
   email: string;
+  password: string;
   idUser: string;
   editable: boolean;
   notEditable: boolean;
@@ -126,7 +125,8 @@ export class ParamPage implements OnInit {
 
       let username = this.username;
       let email = this.email;
-      this.userService.updateUser(username, email).subscribe();
+      let password = this.password;
+      this.userService.updateUser(username, email, password).subscribe();
     }
 
       // async presentPopover(ev: any) {
