@@ -3,13 +3,14 @@ import { Component, OnInit } from '@angular/core';
 import { User } from "../../../models/user";
 import { AuthService } from 'src/app/auth/auth.service';
 
-import {AlertController, ToastController} from '@ionic/angular';
+import { ActionSheetController, AlertController, ToastController} from '@ionic/angular';
 
 import { PopoverController } from '@ionic/angular';
 // import { PopoverComponent } from '../../component/popover/popover.component';
 
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 
 
@@ -23,8 +24,12 @@ export class ParamPage implements OnInit {
   username: string;
   email: string;
   idUser: string;
+  editable: boolean;
+  descr: string;
+  notEditable: boolean;
 
-  constructor(private auth: AuthService, private userService: UserService, public alertController: AlertController, public toastController: ToastController, private router: Router, public popoverController: PopoverController) {
+  constructor(private auth: AuthService, private userService: UserService, public actionsheetCtrl: ActionSheetController, public alertController: AlertController, public toastController: ToastController, private router: Router, public popoverController: PopoverController) {
+    this.notEditable = true;
   }
 
   //test formulaire à suprimmer
@@ -90,7 +95,55 @@ export class ParamPage implements OnInit {
   // }
 
 
+  // Open the menu of options: Delete or Update
+  async openMenuPic() {
+    const actionSheet = await this.actionsheetCtrl.create({
+      header: 'Options du compte',
+      buttons: [
+        {
+          // TODO: warn if name already taken
+          text: 'Modifier les informations',
+          role: 'modify',
+          handler: () => {
+            this.editUser();
+          }
+        }, {
+          text: 'Annuler',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    await actionSheet.present();
+  }
 
+  // Active the update mode
+  editUser() {
+    this.editable = true;
+    this.notEditable = false;
+  }
+
+  // Disable the update mode
+  notEditUser() {
+    this.editable = false;
+    this.notEditable = true;
+  }
+
+  // Save the update of the user in the db
+  saveUserUpdated(form: NgForm) {
+    if (form.valid) {
+      this.editable = false;
+      this.notEditable = true;
+      console.log(this.username, this.email);
+
+      let username = this.username;
+      let email = this.email;
+      this.userService.updateUser(username, email).subscribe();
+    }
+
+  }
 
   // ESSAI FORMULAIRE
   // paramForm(value){

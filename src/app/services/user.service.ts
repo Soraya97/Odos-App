@@ -24,14 +24,33 @@ export class UserService {
     });
   }
 
+    // display an user
   getUser(): Observable<User> {
     return this.http.get<User>(API_URL);
   }
 
-  // TO DO
+  // Update an user
+  updateUser(username, email) : Observable<User> {
+    const requestBody = {
+      username: username,
+      email: email
+    }
+    return this.http.patch<User>(API_URL_FINALE + `${this.idUser}`, requestBody);
+  }
+
+  // updatePicture(description, idPicture): Observable<Picture> {
+  //   const requestBody = {
+  //     description: description
+  //   }
+  //   return this.http.patch<Picture>(API_URL + `${this.idUser}/pictures/` + idPicture, requestBody);
+  //     // .pipe(retry(2), catchError(this.handleError));
+  // }
+  // delete an user
   deleteUser() : Observable<User> {
     return this.http.delete<User>(API_URL_FINALE + `${this.idUser}`);
   }
+
+
 
 
       // ESSAI FORMULAIRE
