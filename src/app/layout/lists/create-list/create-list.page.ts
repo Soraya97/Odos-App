@@ -29,14 +29,14 @@ export class CreateListPage implements OnInit {
   validateList(form: NgForm) {
     if (form.valid) {
       // console.log("Liste à enregistrer");
-      this.name = this.name;
+      let name = this.name;
 
     }
 
     this.listService.createList(name).subscribe();
     // TODO: if no errors
     this.newListToast();
-    this.router.navigateByUrl("/profile");
+    this.router.navigateByUrl("/lists");
   }
 
   async newListToast() {
@@ -62,8 +62,6 @@ export class CreateListPage implements OnInit {
   ngOnInit() {
     console.log("URL:" + this.listService.currentListURL);
     this.list = this.listService.currentListURL;
-
-    // console.log(city);
 
     err => {
       console.warn(err);
