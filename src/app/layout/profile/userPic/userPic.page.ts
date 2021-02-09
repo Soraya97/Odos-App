@@ -34,7 +34,7 @@ export class userPicPage implements OnInit {
   // TO DO
   addToList() {
     console.log("Add to list");
-    // this.router.navigateByUrl("/profile/add-pic-list");
+    this.router.navigateByUrl("/profile/add-pic-list");
   }
 
   // Open the menu of options: Delete or Update
@@ -89,7 +89,10 @@ export class userPicPage implements OnInit {
 
       let description = this.descr;
       let idPicture = this.idPicture;
-      this.pictureService.updatePicture(description, idPicture).subscribe();
+      this.pictureService.updatePicture(description, idPicture).subscribe(err => {
+        console.warn(err);
+        // alert(err.message);
+      });
     }
   }
 

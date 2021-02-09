@@ -93,8 +93,8 @@ export class PictureService {
     const requestBody = {
       description: description
     }
-    return this.http.patch<Picture>(API_URL_CREATION + idPicture, requestBody)
-      .pipe(retry(2), catchError(this.handleError));
+    return this.http.patch<Picture>(API_URL_CREATION + idPicture, requestBody);
+      // .pipe(retry(2), catchError(this.handleError));
   }
 
   // TO DO

@@ -33,7 +33,7 @@
       </ion-col>
       <ion-col>
         <form #descrForm="ngForm">
-          <ion-textarea type="text" placeholder="Écrire une description..." [(ngModel)]="descr" name="descr" required #descrInput="ngModel"></ion-textarea>
+          <ion-textarea type="text" placeholder="Écrire une description..." [(ngModel)]="descr" name="descr" required #descrInput="ngModel" min-length="3" max-length="50"></ion-textarea>
           <p *ngIf="descrInput.invalid && descrInput.dirty" class="small">
             Une description est requise
           </p>
