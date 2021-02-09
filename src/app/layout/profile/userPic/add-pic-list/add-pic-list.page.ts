@@ -22,7 +22,6 @@ export class AddPicListPage implements OnInit {
   }
 
   addPicsList() {
-    console.log("BRUH");
     // for (let i = 0; i < 2; i++) {
     //   let elements = document.getElementById(this.lists[i]._id);
     //   elements = elements.checked;
@@ -31,7 +30,8 @@ export class AddPicListPage implements OnInit {
     // }
     let idList = "602273117b36d20017fb416e";
     let name = "Test";
-    this.listService.updateList(name, this.idPicture, idList).subscribe(err => {
+    let picture = "60226ceb7b36d20017fb4164";
+    this.listService.updateList(name, picture, idList).subscribe(err => {
       console.warn(err);
       // alert(err.message);
     });

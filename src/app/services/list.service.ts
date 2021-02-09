@@ -77,6 +77,8 @@ export class ListService {
 
     // Update the name of a list
     updateList(name, picture, idList): Observable<List> {
+  // console.log(name, picture, idList);
+
         const requestBody = {
             name: name,
             picture: picture

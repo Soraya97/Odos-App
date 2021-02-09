@@ -104,7 +104,7 @@ export class PiclistPage implements OnInit {
 
         let name = this.name;
         let idList = this.idList;
-        this.listService.updateList(name, null, idList).subscribe();
+        // this.listService.updateList(name, null, idList).subscribe();
       }
     }
 
