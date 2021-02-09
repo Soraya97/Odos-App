@@ -3,13 +3,14 @@ import { Component, OnInit } from '@angular/core';
 import { User } from "../../../models/user";
 import { AuthService } from 'src/app/auth/auth.service';
 
-import {AlertController, ToastController} from '@ionic/angular';
+import { ActionSheetController, AlertController, ToastController} from '@ionic/angular';
 
 import { PopoverController } from '@ionic/angular';
 // import { PopoverComponent } from '../../component/popover/popover.component';
 
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 
 
@@ -23,8 +24,11 @@ export class ParamPage implements OnInit {
   username: string;
   email: string;
   idUser: string;
+  editable: boolean;
+  notEditable: boolean;
 
-  constructor(private auth: AuthService, private userService: UserService, public alertController: AlertController, public toastController: ToastController, private router: Router, public popoverController: PopoverController) {
+  constructor(private auth: AuthService, private userService: UserService, public actionsheetCtrl: ActionSheetController, public alertController: AlertController, public toastController: ToastController, private router: Router, public popoverController: PopoverController) {
+    this.notEditable = true;
   }
 
   //test formulaire à suprimmer
@@ -55,14 +59,12 @@ export class ParamPage implements OnInit {
           handler: () => {
             console.log('Confirm Yes: oui');
             this.userService.deleteUser().subscribe(
-             
               err => {
                 console.warn(err);
                 // alert(err.message);
               });
               this.deletedUserToast();
             this.router.navigateByUrl("login");
-          
           }
         }
       ]
@@ -79,7 +81,55 @@ export class ParamPage implements OnInit {
     });
     toast.present();
   }
-  // async presentPopover(ev: any) {
+
+  async openMenuPic() {
+    const actionSheet = await this.actionsheetCtrl.create({
+      header: 'Options du compte',
+      buttons: [
+        {
+          // TODO: warn if name already taken
+          text: 'Modifier les informations',
+          role: 'modify',
+          handler: () => {
+            this.editUser();
+          }
+        }, {
+          text: 'Annuler',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    await actionSheet.present();
+  }
+
+  // Active the update mode
+  editUser() {
+    this.editable = true;
+    this.notEditable = false;
+  }
+
+  // Disable the update mode
+  notEditUser() {
+    this.editable = false;
+    this.notEditable = true;
+  }
+
+  // Save the update of the user in the db
+  saveUserUpdated(form: NgForm) {
+    if (form.valid) {
+      this.editable = false;
+      this.notEditable = true;
+      console.log(this.username, this.email);
+
+      let username = this.username;
+      let email = this.email;
+      this.userService.updateUser(username, email).subscribe();
+    }
+
+      // async presentPopover(ev: any) {
   //   const popover = await this.popoverController.create({
   //     component: PopoverComponent,
   //     cssClass: 'my-custom-class',
@@ -89,25 +139,8 @@ export class ParamPage implements OnInit {
   //   return await popover.present();
   // }
 
-
-
-
-  // ESSAI FORMULAIRE
-  // paramForm(value){
-  //   this.userService.updateUser(value)
-  //   .then( res => {
-  //     let toast = this.toastCtrl.patch({
-  //       message: 'User was modified successfully',
-  //       duration: 3000
-  //     });
-  //     toast.present();
-  //     this.resetFields();
-  //   }, err => {
-  //     console.log(err)
-  //   })
-  // }
-
-
+  // Open the menu of options: Delete or Update
+  }
   ngOnInit() {
     this.auth.getUser().subscribe((user) => {
       this.user = user;
@@ -115,15 +148,6 @@ export class ParamPage implements OnInit {
       console.warn(err);
       alert(err.message);
     });
-
-    /**
- * Process the form we have. Send to whatever backend
- * Only alerting for now
- */
-    // paramForm() {
-    //   const allInfo = `My name is {{user?.username}}. My email is {{user?.email}}`;
-    //   alert(allInfo);
-    // }
   }
 
 }
