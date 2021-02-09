@@ -34,6 +34,7 @@ export class userPicPage implements OnInit {
   // TO DO
   addToList() {
     console.log("Add to list");
+    // this.router.navigateByUrl("/profile/add-pic-list");
   }
 
   // Open the menu of options: Delete or Update

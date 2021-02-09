@@ -16,6 +16,7 @@ const routes: Routes = [
     path: 'userPic/:id',
     loadChildren: () => import('./userPic/userPic.module').then(m => m.userPicPageModule)
   }
+
 ];
 
 @NgModule({

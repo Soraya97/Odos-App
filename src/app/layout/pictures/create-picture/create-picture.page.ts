@@ -37,7 +37,10 @@ export class CreatePicturePage implements OnInit {
         y = -135.000000;
       }
 
-      this.pictureService.createPicture(description, x, y).subscribe();
+      this.pictureService.createPicture(description, x, y).subscribe(err => {
+        console.warn(err);
+        // alert(err.message);
+      });
       // TODO: if no errors
       this.newPictureToast();
       this.router.navigateByUrl("/profile");

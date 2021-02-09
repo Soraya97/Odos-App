@@ -77,8 +77,8 @@ export class PictureService {
       location: { type: "Point", coordinates: [x, y] },
       picture: this.currentPictureURL || "https://source.unsplash.com/random"
     };
-    return this.http.post<PictureRequest>(API_URL_CREATION, requestBody)
-      .pipe(retry(2), catchError(this.handleError));
+    return this.http.post<PictureRequest>(API_URL_CREATION, requestBody);
+      // .pipe(retry(2), catchError(this.handleError));
   }
 
 

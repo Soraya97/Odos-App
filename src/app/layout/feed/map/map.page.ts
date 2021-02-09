@@ -6,7 +6,6 @@ import { Picture } from 'src/app/models/pictures';
 import { PictureService } from 'src/app/services/picture.service';
 import { City } from 'src/app/models/city';
 import { GeolocationService } from 'src/app/services/geolocation.service';
-import * as L from 'leaflet';
 
 @Component({
   selector: 'app-map',
@@ -22,8 +21,20 @@ export class MapPage implements OnInit {
   long: number;
   lat: number;
   city: City;
+  locations: {long: number, lat: number}[]
 
   constructor(private pictureService: PictureService, private geolocationService: GeolocationService) {
+    this.locations = [
+      {
+        long: 48.862725,
+        lat: 2.287592
+      },
+      {
+        long: 50,
+        lat: 2.287592
+      }
+    ]
+
     this.mapOptions = {
       layers: [
         tileLayer(
@@ -41,8 +52,8 @@ export class MapPage implements OnInit {
 
       // for (let i = 0; i <= 3; i++) {
       //   console.log(i);
-        this.long = this.pictures[3].location.coordinates[0];
-        this.lat = this.pictures[3].location.coordinates[1];
+        this.long = this.pictures[2].location.coordinates[0];
+        this.lat = this.pictures[2].location.coordinates[1];
       // }
 
       this.geolocationService.getCity(this.long, this.lat).subscribe(city => {
@@ -54,7 +65,8 @@ export class MapPage implements OnInit {
         // }
 
         this.mapMarkers = [
-          marker([this.long, this.lat], { icon: defaultIcon }).bindPopup(`${this.city}`)
+          marker([this.locations[0].long, this.locations[0].lat], { icon: defaultIcon }).bindPopup(`${this.city}`),
+          marker([this.locations[1].long, this.locations[1].lat], { icon: defaultIcon }).bindPopup(`${this.city}`)
         ];
 
       }), err => {
