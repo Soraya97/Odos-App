@@ -31,12 +31,15 @@ export class CreateListPage implements OnInit {
       // console.log("Liste à enregistrer");
       let name = this.name;
 
-    this.listService.createList(name).subscribe();
-    // TODO: if no errors
-    this.newListToast();
-    this.router.navigateByUrl("/lists");
-  }
-}
+
+
+      this.listService.createList(name).subscribe();
+      // TODO: if no errors
+      this.newListToast();
+      this.router.navigateByUrl("/lists");  }
+    }
+
+
   async newListToast() {
     const toast = await this.toastController.create({
       message: 'La liste a bien été ajoutée',
