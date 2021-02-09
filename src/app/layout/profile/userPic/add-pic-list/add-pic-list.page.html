@@ -11,16 +11,21 @@
 </ion-header>
 
 <ion-content>
-  <!-- <ul>
-  <li *ngFor='let list of lists'>{{list?.name}}</li>
-</ul> -->
-  <form #picListForm="ngForm">
+
+  <form #picListForm="ngForm" (submit)=addPicsList(picListForm)>
     <ion-list>
-      <ion-item *ngFor="let list of lists">
-        <ion-label>{{list?.name}}</ion-label>
-        <ion-checkbox class="messageCheckbox" slot="start" name="lists" [value]="list?.name" type="checkbox" [id]="list?._id"></ion-checkbox>
-      </ion-item>
+      <ion-radio-group value="lists">
+        <ion-list-header>
+          <ion-label>Listes</ion-label>
+        </ion-list-header>
+
+        <ion-item *ngFor="let list of lists">
+          <ion-label>{{list?.name}}</ion-label>
+          <ion-radio slot="start" [value]="list?.name" [name]="list?._id" [id]="list?._id"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
     </ion-list>
-    <ion-button type="submit" (click)=addPicsList(picListForm)>Valider</ion-button>
+    <ion-button type="submit" [disabled]="picListForm.invalid">Valider</ion-button>
   </form>
+
 </ion-content>
