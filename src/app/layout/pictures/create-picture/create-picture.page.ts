@@ -32,10 +32,6 @@ export class CreatePicturePage implements OnInit {
       let description = this.descr;
       let x = this.lat;
       let y = this.long;
-      if (x === undefined && y === undefined) {
-        x = 90.000000;
-        y = -135.000000;
-      }
 
       this.pictureService.createPicture(description, x, y).subscribe(err => {
         console.warn(err);
@@ -89,6 +85,9 @@ export class CreatePicturePage implements OnInit {
         alert(err.message);
 
       }
+    })
+    .catch(function (err){
+      alert("Votre géolocalisation est désactivée, votre photo sera géolocalisée au Pôle sud par défaut");
     });
   }
 

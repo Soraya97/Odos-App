@@ -59,7 +59,7 @@ export class MapPage implements OnInit {
 
         this.mapMarkers = [
           marker([this.pictures[0].location.coordinates[0], this.pictures[0].location.coordinates[1]], { icon: defaultIcon }).bindPopup(`${this.city}`),
-          marker([this.pictures[1].location.coordinates[0], this.pictures[1].location.coordinates[1]], { icon: defaultIcon }).bindPopup(`${this.city}`),
+          marker([this.pictures[2].location.coordinates[0], this.pictures[2].location.coordinates[1]], { icon: defaultIcon }).bindPopup(`${this.city}`),
           marker([this.pictures[5].location.coordinates[0], this.pictures[5].location.coordinates[1]], { icon: defaultIcon }).bindPopup(`${this.city}`)
         ];
 

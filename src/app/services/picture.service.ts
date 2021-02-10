@@ -70,7 +70,7 @@ export class PictureService {
 
     const requestBody = {
       description: description,
-      location: { type: "Point", coordinates: [x, y] },
+      location: { type: "Point", coordinates: [x || -135.000000, y || 90.000000] },
       picture: this.currentPictureURL || "https://source.unsplash.com/random"
     };
     return this.http.post<PictureRequest>(API_URL + `${this.idUser}/pictures/`, requestBody);
