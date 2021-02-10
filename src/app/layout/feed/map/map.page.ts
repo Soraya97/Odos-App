@@ -24,7 +24,7 @@ export class MapPage implements OnInit {
   city: City;
 
   constructor(private feedService: FeedService, private geolocationService: GeolocationService) {
-this.mapMarkers = [];
+    this.mapMarkers = [];
     this.mapOptions = {
       layers: [
         tileLayer(
@@ -33,45 +33,19 @@ this.mapMarkers = [];
         )
       ],
       zoom: 2,
+      // TODO: Center on the place where the photo was taken or where the user is
       center: latLng(48.862725, 2.287592)
     };
 
     this.feedService.getAllPictures().subscribe(picture => {
 
       this.pictures = picture;
-      // console.log(this.pictures[0].location.coordinates[0]);
 
-
-      // for (let i = 0; i <= 3; i++) {
-      //   console.log(i);
-      this.long = this.pictures[0].location.coordinates[0];
-      this.lat = this.pictures[0].location.coordinates[1];
-      // }
-
-      this.geolocationService.getCity(this.long, this.lat).subscribe(city => {
-        this.city = city.locality;
-        console.log(city);
-
-        for (let i = 0; i < 2; i++) {
-          // this.mapMarkers[i] = marker([this.pictures[i].location.coordinates[0], this.pictures[i].location.coordinates[1]], { icon: defaultIcon });
-          // marker([this.pictures[i].location.coordinates[0], this.pictures[i].location.coordinates[1]], { icon: defaultIcon }).addTo(this.mapMarkers);
-        }
-
-        for (const picture of this.pictures) {
-          const newMarker = marker(picture.location.coordinates, { icon: defaultIcon }).bindPopup(`${this.city}`);
-          this.mapMarkers.push(newMarker);
-        }
-
-        // this.mapMarkers = [
-        //   // marker(this.pictures[0].location.coordinates, { icon: defaultIcon }).bindPopup(`${this.city}`),
-        //   // marker(this.pictures[2].location.coordinates, { icon: defaultIcon }).bindPopup(`${this.city}`),
-        //   // marker(this.pictures[8].location.coordinates, { icon: defaultIcon }).bindPopup(`${this.city}`)
-        // ];
-
-      }), err => {
-        console.warn(err);
-        alert(err.message);
+      for (const picture of this.pictures) {
+        const newMarker = marker(picture.location.coordinates, { icon: defaultIcon }).bindPopup(picture.description);
+        this.mapMarkers.push(newMarker);
       }
+
 
     }, err => {
       console.warn(err);
@@ -81,10 +55,12 @@ this.mapMarkers = [];
   }
 
   ngOnInit() {
-
-
-
+    this.geolocationService.getGeolocation().then((coords: Coordinates) => {
+      this.lat = coords.latitude;
+      this.long = coords.longitude;
+    })
   }
+
 
   onMapReady(map: Map) {
     setTimeout(() => map.invalidateSize(), 0);

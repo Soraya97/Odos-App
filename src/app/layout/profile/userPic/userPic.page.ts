@@ -10,6 +10,8 @@ import { async } from '@angular/core/testing';
 import { User } from 'src/app/models/user';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { GeolocationService } from 'src/app/services/geolocation.service';
+import { City } from 'src/app/models/city';
 
 @Component({
   selector: 'app-userPic',
@@ -24,16 +26,11 @@ export class userPicPage implements OnInit {
   descr: string;
   notEditable: boolean;
   productId: string;
+  city: City;
 
-  constructor(private auth: AuthService, private pictureService: PictureService, private route: ActivatedRoute, public actionsheetCtrl: ActionSheetController, public alertController: AlertController, private router: Router, public toastController: ToastController, public modalController: ModalController) {
+  constructor(private geolocationService: GeolocationService, private auth: AuthService, private pictureService: PictureService, private route: ActivatedRoute, public actionsheetCtrl: ActionSheetController, public alertController: AlertController, private router: Router, public toastController: ToastController, public modalController: ModalController) {
     this.idPicture = this.route.snapshot.paramMap.get('id');
     this.notEditable = true;
-  }
-
-  // TO DO
-  addToList() {
-    console.log("Add to list");
-    this.router.navigateByUrl("profile/userPic/add-pic-list");
   }
 
   // Open the menu of options: Delete or Update
@@ -84,16 +81,15 @@ export class userPicPage implements OnInit {
     if (form.valid) {
       this.editable = false;
       this.notEditable = true;
-      console.log(this.descr);
 
       let description = this.descr;
       let idPicture = this.idPicture;
       this.pictureService.updatePicture(description, idPicture).subscribe(() => {
-        this.updatedPictureToast();
+        this.toast('La photo a bien été modifiée');
         this.picture.description = this.descr;
       },
-        (error) => {
-          console.log(error.message);
+        (err) => {
+          this.toast(err.error.message);
         });
 
     }
@@ -119,13 +115,16 @@ export class userPicPage implements OnInit {
           text: 'Supprimer',
           handler: () => {
             console.log('Confirm Okay');
-            this.pictureService.deletePicture(this.idPicture).subscribe(
-              err => {
-                console.warn(err);
-                // alert(err.message);
-              });
-            this.deletedPictureToast();
-            this.router.navigateByUrl("profile");
+            this.pictureService.deletePicture(this.idPicture).subscribe(() => {
+              this.toast('La photo a bien été supprimée');
+              this.router.navigateByUrl("profile");
+              //TODO: Must not see the picture in the gallery
+            }, (err) => {
+              console.warn(err);
+              this.toast("Un problème est survenu");
+            });
+
+
           }
         }
       ]
@@ -134,23 +133,14 @@ export class userPicPage implements OnInit {
     await alert.present();
   }
 
-  // Confirmation that the picture is deleted
-  async deletedPictureToast() {
+  async toast(msg) {
     const toast = await this.toastController.create({
-      message: 'La photo a bien été supprimée',
+      message: msg,
       duration: 2000
     });
     toast.present();
   }
 
-  // Confirmation that the picture is updated
-  async updatedPictureToast() {
-    const toast = await this.toastController.create({
-      message: 'La photo a bien été modifiée',
-      duration: 2000
-    });
-    toast.present();
-  }
 
 
   ngOnInit() {
@@ -163,10 +153,21 @@ export class userPicPage implements OnInit {
 
     this.pictureService.getPicture(this.idPicture).subscribe((picture) => {
       this.picture = picture;
+
+      this.geolocationService.getCity(this.picture.location.coordinates[0], this.picture.location.coordinates[1]).subscribe(city => {
+        this.city = city;
+        console.log(city);
+      }), err => {
+        console.warn(err);
+        alert(err.message);
+      }
+
     }, err => {
       console.warn(err);
       alert(err.message);
     });
+
+
 
   }
 

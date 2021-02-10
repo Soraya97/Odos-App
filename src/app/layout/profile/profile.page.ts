@@ -56,7 +56,6 @@ export class ProfilePage implements OnInit {
 
     this.pictureService.getAllPictures().subscribe((picture) => {
       this.pictures = picture;
-      console.log(this.pictures);
     }, err => {
       console.warn(err);
       alert(err.message);

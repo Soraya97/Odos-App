@@ -12,7 +12,7 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-icon class="geoBtn" size="small" name="navigate-circle-outline"></ion-icon>
-      <a routerLink="/feed/map">Thaïlande {{picture?.location}}</a>
+      <a routerLink="/feed/map">{{city?.locality}}</a>
     </ion-buttons>
     <ion-buttons slot="end">
       <ion-icon (click)="openMenuPic()" size="large" name="ellipsis-horizontal-outline"></ion-icon>
@@ -33,7 +33,7 @@
 
   <p class="description" *ngIf='notEditable'>{{picture?.description}}</p>
   <form #descrForm="ngForm" *ngIf='editable'>
-    <ion-input type="text" [(ngModel)]="descr" name="descr" required #descrInput="ngModel" placeholder="{{picture?.description}}" min-length="1" max-length="50"></ion-input>
+    <ion-input type="text" [(ngModel)]="descr" name="descr" required #descrInput="ngModel" placeholder="{{picture?.description}}" min-length="3" max-length="50"></ion-input>
     <ion-button (click)=savePictureUpdated(descrForm) type="submit" [disabled]="descrForm.invalid">Valider</ion-button>
     <ion-button (click)=notEditPicture() type="cancel" fill="outline">Annuler</ion-button>
   </form>

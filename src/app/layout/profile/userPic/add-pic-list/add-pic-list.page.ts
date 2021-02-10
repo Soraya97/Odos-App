@@ -5,6 +5,7 @@ import { ToastController } from '@ionic/angular';
 import { Picture } from 'src/app/models/pictures';
 import { PictureService } from 'src/app/services/picture.service';
 import { NgForm } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-add-pic-list',
@@ -19,12 +20,10 @@ export class AddPicListPage implements OnInit {
   list: string;
   idList: string;
 
-  constructor(private listService: ListService, private pictureService: PictureService, public toastController: ToastController) {
+  constructor(private listService: ListService, private pictureService: PictureService, public toastController: ToastController, private route: ActivatedRoute) {
 
-    let urlcourante = document.location.href;
-    urlcourante = urlcourante.replace(/\/$/, "");
-    this.idPicture = urlcourante.substring(urlcourante.lastIndexOf("/") + 1);
-    console.log(this.idPicture);
+    this.idPicture = this.route.snapshot.paramMap.get('id');
+    // console.log(this.idPicture);
 
     // this.idList = "602273117b36d20017fb416e";
   }
@@ -32,33 +31,37 @@ export class AddPicListPage implements OnInit {
   addPicsList(form: NgForm) {
     if (form.valid) {
 
-      for (let i = 0; i < 4; i++) {
+      for (let i = 0; i < this.lists.length; i++) {
         let radioChecked = <HTMLInputElement>document.getElementById(this.lists[i]._id);
 
-        if (radioChecked.checked = true) {
-          console.log("It's checked");
-          // Get the name of list
-          let nameList = radioChecked.value;
-          // Get the id of list
-          let idList = radioChecked.name;
-          this.list = nameList;
-          this.idList = idList;
-        } else {
-          console.log("Not checked");
-        }
+        // if (radioChecked.checked = true) {
+        //   console.log("It's checked");
+        //   // Get the name of list
+        //   let nameList = radioChecked.value;
+        //   // Get the id of list
+        //   let idList = radioChecked.id;
+        //   this.list = nameList;
+        //   this.idList = idList;
+        //
+        // } else {
+        //   console.log("Not checked");
+        // }
 
       }
-      // this.listService.updateList(undefined, this.idPicture, this.idList).subscribe(err => {
+      this.toast(`La photo ${this.picture.description} a bien été ajoutée à la liste ${this.list}`);
+      // this.listService.updateList(undefined, this.idPicture, this.idList).subscribe(() => {
+      //   this.toast(`La photo ${this.picture.description} a bien été ajoutée à la liste ${this.list}`);
+      // }, (err) => {
       //   console.warn(err);
-      //   // alert(err.message);
+      //   this.toast(err.error.message);
       // });
-      this.addToListToast();
+
     }
   }
 
-  async addToListToast() {
+  async toast(msg) {
     const toast = await this.toastController.create({
-      message: `La photo ${this.picture.description} a bien été ajoutée à la liste ${this.list}`,
+      message: msg,
       duration: 2000
     });
     toast.present();
@@ -67,7 +70,6 @@ export class AddPicListPage implements OnInit {
   ngOnInit() {
     this.listService.getAllLists().subscribe((list) => {
       this.lists = list;
-      console.log(this.lists);
     }, err => {
       console.warn(err);
       alert(err.message);

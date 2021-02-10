@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 
 import { PictureService } from "../../../services/picture.service";
 import { GeolocationService } from 'src/app/services/geolocation.service';
@@ -23,7 +21,7 @@ export class CreatePicturePage implements OnInit {
   long: number;
   descr: string;
 
-  constructor(private camera: Camera, private geolocation: Geolocation, private pictureService: PictureService, private geolocationService: GeolocationService, private router: Router, public alertController: AlertController, public toastController: ToastController) {
+  constructor(private pictureService: PictureService, private geolocationService: GeolocationService, private router: Router, public alertController: AlertController, public toastController: ToastController) {
   }
 
   validatePicture(form: NgForm) {
@@ -33,20 +31,22 @@ export class CreatePicturePage implements OnInit {
       let x = this.lat;
       let y = this.long;
 
-      this.pictureService.createPicture(description, x, y).subscribe(err => {
+      this.pictureService.createPicture(description, x, y).subscribe(() => {
+        this.toast('La photo a bien été ajoutée');
+        this.router.navigateByUrl("/profile");
+        // TO-DO: Must see the new picture in the gallery
+      }, (err) => {
         console.warn(err);
-        // alert(err.message);
+          this.toast(err.error.message);
       });
-      // TODO: if no errors
-      this.newPictureToast();
-      this.router.navigateByUrl("/profile");
+
     }
 
   }
 
-  async newPictureToast() {
+  async toast(msg) {
     const toast = await this.toastController.create({
-      message: 'La photo a bien été ajoutée',
+      message: msg,
       duration: 2000
     });
     toast.present();
@@ -55,18 +55,6 @@ export class CreatePicturePage implements OnInit {
   // function that show what the user is typing
   search(citySearched: string) {
     return `${citySearched}`;
-  }
-
-  async descrAlreadyTaken() {
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'Attention',
-      subHeader: `Nom ${this.descr} déjà utilisé`,
-      message: "Merci d'en choisir un autre",
-      buttons: ['OK']
-    });
-
-    await alert.present();
   }
 
   ngOnInit() {
@@ -86,9 +74,9 @@ export class CreatePicturePage implements OnInit {
 
       }
     })
-    .catch(function (err){
-      alert("Votre géolocalisation est désactivée, votre photo sera géolocalisée au Pôle sud par défaut");
-    });
+      .catch(function(err) {
+        alert("Votre géolocalisation est désactivée, votre photo sera géolocalisée au Pôle sud par défaut");
+      });
   }
 
 }
