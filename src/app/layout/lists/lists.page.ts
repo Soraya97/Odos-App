@@ -17,7 +17,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ListsPage implements OnInit {
   user: User;
   list: List;
-  lists: List;
+  lists: List[];
   router: any;
   listId: string;
 

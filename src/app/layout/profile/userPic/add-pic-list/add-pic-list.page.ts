@@ -12,7 +12,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./add-pic-list.page.scss'],
 })
 export class AddPicListPage implements OnInit {
-  lists: List;
+  lists: List[];
   ids: string[];
   idPicture: string;
   picture: Picture;

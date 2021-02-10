@@ -14,8 +14,8 @@ export class FeedService {
   constructor(private http: HttpClient) { }
 
   // Get all pictures from the database
-  getAllPictures(): Observable<Picture> {
-    return this.http.get<Picture>(API_URL);
+  getAllPictures(): Observable<Picture[]> {
+    return this.http.get<Picture[]>(API_URL);
   }
 
 }

@@ -79,8 +79,8 @@ export class PictureService {
 
 
   // Get all pictures from the database
-  getAllPictures(): Observable<Picture> {
-    return this.http.get<Picture>(API_URL + `${this.idUser}/pictures`);
+  getAllPictures(): Observable<Picture[]> {
+    return this.http.get<Picture[]>(API_URL + `${this.idUser}/pictures`);
   }
 
   // Update the description of a photo

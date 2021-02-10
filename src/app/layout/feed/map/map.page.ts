@@ -18,13 +18,13 @@ export class MapPage implements OnInit {
   mapOptions: MapOptions;
   mapMarkers: Marker[];
   map: Map;
-  pictures: Picture;
+  pictures: Picture[];
   long: number;
   lat: number;
   city: City;
 
   constructor(private feedService: FeedService, private geolocationService: GeolocationService) {
-
+this.mapMarkers = [];
     this.mapOptions = {
       layers: [
         tileLayer(
@@ -57,11 +57,16 @@ export class MapPage implements OnInit {
           // marker([this.pictures[i].location.coordinates[0], this.pictures[i].location.coordinates[1]], { icon: defaultIcon }).addTo(this.mapMarkers);
         }
 
-        this.mapMarkers = [
-          marker([this.pictures[0].location.coordinates[0], this.pictures[0].location.coordinates[1]], { icon: defaultIcon }).bindPopup(`${this.city}`),
-          marker([this.pictures[2].location.coordinates[0], this.pictures[2].location.coordinates[1]], { icon: defaultIcon }).bindPopup(`${this.city}`),
-          marker([this.pictures[8].location.coordinates[0], this.pictures[8].location.coordinates[1]], { icon: defaultIcon }).bindPopup(`${this.city}`)
-        ];
+        for (const picture of this.pictures) {
+          const newMarker = marker(picture.location.coordinates, { icon: defaultIcon }).bindPopup(`${this.city}`);
+          this.mapMarkers.push(newMarker);
+        }
+
+        // this.mapMarkers = [
+        //   // marker(this.pictures[0].location.coordinates, { icon: defaultIcon }).bindPopup(`${this.city}`),
+        //   // marker(this.pictures[2].location.coordinates, { icon: defaultIcon }).bindPopup(`${this.city}`),
+        //   // marker(this.pictures[8].location.coordinates, { icon: defaultIcon }).bindPopup(`${this.city}`)
+        // ];
 
       }), err => {
         console.warn(err);

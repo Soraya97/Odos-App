@@ -70,9 +70,9 @@ export class ListService {
 
 
     // Get all lists from the database
-    getAllLists(): Observable<List> {
+    getAllLists(): Observable<List[]> {
         // return this.http.get<List>(API_URL_CREATION);
-        return this.http.get<List>(API_URL + `${this.idUser}/lists`);
+        return this.http.get<List[]>(API_URL + `${this.idUser}/lists`);
     }
 
     // Update the name of a list

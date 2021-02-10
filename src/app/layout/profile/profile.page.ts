@@ -15,7 +15,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ProfilePage implements OnInit {
   user: User;
   picture: Picture;
-  pictures: Picture;
+  pictures: Picture[];
   router: any;
   pictureId: string;
 
