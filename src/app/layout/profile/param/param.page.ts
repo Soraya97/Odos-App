@@ -44,7 +44,7 @@ export class ParamPage implements OnInit {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Attention!',
-      message: 'Êtes-vous sûr(e) de <strong>supprimer votre compte</strong>?',
+      message: 'Êtes-vous sûr·e de vouloir supprimer votre compte?',
       buttons: [
         {
           text: 'Annuler',
@@ -119,8 +119,35 @@ export class ParamPage implements OnInit {
     this.notEditable = true;
   }
 
+  async updateConfirm(form: NgForm) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Attention!',
+      subHeader: "Êtes-vous sûr·e de vouloir modifier votre compte?",
+      message: 'Ces modifications vont vous déconnecter',
+      buttons: [
+        {
+          text: 'Annuler',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (non) => {
+            console.log('Confirm Cancel: non');
+            this.notEditUser();
+          }
+        }, {
+          text: 'Modifier',
+          handler: () => {
+            this.saveUserUpdated(form);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
   // Save the update of the user in the db
-  saveUserUpdated(form: NgForm) {
+  saveUserUpdated(form) {
     if (form.valid) {
       this.editable = false;
       this.notEditable = true;

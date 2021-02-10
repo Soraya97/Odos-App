@@ -12,7 +12,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
- 
+
   <ion-item class="username" *ngIf='notEditable'>Nom d'utilisateur : {{user?.username}}</ion-item>
   <ion-item class="email" *ngIf='notEditable'>Email : {{user?.email}}</ion-item>
   <ion-item class="password" *ngIf='notEditable'>Mot de passe : •••••</ion-item>
@@ -30,10 +30,10 @@
       <ion-label>Mot de passe</ion-label>
       <ion-input type="password" [(ngModel)]="password" name="password" #paramInput="ngModel" placeholder="•••••"></ion-input>
     </ion-item>
-    <ion-button (click)=saveUserUpdated(paramForm) type="submit" [disabled]="paramForm.invalid">Valider</ion-button>
+    <ion-button (click)=updateConfirm(paramForm) type="submit" [disabled]="paramForm.invalid">Valider</ion-button>
     <ion-button (click)=notEditUser() type="cancel" fill="outline">Annuler</ion-button>
   </form>
-  
+
   <br>
   <a class="deleteAccount" (click)="presentAlertConfirm()">Suppression du compte</a>
 </ion-content>
