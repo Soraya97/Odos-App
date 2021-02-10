@@ -26,11 +26,8 @@ export class userPicPage implements OnInit {
   productId: string;
 
   constructor(private auth: AuthService, private pictureService: PictureService, private route: ActivatedRoute, public actionsheetCtrl: ActionSheetController, public alertController: AlertController, private router: Router, public toastController: ToastController, public modalController: ModalController) {
-    let urlcourante = document.location.href;
-    urlcourante = urlcourante.replace(/\/$/, "");
-    this.idPicture = urlcourante.substring(urlcourante.lastIndexOf("/") + 1);
+    this.idPicture = this.route.snapshot.paramMap.get('id');
     this.notEditable = true;
-    // this.productId = this.route.snapshot.paramMap.get('id');
   }
 
   // TO DO
@@ -91,13 +88,15 @@ export class userPicPage implements OnInit {
 
       let description = this.descr;
       let idPicture = this.idPicture;
-      this.pictureService.updatePicture(description, idPicture).subscribe(err => {
-        console.warn(err);
-        // alert(err.message);
-      });
-      this.updatedPictureToast();
-    }
+      this.pictureService.updatePicture(description, idPicture).subscribe(() => {
+        this.updatedPictureToast();
+        this.picture.description = this.descr;
+      },
+        (error) => {
+          console.log(error.message);
+        });
 
+    }
 
   }
 
