@@ -132,7 +132,7 @@ export class userPicPage implements OnInit {
 
     await alert.present();
   }
-
+  // Display a message
   async toast(msg) {
     const toast = await this.toastController.create({
       message: msg,
@@ -140,8 +140,6 @@ export class userPicPage implements OnInit {
     });
     toast.present();
   }
-
-
 
   ngOnInit() {
     this.auth.getUser().subscribe((user) => {

@@ -20,7 +20,7 @@
   <form #paramForm="ngForm" *ngIf='editable'>
     <ion-item>
       <ion-label>Nom d'utilisateur</ion-label>
-      <ion-input type="text" [(ngModel)]="username" name="username" #paramInput="ngModel" placeholder="{{user?.username}}"></ion-input>
+      <ion-input type="text" [(ngModel)]="username" name="username" pattern="[a-zA-Z ]*" min-length="1" max-length="15" #paramInput="ngModel" placeholder="{{user?.username}}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Email</ion-label>

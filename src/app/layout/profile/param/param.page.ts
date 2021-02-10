@@ -19,7 +19,7 @@ export class ParamPage implements OnInit {
   username: string;
   email: string;
   password: string;
-  // idUser: string;
+  idUser: string;
   editable: boolean;
   notEditable: boolean;
 
