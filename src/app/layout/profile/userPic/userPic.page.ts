@@ -95,7 +95,10 @@ export class userPicPage implements OnInit {
         console.warn(err);
         // alert(err.message);
       });
+      this.updatedPictureToast();
     }
+
+
   }
 
   // Alert activated when Delete selected on the menu of options

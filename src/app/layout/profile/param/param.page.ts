@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from "../../../models/user";
 import { AuthService } from 'src/app/auth/auth.service';
 
-import { ActionSheetController, AlertController, ToastController} from '@ionic/angular';
+import { ActionSheetController, AlertController, ToastController } from '@ionic/angular';
 
 import { PopoverController } from '@ionic/angular';
 // import { PopoverComponent } from '../../component/popover/popover.component';
@@ -62,8 +62,11 @@ export class ParamPage implements OnInit {
                 console.warn(err);
                 // alert(err.message);
               });
-              this.deletedUserToast();
+            this.deletedUserToast();
+            console.log("logging out...");
+            this.auth.logOut();
             this.router.navigateByUrl("login");
+
           }
         }
       ]
@@ -127,9 +130,23 @@ export class ParamPage implements OnInit {
       let email = this.email;
       let password = this.password;
       this.userService.updateUser(username, email, password).subscribe();
-    }
 
-      // async presentPopover(ev: any) {
+      console.log("logging out...");
+      this.auth.logOut();
+      this.router.navigateByUrl("login");
+      this.logOutToast();
+    }
+  }
+
+  async logOutToast() {
+    const toast = await this.toastController.create({
+      message: 'Veuillez vous reconnecter',
+      duration: 2000
+    });
+    toast.present();
+  }
+
+  // async presentPopover(ev: any) {
   //   const popover = await this.popoverController.create({
   //     component: PopoverComponent,
   //     cssClass: 'my-custom-class',
@@ -140,7 +157,7 @@ export class ParamPage implements OnInit {
   // }
 
   // Open the menu of options: Delete or Update
-  }
+
   ngOnInit() {
     this.auth.getUser().subscribe((user) => {
       this.user = user;
