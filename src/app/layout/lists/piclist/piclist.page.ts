@@ -10,7 +10,7 @@ import { HttpClient } from "@angular/common/http";
 
 import {ActionSheetController, AlertController, ToastController, ModalController  } from '@ionic/angular';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-piclist',
@@ -44,18 +44,16 @@ export class PiclistPage implements OnInit {
     public alertController: AlertController,
     private router: Router,
     public toastController: ToastController,
-    public modalController: ModalController
+    public modalController: ModalController,
+    private route: ActivatedRoute,
   ) {
-    let urlcourante = document.location.href;
-    urlcourante = urlcourante.replace(/\/$/, "");
-    this.idList = urlcourante.substring(urlcourante.lastIndexOf("/") + 1);
-    this.notEditable = true;
+    this.idList = this.route.snapshot.paramMap.get('id');
   }
 
 
   async openMenuList() {
     const actionSheet = await this.actionsheetCtrl.create({
-      header: 'List options',
+      header: 'Options de la liste',
       buttons: [
         {
           text: 'Supprimer',
@@ -69,7 +67,8 @@ export class PiclistPage implements OnInit {
           text: 'Modifier',
           role: 'modify',
           handler: () => {
-            this.editList();
+            // this.editList();
+            this.router.navigateByUrl("lists/modify-list");
           }
         }, {
           text: 'Annuler',
@@ -83,36 +82,42 @@ export class PiclistPage implements OnInit {
     await actionSheet.present();
   }
 
-   // Active the update mode
-   editList() {
-    this.editable = true;
-    this.notEditable = false;
-  }
+  //  // Active the update mode
+  //  editList() {
+  //   this.editable = true;
+  //   this.notEditable = false;
+  // }
 
-  // Disable the update mode
-  notEditList() {
-    this.editable = false;
-    this.notEditable = true;
-  }
+  // // Disable the update mode
+  // notEditList() {
+  //   this.editable = false;
+  //   this.notEditable = true;
+  // }
 
-    // Save the new name list in the db
-    saveListUpdated(form: NgForm) {
-      if (form.valid) {
-        this.editable = false;
-        this.notEditable = true;
-        console.log(this.name);
+    // // Save the new name list in the db
+    // saveListUpdated(form: NgForm) {
+    //   if (form.valid) {
+    //     this.editable = false;
+    //     this.notEditable = true;
+    //     console.log(this.name);
 
-        let name = this.name;
-        let idList = this.idList;
-        // this.listService.updateList(name, null, idList).subscribe();
-      }
-    }
+    //     let name = this.name;
+    //     let idList = this.idList;
+    //     this.listService.updateList(name, null, idList).subscribe(() => {
+    //       this.toast('Le nom de la liste a bien été modifiée');
+    //     this.list.name = this.name;
+    //   },
+    //   (err) => {
+    //     this.toast(err.error.message);
+    //     });
+    //   }
+    // }
 
     // Alert activated when Delete selected on the menu of options
   async deleteListAlert() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
-      header: 'Supprimer cette liste',
+      header: 'Attention !',
       subHeader: 'Êtes-vous sûr·e de vouloir supprimer cette liste ?',
       // message: 'This is an alert message.',
       buttons: [
@@ -121,19 +126,20 @@ export class PiclistPage implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           handler: () => {
-            console.log('Confirm Cancel');
+            console.log('Confirm Cancel : Non');
           }
         }, {
-          text: 'Supprimer',
+          text: 'Confirmer',
           handler: () => {
-            console.log('Confirm Okay');
-            this.listService.deleteList(this.idList).subscribe(
+            console.log('Confirm Yes : Oui');
+            this.listService.deleteList(this.idList).subscribe(() => {
+              this.toast("Votre liste a été supprimée");
+              this.router.navigateByUrl("lists");
+            },
               err => {
                 console.warn(err);
-                // alert(err.message);
+                this.toast("La liste n'a pas pu être supprimée");
               });
-            this.deletedListToast();
-            this.router.navigateByUrl("profile");
           }
         }
       ]
@@ -142,24 +148,23 @@ export class PiclistPage implements OnInit {
     await alert.present();
   }
 
-  // Confirmation that the liste is deleted
-  async deletedListToast() {
-    const toast = await this.toastController.create({
-      message: 'La liste a bien été supprimée',
-      duration: 2000
-    });
-    toast.present();
-  }
+      // Display a message
+      async toast(msg) {
+        const toast = await this.toastController.create({
+          message: msg,
+          duration: 2000
+        });
+        toast.present();
+      }
 
-  // Confirmation that the liste is updated
-  async updatedListToast() {
-    const toast = await this.toastController.create({
-      message: 'La liste a bien été modifiée',
-      duration: 2000
-    });
-    toast.present();
-  }
-
+  // // Confirmation that the liste is updated
+  // async updatedListToast() {
+  //   const toast = await this.toastController.create({
+  //     message: 'La liste a bien été modifiée',
+  //     duration: 2000
+  //   });
+  //   toast.present();
+  // }
 
   ngOnInit() {
     this.auth.getUser().subscribe((user) => {
@@ -176,15 +181,6 @@ export class PiclistPage implements OnInit {
       console.warn(err);
       alert(err.message);
     });
-
-
-    // this.pictureService.getPicture(this.idPicture).subscribe((picture) => {
-    //   this.pictures = picture;
-    //   console.log(this.pictures);
-    // }, err => {
-    //   console.warn(err);
-    //   alert(err.message);
-    // });
 
   }
 
