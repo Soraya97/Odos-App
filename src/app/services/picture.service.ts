@@ -36,29 +36,6 @@ export class PictureService {
     });
   }
 
-  handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      // A client-side or network error occurred. Handle it accordingly.
-      console.error('An error occurred:', error.error.message);
-      alert(error.error.message);
-    }
-    else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong,
-      console.error(`Backend returned code ${error.status}, ` +
-        `body was: ${error.message}`);
-      alert(error.message);
-      // if (error.status == 422) {
-      //   alert("Ce mot est déjà utilisé");
-      // }
-
-    }
-    // return an observable with a user-facing error message
-    return throwError('Something bad happened; please try again later.');
-  };
-
-
-
   // Get a picture from the database
   getPicture(idPicture): Observable<Picture> {
     return this.http.get<Picture>(API_URL + `${this.idUser}/pictures/${idPicture}`);
@@ -71,10 +48,9 @@ export class PictureService {
     const requestBody = {
       description: description,
       location: { type: "Point", coordinates: [x || -135.000000, y || 90.000000] },
-      picture: this.currentPictureURL || "https://source.unsplash.com/random"
+      picture: this.currentPictureURL || "https://www.gamersyde.com/news_sea_of_thieves_en_4k_hdr_sur_xbox_series_x-21925.jpg"
     };
     return this.http.post<PictureRequest>(API_URL + `${this.idUser}/pictures/`, requestBody);
-      // .pipe(retry(2), catchError(this.handleError));
   }
 
 
@@ -89,7 +65,6 @@ export class PictureService {
       description: description
     }
     return this.http.patch<Picture>(API_URL + `${this.idUser}/pictures/` + idPicture, requestBody);
-      // .pipe(retry(2), catchError(this.handleError));
   }
 
   // TO DO

@@ -37,7 +37,7 @@ export class CreatePicturePage implements OnInit {
         // TO-DO: Must see the new picture in the gallery
       }, (err) => {
         console.warn(err);
-          this.toast(err.error.message);
+          this.toast('La photo n\'a pas pu être ajoutée parce que: ' + err.error.message);
       });
 
     }

@@ -36,3 +36,7 @@ ion-textarea.ng-invalid.ng-dirty {
 .center {
   text-align: center;
 }
+
+ion-input.ng-invalid.ng-dirty {
+  color: red
+}

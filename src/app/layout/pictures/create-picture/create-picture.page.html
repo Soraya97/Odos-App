@@ -33,10 +33,13 @@
       </ion-col>
       <ion-col>
         <form #descrForm="ngForm">
-          <ion-textarea type="text" placeholder="Écrire une description..." [(ngModel)]="descr" name="descr" required #descrInput="ngModel" min-length="3" max-length="50"></ion-textarea>
-          <p *ngIf="descrInput.invalid && descrInput.dirty" class="small">
+          <ion-textarea type="text" placeholder="Écrire une description..." [(ngModel)]="descr" name="descr" required #descrInput="ngModel" minlength="3" maxlength="50"></ion-textarea>
+          <ion-text *ngIf="descrInput.hasError('required') && descrInput.invalid && descrInput.dirty" class="small">
             Une description est requise
-          </p>
+          </ion-text>
+          <ion-text *ngIf="descrInput.hasError('minlength') || descrInput.hasError('maxlength') && descrInput.invalid && descrInput.dirty" class="small">
+            La description doit faire en 3 et 50 caractères
+          </ion-text>
         </form>
       </ion-col>
     </ion-row>
