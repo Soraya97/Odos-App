@@ -52,21 +52,9 @@ export class ModifyListPage implements OnInit {
 
     await alert.present();
   }
-
-    // Active the update mode
-    editList() {
-      this.editable = true;
-      this.notEditable = false;
-    }
-  
-    // Disable the update mode
-    notEditList() {
-      this.editable = false;
-      this.notEditable = true;
-    }
   
     // Save the new name list in the db
-    saveListUpdated(form: NgForm) {
+    validateList(form: NgForm) {
       if (form.valid) {
         this.editable = false;
         this.notEditable = true;

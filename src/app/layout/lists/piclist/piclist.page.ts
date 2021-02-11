@@ -68,7 +68,7 @@ export class PiclistPage implements OnInit {
           role: 'modify',
           handler: () => {
             // this.editList();
-            this.router.navigateByUrl("lists/modify-list");
+            this.router.navigate(['lists/modify-list', this.idList]);
           }
         }, {
           text: 'Annuler',
