@@ -8,7 +8,7 @@ import { List } from 'src/app/models/list';
 import { AuthService } from 'src/app/auth/auth.service';
 import { HttpClient } from "@angular/common/http";
 
-import {ActionSheetController, AlertController, ToastController, ModalController  } from '@ionic/angular';
+import { ActionSheetController, AlertController, ToastController, ModalController } from '@ionic/angular';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -20,7 +20,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class PiclistPage implements OnInit {
   user: User;
   picture: Picture;
-  pictures: Picture;
+  pictures: Picture[];
   list: List;
   editable: boolean;
   notEditable: boolean;
@@ -68,7 +68,7 @@ export class PiclistPage implements OnInit {
           role: 'modify',
           handler: () => {
             // this.editList();
-            this.router.navigateByUrl("lists/modify-list");
+            this.router.navigate(['/lists/modify-list', this.idList]);
           }
         }, {
           text: 'Annuler',
@@ -94,26 +94,26 @@ export class PiclistPage implements OnInit {
   //   this.notEditable = true;
   // }
 
-    // // Save the new name list in the db
-    // saveListUpdated(form: NgForm) {
-    //   if (form.valid) {
-    //     this.editable = false;
-    //     this.notEditable = true;
-    //     console.log(this.name);
+  // // Save the new name list in the db
+  // saveListUpdated(form: NgForm) {
+  //   if (form.valid) {
+  //     this.editable = false;
+  //     this.notEditable = true;
+  //     console.log(this.name);
 
-    //     let name = this.name;
-    //     let idList = this.idList;
-    //     this.listService.updateList(name, null, idList).subscribe(() => {
-    //       this.toast('Le nom de la liste a bien été modifiée');
-    //     this.list.name = this.name;
-    //   },
-    //   (err) => {
-    //     this.toast(err.error.message);
-    //     });
-    //   }
-    // }
+  //     let name = this.name;
+  //     let idList = this.idList;
+  //     this.listService.updateList(name, null, idList).subscribe(() => {
+  //       this.toast('Le nom de la liste a bien été modifiée');
+  //     this.list.name = this.name;
+  //   },
+  //   (err) => {
+  //     this.toast(err.error.message);
+  //     });
+  //   }
+  // }
 
-    // Alert activated when Delete selected on the menu of options
+  // Alert activated when Delete selected on the menu of options
   async deleteListAlert() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
@@ -148,14 +148,14 @@ export class PiclistPage implements OnInit {
     await alert.present();
   }
 
-      // Display a message
-      async toast(msg) {
-        const toast = await this.toastController.create({
-          message: msg,
-          duration: 2000
-        });
-        toast.present();
-      }
+  // Display a message
+  async toast(msg) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 2000
+    });
+    toast.present();
+  }
 
   // // Confirmation that the liste is updated
   // async updatedListToast() {
@@ -176,11 +176,14 @@ export class PiclistPage implements OnInit {
 
     this.listService.getList(this.idList).subscribe((list) => {
       this.list = list;
-      console.log(this.list);
+
     }, err => {
       console.warn(err);
       alert(err.message);
     });
+
+
+
 
   }
 

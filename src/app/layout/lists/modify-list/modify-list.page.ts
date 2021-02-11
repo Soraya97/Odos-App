@@ -29,7 +29,7 @@ export class ModifyListPage implements OnInit {
   constructor(
     // Inject the ListService
     private listService: ListService, private router: Router, public alertController: AlertController, public toastController: ToastController, private route: ActivatedRoute, private auth: AuthService
-  ) { 
+  ) {
     this.idList = this.route.snapshot.paramMap.get('id');
   }
 
@@ -58,13 +58,13 @@ export class ModifyListPage implements OnInit {
       this.editable = true;
       this.notEditable = false;
     }
-  
+
     // Disable the update mode
     notEditList() {
       this.editable = false;
       this.notEditable = true;
     }
-  
+
     // Save the new name list in the db
     saveListUpdated(form: NgForm) {
       if (form.valid) {
@@ -111,7 +111,7 @@ export class ModifyListPage implements OnInit {
         console.warn(err);
         alert(err.message);
       });
-  
+
       this.listService.getList(this.idList).subscribe((list) => {
         this.list = list;
         console.log(this.list);
@@ -119,6 +119,6 @@ export class ModifyListPage implements OnInit {
         console.warn(err);
         alert(err.message);
       });
-  
+
     };
 }

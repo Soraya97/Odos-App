@@ -89,7 +89,7 @@ export class ListService {
 
     // TO DO
     deleteList(idList): Observable<List> {
-        return this.http.delete<List>(API_URL + `${this.idUser}/pictures/` + idList);
+        return this.http.delete<List>(API_URL + `${this.idUser}/lists/` + idList);
     }
 
 
