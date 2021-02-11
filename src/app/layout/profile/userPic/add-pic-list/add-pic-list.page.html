@@ -12,20 +12,41 @@
 
 <ion-content>
 
-  <form #picListForm="ngForm" (submit)=addPicsList(picListForm)>
+  <!-- <form [formGroup]="form" (ngSubmit)="submit()">
     <ion-list>
-      <ion-radio-group value="lists">
+      <ion-radio-group value="lists" class="form-group">
         <ion-list-header>
           <ion-label>Listes</ion-label>
         </ion-list-header>
 
         <ion-item *ngFor="let list of lists">
           <ion-label>{{list?.name}}</ion-label>
-          <ion-radio slot="start" [value]="list?.name" name="lists" [id]="list?._id"></ion-radio>
+          <ion-radio slot="start" [value]="list?.name" name="lists" [id]="list?._id" formControlName="lists" (change)="changeList($event)"> </ion-radio>
         </ion-item>
       </ion-radio-group>
     </ion-list>
-    <ion-button type="submit" [disabled]="picListForm.invalid">Valider</ion-button>
-  </form>
+    <ion-button type="submit">Valider</ion-button>
+  </form> -->
+
+
+
+    <form [formGroup]="form" (ngSubmit)="addPicsList()">
+
+        <div class="form-group">
+            <label for="list">Lists:</label>
+            <div *ngFor="let list of lists">
+              <input [id]="list?._id" type="radio" [value]="list?._id" name="list" formControlName="list">
+              <label [for]="list?.name">{{list?.name}}</label>
+           </div>
+
+
+            <div *ngIf="f.list.touched &amp;&amp; f.list.invalid" class="alert alert-danger">
+                <div *ngIf="f.list.errors.required">Name is required.</div>
+            </div>
+        </div>
+
+        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+    </form>
+
 
 </ion-content>

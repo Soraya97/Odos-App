@@ -12,9 +12,9 @@
     <ion-row>
       <!-- <app-pic *ngFor="let picture of pictures"></app-pic> -->
 
-  <ion-col size="6" *ngFor="let picture of pictures">
-      <img [src]="picture?.picture" [id]="picture?.id" [routerLink]="['/profile/userPic', picture.id]"/>
-  </ion-col>
-  </ion-row>
-</ion-grid>
+      <ion-col size="6" *ngFor="let picture of pictures">
+        <img [src]="picture?.picture" [id]="picture?.id" [routerLink]="['/profile/userPic', picture.id]" />
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
