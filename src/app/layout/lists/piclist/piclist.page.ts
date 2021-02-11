@@ -20,7 +20,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class PiclistPage implements OnInit {
   user: User;
   picture: Picture;
-  pictures: Picture[];
+  pictures: Picture[] = [];
   list: List;
   editable: boolean;
   notEditable: boolean;
@@ -68,7 +68,7 @@ export class PiclistPage implements OnInit {
           role: 'modify',
           handler: () => {
             // this.editList();
-            this.router.navigate(['/lists/modify-list', this.idList]);
+            this.router.navigate(['lists/modify-list', this.idList]);
           }
         }, {
           text: 'Annuler',
@@ -103,7 +103,7 @@ export class PiclistPage implements OnInit {
 
   //     let name = this.name;
   //     let idList = this.idList;
-  //     this.listService.updateList(name, null, idList).subscribe(() => {
+  //     this.listService.updateList(name, undefined, idList).subscribe(() => {
   //       this.toast('Le nom de la liste a bien été modifiée');
   //     this.list.name = this.name;
   //   },
@@ -176,14 +176,27 @@ export class PiclistPage implements OnInit {
 
     this.listService.getList(this.idList).subscribe((list) => {
       this.list = list;
+      console.log(this.list._id);
+
+      // console.log(this.list.picture.length);
+      if (this.list.picture.length > 0) {
+        for (let i = 0; i < this.list.picture.length; i++) {
+          // console.log(this.list.picture[i]);
+
+          this.pictureService.getPicture(this.list.picture[i]).subscribe((picture) => {
+            this.pictures.push(picture);
+          }, err => {
+            console.warn(err);
+            alert(err.message);
+          })
+        }
+      }
+
 
     }, err => {
       console.warn(err);
       alert(err.message);
     });
-
-
-
 
   }
 

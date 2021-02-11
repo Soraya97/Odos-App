@@ -28,6 +28,7 @@
       <ion-row>
     <ion-col size="6" *ngFor="let picture of pictures">
       <img [src]="picture?.picture" [id]="picture?.id" [routerLink]="['/profile/userPic', picture.id]">
+      <ion-icon name="trash-outline" (click)="deletePicList()"></ion-icon>
     </ion-col>
     </ion-row>
   </ion-grid>
