@@ -57,11 +57,12 @@ export class ParamPage implements OnInit {
           text: 'Confirmer',
           handler: () => {
             console.log('Confirm Yes: oui');
-            this.userService.deleteUser().subscribe(
-              err => {
-                console.warn(err);
-                // alert(err.message);
-              });
+            this.userService.deleteUser().subscribe(() => {
+              // Quelle est la suite si tout s'est bien passé ?
+            }, (err) => {
+              console.warn(err);
+              // Quelle est la suite si une erreur est survenue ?
+            });
             this.deletedUserToast();
             console.log("logging out...");
             this.auth.logOut();
