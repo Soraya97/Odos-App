@@ -16,6 +16,8 @@ export class FeedPage implements OnInit {
   sumPictures: number;
   pictures: Picture[];
   pictureId: string;
+  login: boolean;
+  logout: boolean;
 
   constructor(private auth: AuthService,
               private router: Router,
@@ -27,6 +29,8 @@ export class FeedPage implements OnInit {
           new Date(b.creation_date).getTime() - new Date(a.creation_date).getTime());
     });
     this.pictureId = this.route.snapshot.paramMap.get('id');
+    this.login = false;
+    this.logout = true;
   }
 
   doRefresh(event) {
@@ -47,7 +51,16 @@ export class FeedPage implements OnInit {
 
   logOut() {
     console.log('logging out...');
+    this.login = false;
+    this.logout = true;
     this.auth.logOut();
+    this.router.navigateByUrl('/login');
+  }
+
+  logIn() {
+    console.log('logging in...');
+    this.login = true;
+    this.logout = false;
     this.router.navigateByUrl('/login');
   }
 

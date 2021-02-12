@@ -3,9 +3,14 @@
     <ion-title>Feed</ion-title>
 
     <!-- Logout button -->
-    <ion-buttons slot="end">
+    <ion-buttons *ngIf="login" slot="end">
       <ion-button (click)="logOut()">
         <ion-icon name="log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons *ngIf="logout" slot="end">
+      <ion-button (click)="logIn()">
+        Se connecter
       </ion-button>
     </ion-buttons>
   </ion-toolbar>

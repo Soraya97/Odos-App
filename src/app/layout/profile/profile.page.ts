@@ -46,12 +46,6 @@ export class ProfilePage implements OnInit {
 
   }
 
-  logOut() {
-    console.log("logging out...");
-    this.auth.logOut();
-    this.router.navigateByUrl("/login");
-  }
-
 
   ngOnInit() {
     this.auth.getUser().subscribe((user) => {
