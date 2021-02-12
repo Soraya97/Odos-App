@@ -30,23 +30,25 @@
 
 
 
-    <form [formGroup]="form" (ngSubmit)="addPicsList()">
+  <form [formGroup]="form" (ngSubmit)="addPicsList()">
 
-        <div class="form-group">
-            <label for="list">Lists:</label>
-            <div *ngFor="let list of lists">
-              <input [id]="list?._id" type="radio" [value]="list?._id" name="list" formControlName="list">
-              <label [for]="list?.name">{{list?.name}}</label>
-           </div>
+    <div class="form-group">
+      <ion-list-header>
+        <ion-label>Listes</ion-label>
+      </ion-list-header>
+      <ion-item *ngFor="let list of lists">
+        <input [id]="list?._id" type="radio" [value]="list?._id" name="list" formControlName="list">
+        <ion-label [for]="list?.name">{{list?.name}}</ion-label>
+      </ion-item>
 
-
-            <div *ngIf="f.list.touched &amp;&amp; f.list.invalid" class="alert alert-danger">
-                <div *ngIf="f.list.errors.required">Name is required.</div>
-            </div>
-        </div>
-
-        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
-    </form>
+      <div *ngIf="f.list.touched &amp;&amp; f.list.invalid" class="alert alert-danger">
+        <div *ngIf="f.list.errors.required">Merci de sélectionner un des boutons</div>
+      </div>
+    </div>
+    <ion-item>
+      <ion-button type="submit" [disabled]="!form.valid" size="medium">Valider</ion-button>
+    </ion-item>
+  </form>
 
 
 </ion-content>

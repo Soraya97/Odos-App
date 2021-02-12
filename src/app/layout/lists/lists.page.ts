@@ -8,6 +8,7 @@ import { List } from 'src/app/models/list';
 import { AuthService } from 'src/app/auth/auth.service';
 import { environment } from "src/environments/environment";
 import { ActivatedRoute } from '@angular/router';
+import { TabElementsService } from 'src/app/services/tab-elements.service';
 
 @Component({
   selector: 'app-lists',
@@ -28,6 +29,7 @@ export class ListsPage implements OnInit {
     public http: HttpClient,
     // Inject the ListService
     private listService: ListService,
+    public tabLists: TabElementsService,
     // Inject the ActivatedRoute
     private route: ActivatedRoute
   ) {
@@ -43,13 +45,13 @@ export class ListsPage implements OnInit {
       alert(err.message);
     });
 
-    this.listService.getAllLists().subscribe((list) => {
-      this.lists = list;
-      console.log(this.lists);
-    }, err => {
-      console.warn(err);
-      alert(err.message);
-    });
+    // this.listService.getAllLists().subscribe((list) => {
+    //   this.lists = list;
+    //   console.log(this.lists);
+    // }, err => {
+    //   console.warn(err);
+    //   alert(err.message);
+    // });
 
   }
 

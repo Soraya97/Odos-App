@@ -48,7 +48,7 @@ export class PictureService {
     const requestBody = {
       description: description,
       location: { type: "Point", coordinates: [x || -135.000000, y || 90.000000] },
-      picture: this.currentPictureURL || "https://www.gamersyde.com/news_sea_of_thieves_en_4k_hdr_sur_xbox_series_x-21925.jpg"
+      picture: this.currentPictureURL || "https://source.unsplash.com/random"
     };
     return this.http.post<PictureRequest>(API_URL + `${this.idUser}/pictures/`, requestBody);
   }

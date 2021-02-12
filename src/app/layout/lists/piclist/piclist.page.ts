@@ -11,6 +11,7 @@ import { HttpClient } from "@angular/common/http";
 import { ActionSheetController, AlertController, ToastController, ModalController } from '@ionic/angular';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { TabElementsService } from 'src/app/services/tab-elements.service';
 
 @Component({
   selector: 'app-piclist',
@@ -46,6 +47,7 @@ export class PiclistPage implements OnInit {
     public toastController: ToastController,
     public modalController: ModalController,
     private route: ActivatedRoute,
+    public tabLists: TabElementsService
   ) {
     this.idList = this.route.snapshot.paramMap.get('id');
   }
@@ -133,6 +135,7 @@ export class PiclistPage implements OnInit {
           handler: () => {
             console.log('Confirm Yes : Oui');
             this.listService.deleteList(this.idList).subscribe(() => {
+              this.tabLists.changeList();
               this.toast("Votre liste a été supprimée");
               this.router.navigateByUrl("lists");
             },

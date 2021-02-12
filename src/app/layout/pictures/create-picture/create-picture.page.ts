@@ -7,6 +7,7 @@ import { City } from 'src/app/models/city';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
+import { TabElementsService } from 'src/app/services/tab-elements.service';
 
 @Component({
   selector: 'app-create-picture',
@@ -21,10 +22,8 @@ export class CreatePicturePage implements OnInit {
   long: number;
   descr: string;
 
-  constructor(private pictureService: PictureService, private geolocationService: GeolocationService, private router: Router, public alertController: AlertController, public toastController: ToastController) {
-    console.log("URL:" + this.pictureService.currentPictureURL);
-    this.picture = this.pictureService.currentPictureURL;
-    console.log(this.picture);
+  constructor(public tabPictures: TabElementsService, private pictureService: PictureService, private geolocationService: GeolocationService, private router: Router, public alertController: AlertController, public toastController: ToastController) {
+
   }
 
   validatePicture(form: NgForm) {
@@ -36,6 +35,7 @@ export class CreatePicturePage implements OnInit {
 
       this.pictureService.createPicture(description, x, y).subscribe(() => {
         this.toast('La photo a bien été ajoutée');
+        this.tabPictures.changePic();
         this.router.navigateByUrl("/profile");
 
 

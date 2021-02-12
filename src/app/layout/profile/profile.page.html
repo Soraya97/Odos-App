@@ -25,7 +25,7 @@
     <ion-row>
       <!-- <app-pic *ngFor="let picture of pictures"></app-pic> -->
 
-      <ion-col size="6" *ngFor="let picture of pictures">
+      <ion-col size="6" *ngFor="let picture of tabPictures.pictures">
         <img [src]="picture?.picture" [id]="picture?.id" [routerLink]="['/profile/userPic', picture.id]" />
       </ion-col>
     </ion-row>

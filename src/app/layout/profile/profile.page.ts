@@ -5,7 +5,7 @@ import { User } from "../../models/user";
 import { AuthService } from 'src/app/auth/auth.service';
 import { PictureService } from 'src/app/services/picture.service';
 import { Picture } from 'src/app/models/pictures';
-import { TabPicturesService } from 'src/app/services/tab-pictures.service';
+import { TabElementsService } from 'src/app/services/tab-elements.service';
 
 @Component({
   selector: 'app-profile',
@@ -18,7 +18,7 @@ export class ProfilePage implements OnInit {
   pictures: Picture[];
   pictureId: string;
 
-  constructor(private auth: AuthService, private pictureService: PictureService, private route: ActivatedRoute, public tabPicture: TabPicturesService, private router: Router) {
+  constructor(private auth: AuthService, private pictureService: PictureService, private route: ActivatedRoute, public tabPictures: TabElementsService, private router: Router) {
     // this.user = {_id: "1", username: "John Doe", email: "a@a.ch", password: "1234", registrationDate: "12.01.2021"};
     this.pictureId = this.route.snapshot.paramMap.get('id');
     // this.pictures = [
@@ -42,12 +42,7 @@ export class ProfilePage implements OnInit {
     //     userId: 1,
     //   }
     // ];
-    // console.log(this.tabPicture["pictures"]);
-    //
-    // console.log(this.tabPicture);
-    //
-    // this.pictures = this.tabPicture.pictures;
-    // console.log(this.pictures);
+
 
   }
 
@@ -66,12 +61,12 @@ export class ProfilePage implements OnInit {
       alert(err.message);
     });
 
-    this.pictureService.getAllPictures().subscribe((picture) => {
-      this.pictures = picture;
-    }, err => {
-      console.warn(err);
-      alert(err.message);
-    });
+    // this.pictureService.getAllPictures().subscribe((picture) => {
+    //   this.pictures = picture;
+    // }, err => {
+    //   console.warn(err);
+    //   alert(err.message);
+    // });
 
   }
 
