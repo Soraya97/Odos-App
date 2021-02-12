@@ -16,7 +16,7 @@ Pour pouvoir utiliser notre application avec toutes ses fonctionnalités, un com
 
 ### Logout
 
-Si l’utilisateur souhaite se déconnecter de l’application, il peut le faire, à tout moment, en se rendant sur la page « Home », en cliquant sur l’icône présente sur le haut droit de l’application.
+Si l’utilisateur souhaite se déconnecter de l’application, il peut le faire, à tout moment, en se rendant sur la page « Home » ou "Profil", en cliquant sur l’icône présente sur le haut droit de l’application.
 
 ### Menu
 
@@ -25,7 +25,7 @@ Le menu de l’application est visible sur le bas de l’écran. Il comporte 4 �
 1. **Home :** permets     de voir la fée et la carte avec toutes les photographies géolocalisées.
 2. **Favoris :** permets d’avoir accès à toutes les listes     favorites avec leurs photographies.
 3. **Pictures :** permets de prendre et d’ajouter une photo avec     sa description et son lieu.
-4. **Personnel :** permets d’avoir un aperçu de toutes les photos     que l’utilisateur a enregistrées comme « favoris » et de pouvoir régler     ses paramètres de connexions.
+4. **Profil :** permets d’avoir un aperçu de toutes les photos     que l’utilisateur a enregistrées comme « favoris » et de pouvoir régler     ses paramètres de connexions.
 
 ## Page « Home »
 
@@ -75,13 +75,13 @@ Il a également la possilbité de supprimer son compte en cliquant sur le lien �
 
 - **User**
 
-- - Username and/or email
-  - Password
-  - Registration date
+    - Username and/or email
+    - Password
+    - Registration date
 
 - **Pictures of places**
 
-- - Description
+  - Description
   - Geolocation
   - Picture
   - Creation date
@@ -90,7 +90,7 @@ Il a également la possilbité de supprimer son compte en cliquant sur le lien �
 
 - **Favorites list**
 
-- - List name
+  - List name
   - Creation date
   - Last modification date
   - Linked with pictures of places

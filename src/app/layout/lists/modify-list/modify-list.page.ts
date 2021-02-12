@@ -78,11 +78,13 @@ export class ModifyListPage implements OnInit {
   // Delete a Pic from a List
   deletePicList() {
     // TODO: trouver comment récupérer l'id de la photo :)
-    let idPic = "";
+    let idPic = this.list.picture;
     this.listService.deletePicList(this.idList, idPic).subscribe(() => {
       // réussite
+      this.toast('La photo a bien été supprimée de la liste');
     }, (err) => {
       // échec
+      this.toast('La photo n\'a pas pu être supprimée de la liste');
       console.warn(err);
       alert(err.message);
     })
