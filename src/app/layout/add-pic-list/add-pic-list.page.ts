@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+
 import { ListService } from 'src/app/services/list.service';
 import { List } from 'src/app/models/list';
-import { ToastController } from '@ionic/angular';
+import { ToastController, AlertController } from '@ionic/angular';
 import { Picture } from 'src/app/models/pictures';
 import { PictureService } from 'src/app/services/picture.service';
-import { NgForm, FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-add-pic-list',
@@ -24,7 +25,7 @@ export class AddPicListPage implements OnInit {
     list: new FormControl('', Validators.required)
   });
 
-  constructor(private fb: FormBuilder, private listService: ListService, private pictureService: PictureService, public toastController: ToastController, private route: ActivatedRoute) {
+  constructor(private listService: ListService, private pictureService: PictureService, public toastController: ToastController, private route: ActivatedRoute, public alertController: AlertController) {
     this.idPicture = this.route.snapshot.paramMap.get('id');
   }
 
@@ -32,6 +33,7 @@ export class AddPicListPage implements OnInit {
     return this.form.controls;
   }
 
+  // Add a pic to a list with its id and list's id
   addPicsList() {
     this.idList = this.form.value;
     console.log(this.form.value);
@@ -51,11 +53,12 @@ export class AddPicListPage implements OnInit {
       });
     }, (err) => {
       console.warn(err);
-      this.toast("La photo n'a pas pu être ajoutée à la liste parce que: " + err.error.message);
+      this.alert("Impossible", "Ajout impossible", "La photo n'a pas pu être ajoutée à la liste parce que: " + err.error.message);
     });
   }
 
-  async toast(msg) {
+  // Trigger a toast
+  async toast(msg: string) {
     const toast = await this.toastController.create({
       message: msg,
       duration: 2000
@@ -63,21 +66,42 @@ export class AddPicListPage implements OnInit {
     toast.present();
   }
 
+  // Trigger an alert
+  async alert(head: string, sub: string, msg: string) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: head,
+      subHeader: sub,
+      message: msg,
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {
+            console.log('Confirm Ok');
+          }
+        }]
+
+    });
+
+    await alert.present();
+  }
+
 
   ngOnInit() {
+    // Call the service for the lists
     this.listService.getAllLists().subscribe((list) => {
       this.lists = list;
     }, err => {
       console.warn(err);
-      this.toast(err.message);
+      this.alert("Impossible", "Impossible à atteindre", "Les listes n'ont pas pu être affichées parce que: " + err.message);
     });
 
-
+    // Call the service for the pictures
     this.pictureService.getPicture(this.idPicture).subscribe((picture) => {
       this.picture = picture;
     }, err => {
       console.warn(err);
-      this.toast(err.message);
+      this.alert("Impossible", "Impossible à atteindre", "La photo n'a pas pu être atteinte parce que: " + err.message);
     });
 
   }

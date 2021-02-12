@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Observable, Observer, ReplaySubject } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { ReplaySubject } from 'rxjs';
 
 const WS_SERVER_URL = 'ws://echo.websocket.org';
 

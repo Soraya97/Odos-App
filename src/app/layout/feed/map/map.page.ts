@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { latLng, MapOptions, tileLayer, Map, marker, Marker } from 'leaflet';
+import { ToastController } from '@ionic/angular';
 
+import { latLng, MapOptions, tileLayer, Map, marker, Marker } from 'leaflet';
 import { defaultIcon } from './default-marker';
+
 import { Picture } from 'src/app/models/pictures';
-import { PictureService } from 'src/app/services/picture.service';
 import { City } from 'src/app/models/city';
 import { GeolocationService } from 'src/app/services/geolocation.service';
 import { FeedService } from 'src/app/services/feed.service';
+
 
 @Component({
   selector: 'app-map',
@@ -23,7 +25,7 @@ export class MapPage implements OnInit {
   lat: number;
   city: City;
 
-  constructor(private feedService: FeedService, private geolocationService: GeolocationService) {
+  constructor(private feedService: FeedService, private geolocationService: GeolocationService, public toastController: ToastController) {
     this.mapMarkers = [];
     this.mapOptions = {
       layers: [
@@ -45,16 +47,24 @@ export class MapPage implements OnInit {
         const newMarker = marker(picture.location.coordinates, { icon: defaultIcon }).bindPopup(picture.description);
         this.mapMarkers.push(newMarker);
       }
-
-
     }, err => {
       console.warn(err);
-      alert(err.message);
+      this.toast(err.error.message);
     });
 
   }
 
+  // Trigger a toast
+  async toast(msg: string) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 2000
+    });
+    toast.present();
+  }
+
   ngOnInit() {
+    // Call the service for the geolocation
     this.geolocationService.getGeolocation().then((coords: Coordinates) => {
       this.lat = coords.latitude;
       this.long = coords.longitude;

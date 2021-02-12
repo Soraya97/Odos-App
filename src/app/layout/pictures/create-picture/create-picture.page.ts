@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-
-
-import { PictureService } from "../../../services/picture.service";
-import { GeolocationService } from 'src/app/services/geolocation.service';
-import { City } from 'src/app/models/city';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
+
+import { GeolocationService } from 'src/app/services/geolocation.service';
+import { City } from 'src/app/models/city';
 import { TabElementsService } from 'src/app/services/tab-elements.service';
+import { PictureService } from 'src/app/services/picture.service';
 
 @Component({
   selector: 'app-create-picture',
@@ -23,9 +22,9 @@ export class CreatePicturePage implements OnInit {
   descr: string;
 
   constructor(public tabPictures: TabElementsService, private pictureService: PictureService, private geolocationService: GeolocationService, private router: Router, public alertController: AlertController, public toastController: ToastController) {
-
   }
 
+  // Validate and save the new picture in the db
   validatePicture(form: NgForm) {
     if (form.valid) {
       // console.log("Photo à enregistrer");
@@ -37,19 +36,15 @@ export class CreatePicturePage implements OnInit {
         this.toast('La photo a bien été ajoutée');
         this.tabPictures.changePic();
         this.router.navigateByUrl("/profile");
-
-
-        // TO-DO: Must see the new picture in the gallery
       }, (err) => {
         console.warn(err);
-          this.toast('La photo n\'a pas pu être ajoutée parce que: ' + err.error.message);
+        this.alert("Problème", "Ajout impossible", 'La photo n\'a pas pu être ajoutée parce que: ' + err.error.message);
       });
-
     }
-
   }
 
-  async toast(msg) {
+  // Trigger a toast
+  async toast(msg: string) {
     const toast = await this.toastController.create({
       message: msg,
       duration: 2000
@@ -57,28 +52,40 @@ export class CreatePicturePage implements OnInit {
     toast.present();
   }
 
-  // function that show what the user is typing
-  search(citySearched: string) {
-    return `${citySearched}`;
+  // Trigger an alert
+  async alert(head: string, sub: string, msg: string) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: head,
+      subHeader: sub,
+      message: msg,
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {
+            console.log('Confirm Ok');
+          }
+        }]
+
+    });
+
+    await alert.present();
   }
 
   ngOnInit() {
-
+    // Call the service for the geolocation and the city
     this.geolocationService.getGeolocation().then((coords: Coordinates) => {
       this.geolocationService.getCity(coords.latitude, coords.longitude).subscribe(city => {
         this.city = city,
           this.lat = coords.latitude,
           this.long = coords.longitude
-        // console.log(city);
-
       }), err => {
         console.warn(err);
-        alert(err.message);
-
+        this.alert("Impossible", "Impossible à atteindre", "La ville n'a pas pu être trouvée parce que: " + err.error.message);
       }
     })
       .catch(function(err) {
-        alert("Votre géolocalisation est désactivée, votre photo sera géolocalisée au Pôle sud par défaut");
+        this.alert("Géolocalisation", "Géolocalisation désactivée", "Votre photo sera géolocalisée au Pôle sud par défaut");
       });
   }
 

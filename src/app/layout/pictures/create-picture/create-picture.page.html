@@ -1,9 +1,6 @@
 <ion-header>
   <ion-toolbar>
 
-    <!-- <ion-buttons slot="start">
-      <ion-icon name="chevron-back-outline"></ion-icon>
-    </ion-buttons> -->
     <ion-buttons slot="start">
       <ion-back-button text="" icon="chevron-back-outline" defaultHref></ion-back-button>
     </ion-buttons>
@@ -29,7 +26,6 @@
     <ion-row>
       <ion-col class="ion-align-self-start" size="5">
         <img *ngIf='pictureService.currentPictureURL' [src]='pictureService.currentPictureURL' />
-        <!-- <img src="https://comem-qimg.herokuapp.com/images/f96c1a88-01ec-4f6b-8126-b6e79ccb359a.png" /> -->
       </ion-col>
       <ion-col>
         <form #descrForm="ngForm">

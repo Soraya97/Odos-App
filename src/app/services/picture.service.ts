@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
 
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
@@ -12,7 +11,6 @@ import { QimgImage } from '../models/qimg-image';
 import { Picture } from '../models/pictures';
 import { PictureRequest } from '../models/pictures-request';
 import { AuthService } from '../auth/auth.service';
-import { throwError } from 'rxjs';
 
 const API_URL = `${environment.apiUrl}/users/`;
 
@@ -26,8 +24,6 @@ export class PictureService {
 
 
   constructor(private camera: Camera, private http: HttpClient, private auth: AuthService) {
-    // console.log('Hello PictureService Provider');
-    // console.log('@@@ http client', !!this.http);
     this.auth.getUser().subscribe((user) => {
       this.idUser = user._id;
     }, err => {
@@ -43,8 +39,6 @@ export class PictureService {
 
   // Save a picture in the database
   createPicture(description, x, y): Observable<PictureRequest> {
-    // return console.log("Test: Create a picture");
-
     const requestBody = {
       description: description,
       location: { type: "Point", coordinates: [x || -135.000000, y || 90.000000] },
@@ -67,7 +61,7 @@ export class PictureService {
     return this.http.patch<Picture>(API_URL + `${this.idUser}/pictures/` + idPicture, requestBody);
   }
 
-  // TO DO
+  // Delete a picture from the db
   deletePicture(idPicture): Observable<Picture> {
     return this.http.delete<Picture>(API_URL + `${this.idUser}/pictures/` + idPicture);
   }
@@ -149,4 +143,3 @@ export class PictureService {
 
 
 }
-// }
