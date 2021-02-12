@@ -12,6 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { GeolocationService } from 'src/app/services/geolocation.service';
 import { City } from 'src/app/models/city';
+import { TabElementsService } from 'src/app/services/tab-elements.service';
 
 @Component({
   selector: 'app-userPic',
@@ -28,7 +29,7 @@ export class userPicPage implements OnInit {
   productId: string;
   city: City;
 
-  constructor(private geolocationService: GeolocationService, private auth: AuthService, private pictureService: PictureService, private route: ActivatedRoute, public actionsheetCtrl: ActionSheetController, public alertController: AlertController, private router: Router, public toastController: ToastController, public modalController: ModalController) {
+  constructor(public tabPictures: TabElementsService, private geolocationService: GeolocationService, private auth: AuthService, private pictureService: PictureService, private route: ActivatedRoute, public actionsheetCtrl: ActionSheetController, public alertController: AlertController, private router: Router, public toastController: ToastController, public modalController: ModalController) {
     this.idPicture = this.route.snapshot.paramMap.get('id');
     this.notEditable = true;
   }
@@ -117,7 +118,9 @@ export class userPicPage implements OnInit {
             console.log('Confirm Okay');
             this.pictureService.deletePicture(this.idPicture).subscribe(() => {
               this.toast('La photo a bien été supprimée');
+              this.tabPictures.changePic();
               this.router.navigateByUrl("profile");
+
               //TODO: Must not see the picture in the gallery
             }, (err) => {
               console.warn(err);

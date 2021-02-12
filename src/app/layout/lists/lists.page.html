@@ -32,7 +32,7 @@
     </ion-button>
   </ion-list> -->
 
-  <ion-list size="6" *ngFor='let list of lists'>
+  <ion-list size="6" *ngFor='let list of tabLists.lists'>
     <ion-button color="light" expand="block" [id]="list?._id" [routerLink]="['/lists/piclist', list._id]">{{list?.name}}</ion-button>
   </ion-list>
 

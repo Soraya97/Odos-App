@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 
 import { Router } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
+import { TabElementsService } from 'src/app/services/tab-elements.service';
 
 @Component({
   selector: 'app-create-list',
@@ -23,7 +24,7 @@ export class CreateListPage implements OnInit {
 
   constructor(
     // Inject the ListService
-    private listService: ListService, private router: Router, public alertController: AlertController, public toastController: ToastController
+    private listService: ListService, private router: Router, public alertController: AlertController, public toastController: ToastController, public tabLists: TabElementsService
   ) { }
 
   validateList(form: NgForm) {
@@ -31,13 +32,16 @@ export class CreateListPage implements OnInit {
       // console.log("Liste à enregistrer");
       let name = this.name;
 
+      this.listService.createList(name).subscribe(() => {
+        this.newListToast();
+        this.tabLists.changeList();
+        this.router.navigateByUrl("/lists");
+      }, err => {
 
-
-      this.listService.createList(name).subscribe();
+      });
       // TODO: if no errors
-      this.newListToast();
-      this.router.navigateByUrl("/lists");  }
     }
+  }
 
 
   async newListToast() {

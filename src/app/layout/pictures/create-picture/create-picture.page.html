@@ -28,7 +28,7 @@
     </ion-row>
     <ion-row>
       <ion-col class="ion-align-self-start" size="5">
-        <img *ngIf='picture' [src]='picture' />
+        <img *ngIf='pictureService.currentPictureURL' [src]='pictureService.currentPictureURL' />
         <!-- <img src="https://comem-qimg.herokuapp.com/images/f96c1a88-01ec-4f6b-8126-b6e79ccb359a.png" /> -->
       </ion-col>
       <ion-col>
