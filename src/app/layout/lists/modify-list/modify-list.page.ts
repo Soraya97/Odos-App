@@ -85,8 +85,8 @@ export class ModifyListPage implements OnInit {
     }, (err) => {
       // échec
       this.toast('La photo n\'a pas pu être supprimée de la liste');
-      console.warn(err);
-      alert(err.message);
+      // console.warn(err);
+      // alert(err.message);
     })
   }
 
@@ -114,8 +114,8 @@ export class ModifyListPage implements OnInit {
     this.auth.getUser().subscribe((user) => {
       this.user = user;
     }, err => {
-      console.warn(err);
-      alert(err.message);
+      // console.warn(err);
+      // alert(err.message);
     });
 
     this.listService.getList(this.idList).subscribe((list) => {
@@ -130,15 +130,15 @@ export class ModifyListPage implements OnInit {
           this.pictureService.getPicture(this.list.picture[i]).subscribe((picture) => {
             this.pictures.push(picture);
           }, err => {
-            console.warn(err);
-            alert(err.message);
+            // console.warn(err);
+            // alert(err.message);
           })
         }
       }
 
     }, err => {
-      console.warn(err);
-      alert(err.message);
+      // console.warn(err);
+      // alert(err.message);
     });
 
   }
