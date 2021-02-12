@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { AuthService } from 'src/app/auth/auth.service';
 import { WebsocketService } from 'src/app/services/websocket.service';
@@ -15,16 +15,18 @@ import {FeedService} from '../../services/feed.service';
 export class FeedPage implements OnInit {
   sumPictures: number;
   pictures: Picture[];
+  pictureId: string;
 
   constructor(private auth: AuthService,
               private router: Router,
               private wsService: WebsocketService,
-              private feedService: FeedService) {
+              private feedService: FeedService, private route: ActivatedRoute) {
     console.log('constructor');
     this.feedService.getAllPictures().subscribe( (pictures) => {
       this.pictures = pictures.sort((a: Picture, b: Picture) =>
           new Date(b.creation_date).getTime() - new Date(a.creation_date).getTime());
     });
+    this.pictureId = this.route.snapshot.paramMap.get('id');
   }
 
   doRefresh(event) {

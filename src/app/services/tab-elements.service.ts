@@ -11,10 +11,11 @@ export class TabElementsService {
   pictures: Picture[];
   lists: List[];
 
-  constructor(public pictureService: PictureService, private listService: ListService,) {
+  constructor(public pictureService: PictureService, private listService: ListService, ) {
 
     this.pictureService.getAllPictures().subscribe((picture) => {
-      this.pictures = picture;
+      this.pictures = picture.sort((a: Picture, b: Picture) =>
+        new Date(b.creation_date).getTime() - new Date(a.creation_date).getTime());
       console.log(this.pictures);
     }, (err) => {
       console.warn(err);
@@ -33,7 +34,8 @@ export class TabElementsService {
 
   changePic() {
     this.pictureService.getAllPictures().subscribe((picture) => {
-      this.pictures = picture;
+      this.pictures = picture.sort((a: Picture, b: Picture) =>
+        new Date(b.creation_date).getTime() - new Date(a.creation_date).getTime());
       console.log(this.pictures);
 
     }, (err) => {
