@@ -1,0 +1,9 @@
+<img [src]="picture?.picture" [id]="picture?.id" [routerLink]="['/profile/userPic', picture.id]">
+<div id="desc">
+  <p> {{picture.description | uppercase}} </p>
+  <p>le: {{ picture.creation_date | date: 'dd/MM/yyyy' }}  </p>
+  <p>modifié le:  {{ picture.last_mod_date | date: 'dd/MM/yyyy' }}</p>
+  </div>
+  
+  
+  

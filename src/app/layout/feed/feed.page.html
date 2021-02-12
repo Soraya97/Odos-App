@@ -1,29 +1,27 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button onClick="document.location.reload(true)">
-        <ion-icon name="refresh-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-
     <ion-title>Feed</ion-title>
 
     <!-- Logout button -->
-    <!-- <ion-buttons slot="end">
+    <ion-buttons slot="end">
       <ion-button (click)="logOut()">
         <ion-icon name="log-out"></ion-icon>
       </ion-button>
-    </ion-buttons> -->
+    </ion-buttons>
   </ion-toolbar>
-</ion-header>
-
-<ion-content class="ion-padding"> Feeeeeed
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content refreshingSpinner="crescent"></ion-refresher-content>
   </ion-refresher>
-
   <a routerLink="/feed/map">Carte</a>
-  <!-- <ion-chip>
-    <ion-label>{{sumPictures}}</ion-label>
-  </ion-chip> -->
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <h3>Dernières photos: </h3>
+    </ion-row>
+    <ion-row>
+      <app-pic-widget size="3" *ngFor="let picture of pictures" [picture]='picture'></app-pic-widget>
+    </ion-row>
+  </ion-grid>
 </ion-content>

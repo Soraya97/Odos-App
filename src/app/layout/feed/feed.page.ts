@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 
-import { AuthService } from "src/app/auth/auth.service";
+import { AuthService } from 'src/app/auth/auth.service';
 import { WebsocketService } from 'src/app/services/websocket.service';
 import { PictureService } from 'src/app/services/picture.service';
 import { Picture } from 'src/app/models/pictures';
+import {FeedService} from '../../services/feed.service';
 
 @Component({
   selector: 'app-feed',
@@ -15,12 +16,15 @@ export class FeedPage implements OnInit {
   sumPictures: number;
   pictures: Picture[];
 
-  constructor(private auth: AuthService, private router: Router, private wsService: WebsocketService, private pictureService: PictureService) {
-    // this.wsService
-    //   .listen()
-    //   .subscribe(message => {
-    //     // Do something when a message is received
-    //   });
+  constructor(private auth: AuthService,
+              private router: Router,
+              private wsService: WebsocketService,
+              private feedService: FeedService) {
+    console.log('constructor');
+    this.feedService.getAllPictures().subscribe( (pictures) => {
+      this.pictures = pictures.sort((a: Picture, b: Picture) =>
+          new Date(b.creation_date).getTime() - new Date(a.creation_date).getTime());
+    });
   }
 
   doRefresh(event) {
@@ -37,19 +41,12 @@ export class FeedPage implements OnInit {
   // }
 
   ngOnInit() {
-    // this.pictureService.getAllPictures().subscribe((picture) => {
-    //   this.pictures.push(picture);
-    // }, err => {
-    //   console.warn(err);
-    //   alert(err.message);
-    // });
-    // this.calculateSumPictures();
   }
 
   logOut() {
-    console.log("logging out...");
+    console.log('logging out...');
     this.auth.logOut();
-    this.router.navigateByUrl("/login");
+    this.router.navigateByUrl('/login');
   }
 
 }
