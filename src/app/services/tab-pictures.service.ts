@@ -1,0 +1,50 @@
+import { Injectable } from '@angular/core';
+import { PictureService } from './picture.service';
+import { Picture } from '../models/pictures';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class TabPicturesService {
+
+  pictures: Picture[];
+  test: string;
+
+  constructor(public pictureService: PictureService) {
+    this.test = "Test";
+
+    // this.pictures = [
+    //   {
+    //     id: '1',
+    //     description: 'Tokyo en été',
+    //     location: { type: "Point", coordinates: [100.878393, 12.930719] },
+    //     picture: 'https://www.nacel.fr/medias/_cache/produits/585/imagePrincipale/1920_1440/sejour-linguistique-encadre-japon-tokyo.jpg',
+    //     creation_date: "2020-11-10T13:12:46.832Z",
+    //     last_mod_date: "2019.01.16",
+    //     userId: 1,
+    //   },
+    //   // },
+    //   {
+    //     id: '2',
+    //     description: 'Seoul en été',
+    //     location: { type: "Point", coordinates: [100.878393, 12.930719] },
+    //     picture: 'https://pvtistes.net/wp-content/uploads/2018/02/centre-ville-seoul-coree-du-sud.jpg',
+    //     creation_date: "2020-11-10T13:12:46.832Z",
+    //     last_mod_date: "2021-12-04",
+    //     userId: 1,
+    //   }
+    // ];
+
+    this.pictureService.getAllPictures().subscribe((picture) => {
+      this.pictures = picture;
+    }, (err) => {
+      console.warn(err);
+      alert(err.message);
+    });
+
+  }
+
+
+
+
+}
