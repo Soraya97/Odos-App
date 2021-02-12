@@ -22,6 +22,9 @@ export class CreatePicturePage implements OnInit {
   descr: string;
 
   constructor(private pictureService: PictureService, private geolocationService: GeolocationService, private router: Router, public alertController: AlertController, public toastController: ToastController) {
+    console.log("URL:" + this.pictureService.currentPictureURL);
+    this.picture = this.pictureService.currentPictureURL;
+    console.log(this.picture);
   }
 
   validatePicture(form: NgForm) {
@@ -34,7 +37,7 @@ export class CreatePicturePage implements OnInit {
       this.pictureService.createPicture(description, x, y).subscribe(() => {
         this.toast('La photo a bien été ajoutée');
         this.router.navigateByUrl("/profile");
-        
+
 
         // TO-DO: Must see the new picture in the gallery
       }, (err) => {
@@ -60,10 +63,6 @@ export class CreatePicturePage implements OnInit {
   }
 
   ngOnInit() {
-    console.log("URL:" + this.pictureService.currentPictureURL);
-    this.picture = this.pictureService.currentPictureURL;
-    console.log(this.picture);
-
 
     this.geolocationService.getGeolocation().then((coords: Coordinates) => {
       this.geolocationService.getCity(coords.latitude, coords.longitude).subscribe(city => {

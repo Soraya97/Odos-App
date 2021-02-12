@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { User } from "../../models/user";
 import { AuthService } from 'src/app/auth/auth.service';
@@ -18,7 +18,7 @@ export class ProfilePage implements OnInit {
   pictures: Picture[];
   pictureId: string;
 
-  constructor(private auth: AuthService, private pictureService: PictureService, private route: ActivatedRoute, public tabPicture: TabPicturesService) {
+  constructor(private auth: AuthService, private pictureService: PictureService, private route: ActivatedRoute, public tabPicture: TabPicturesService, private router: Router) {
     // this.user = {_id: "1", username: "John Doe", email: "a@a.ch", password: "1234", registrationDate: "12.01.2021"};
     this.pictureId = this.route.snapshot.paramMap.get('id');
     // this.pictures = [
@@ -42,11 +42,19 @@ export class ProfilePage implements OnInit {
     //     userId: 1,
     //   }
     // ];
+    // console.log(this.tabPicture["pictures"]);
+    //
     // console.log(this.tabPicture);
     //
-    // console.log(Object.values(this.tabPicture));
+    // this.pictures = this.tabPicture.pictures;
+    // console.log(this.pictures);
 
+  }
 
+  logOut() {
+    console.log("logging out...");
+    this.auth.logOut();
+    this.router.navigateByUrl("/login");
   }
 
 
@@ -57,12 +65,7 @@ export class ProfilePage implements OnInit {
       console.warn(err);
       alert(err.message);
     });
-    // console.log(this.tabPicture["pictures"]);
-    //
-    // console.log(this.tabPicture);
-    //
-    // this.pictures = this.tabPicture.pictures;
-    // console.log(this.pictures);
+
     this.pictureService.getAllPictures().subscribe((picture) => {
       this.pictures = picture;
     }, err => {

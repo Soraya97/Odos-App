@@ -5,9 +5,15 @@
         <ion-icon name="refresh-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
+
     <ion-button class="paramBtn" slot="end" color="medium" fill="outline" expand="block" size="small">
       <a routerLink="/profile/param">Paramètre du compte</a>
     </ion-button>
+    <ion-buttons slot="end">
+      <ion-button (click)="logOut()">
+        <ion-icon name="log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title> {{user?.username}}</ion-title>
   </ion-toolbar>
 </ion-header>
