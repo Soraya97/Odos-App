@@ -2,6 +2,12 @@
   <ion-toolbar>
     <ion-title>Feed</ion-title>
 
+    <ion-buttons slot="start">
+      <ion-button routerLink="/feed/map">
+        <ion-icon name="navigate-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
     <!-- Logout button -->
     <ion-buttons slot="end">
       <ion-button (click)="logOut()">
@@ -13,7 +19,6 @@
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content refreshingSpinner="crescent"></ion-refresher-content>
   </ion-refresher>
-  <a routerLink="/feed/map">Carte</a>
 </ion-header>
 
 <ion-content>
