@@ -5,7 +5,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { WebsocketService } from 'src/app/services/websocket.service';
 import { PictureService } from 'src/app/services/picture.service';
 import { Picture } from 'src/app/models/pictures';
-import {FeedService} from '../../services/feed.service';
+import { FeedService } from '../../services/feed.service';
 
 @Component({
   selector: 'app-feed',
@@ -16,21 +16,17 @@ export class FeedPage implements OnInit {
   sumPictures: number;
   pictures: Picture[];
   pictureId: string;
-  login: boolean;
-  logout: boolean;
 
   constructor(private auth: AuthService,
-              private router: Router,
-              private wsService: WebsocketService,
-              private feedService: FeedService, private route: ActivatedRoute) {
+    private router: Router,
+    private wsService: WebsocketService,
+    private feedService: FeedService, private route: ActivatedRoute) {
     console.log('constructor');
-    this.feedService.getAllPictures().subscribe( (pictures) => {
+    this.feedService.getAllPictures().subscribe((pictures) => {
       this.pictures = pictures.sort((a: Picture, b: Picture) =>
-          new Date(b.creation_date).getTime() - new Date(a.creation_date).getTime());
+        new Date(b.creation_date).getTime() - new Date(a.creation_date).getTime());
     });
     this.pictureId = this.route.snapshot.paramMap.get('id');
-    this.login = false;
-    this.logout = true;
   }
 
   doRefresh(event) {
@@ -51,17 +47,9 @@ export class FeedPage implements OnInit {
 
   logOut() {
     console.log('logging out...');
-    this.login = false;
-    this.logout = true;
     this.auth.logOut();
     this.router.navigateByUrl('/login');
   }
 
-  logIn() {
-    console.log('logging in...');
-    this.login = true;
-    this.logout = false;
-    this.router.navigateByUrl('/login');
-  }
 
 }
