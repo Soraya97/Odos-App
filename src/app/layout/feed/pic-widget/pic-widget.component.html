@@ -1,6 +1,12 @@
+
+<p>
+    <!-- <a routerLink="'../profile', user.id">{{picture.userId.username | uppercase}} </a> -->
+  <a routerLink="../profile">{{picture.userId.username | uppercase}} </a>
+</p>
 <img [src]="picture?.picture" [id]="picture?.id" [routerLink]="['/profile/userPic', picture.id]">
 <div id="desc">
-  <p> {{picture.description | uppercase}} </p>
+
+  <p> {{picture.description }} </p>
   <p>le: {{ picture.creation_date | date: 'dd/MM/yyyy' }}  </p>
   <p>modifié le:  {{ picture.last_mod_date | date: 'dd/MM/yyyy' }}</p>
   <ion-icon class="listBtn" size="large" name="heart-outline" [routerLink]="['add-pic-list', picture?.id]"></ion-icon>
