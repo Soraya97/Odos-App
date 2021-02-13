@@ -31,7 +31,7 @@ Le menu de l’application est visible sur le bas de l’écran. Il comporte 4 �
 
 Quand l’utilisateur ouvre l’application et s’il n’est pas logué, il ne pourra seulement voir que le « feed » avec les photos des autres utilisateurs. Donc, il ne pourra pas interagir avec, sauf pour ouvrir la carte afin de voir le lieu d’une photo en particulier.
 
-![](https://github.com/Soraya97/Odos-App/images/Odos_home_01.png)
+![](https://github.com/Soraya97/Odos-App/blob/master/images/Odos_home_01.png)
 
 ### Carte
 
