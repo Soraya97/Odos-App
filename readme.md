@@ -45,8 +45,6 @@ Sur la carte tous les lieux où une photographie a été prise sont indiqués. A
 
 ![](https://github.com/Soraya97/Odos-App/blob/main/images/carte_01.png)
 
-![](https://github.com/Soraya97/Odos-App/blob/main/images/carte_02.png)
-
 ## Page « Liste »
 
 la page « liste » se présente comme ceci :
