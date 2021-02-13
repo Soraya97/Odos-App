@@ -33,7 +33,7 @@ Quand l’utilisateur ouvre l’application et s’il n’est pas logué, il ne 
 
 ### Carte
 
-Sur la carte tous les lieux où une photographie a été prise sont indiqués. Autrement, pour une photo précise, la carte se centrera alors sur un lieu, mais tous les autres lieux des autres photos seront tout de même visibles. 
+Sur la carte tous les lieux où une photographie a été prise sont indiqués. Autrement, pour une photo précise, la carte se centrera alors sur un lieu, mais tous les autres lieux des autres photos seront tout de même visibles.
 
 ## Page « Liste »
 
@@ -109,7 +109,7 @@ Les éléments suivants doivent être améliorés:
 
 ### Feed
 
-- La mise à jour du feed en cas d'ajout, de modification ou de suppression d'une photo.
+- La mise à jour du feed en cas d'ajout, de modification ou de suppression d'une photo, grâce au refresher.
 - L'icône de la carte disponible sur chaque photo, permettant d'ouvrir la carte sur le point où la photo a été prise.
 - L'icône du cœur doit être plein lorsque la photo se trouve en favoris.
 - L'icône de connexion doit switcher si l'utilisateur est connecté ou non.
