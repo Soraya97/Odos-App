@@ -20,11 +20,11 @@
   <form #paramForm="ngForm" *ngIf='editable'>
     <ion-item>
       <ion-label>Nom d'utilisateur</ion-label>
-      <ion-input type="text" [(ngModel)]="username" name="username" pattern="[a-zA-Z ]*" min-length="1" max-length="3" #paramInput="ngModel" placeholder="{{user?.username}}"></ion-input>
+      <ion-input type="text" [(ngModel)]="username" name="username" pattern="[a-zA-Z ]*" min-length="1" max-length="15" #paramInput="ngModel" placeholder="{{user?.username}}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Email</ion-label>
-      <ion-input type="email" [(ngModel)]="email" name="email" #paramInput="ngModel" placeholder="{{user?.email}}"></ion-input>
+      <ion-input type="email" [(ngModel)]="email" name="email" #paramInput2="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="{{user?.email}}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Mot de passe</ion-label>
@@ -33,8 +33,11 @@
     <ion-button (click)=updateConfirm(paramForm) type="submit" [disabled]="paramForm.invalid">Valider</ion-button>
     <ion-button (click)=notEditUser() type="cancel" fill="outline">Annuler</ion-button>
     
-    <p *ngIf="paramInput.hasError('required') && paramInput.dirty">
-      Name is required
+    <p *ngIf="paramInput.hasError('pattern') && paramInput.dirty">
+      Le nom d'utilisateur doit comporter des lettres. 
+    </p>
+    <p *ngIf="paramInput2.hasError('pattern') && paramInput2.dirty">
+     L'email doit être valide.
     </p>
   </form>
 
