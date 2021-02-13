@@ -71,11 +71,7 @@ L’utilisateur à la vue d’ensemble de toutes les photographies se rapportant
 
 Sur cette page, sur le haut droit, se trouve un bouton permettant d’ouvrir un modal box pour soit modifier ou soit supprimer une liste.
 
-![](https://github.com/Soraya97/Odos-App/blob/main/images/modalliste.png)
-
-![](https://github.com/Soraya97/Odos-App/blob/main/images/modifyliste.png)
-
-![](https://github.com/Soraya97/Odos-App/blob/main/images/supprimerliste.png)
+![](https://github.com/Soraya97/Odos-App/blob/main/images/modalliste.png)![](https://github.com/Soraya97/Odos-App/blob/main/images/modifyliste.png)![](https://github.com/Soraya97/Odos-App/blob/main/images/supprimerliste.png)
 
 ## Page « Pictures »
 
@@ -85,11 +81,11 @@ Les pages « pictures » fonctionnent en trois étapes :
 2. Géolocalisation et description
 3. Validation
 
-![](https://github.com/Soraya97/Odos-App/blob/main/images/pictures_01.png)
+![](https://github.com/Soraya97/Odos-App/blob/main/images/pictures_01.png)![](https://github.com/Soraya97/Odos-App/blob/main/images/pictures_02.png)![](https://github.com/Soraya97/Odos-App/blob/main/images/pictures_03.png)
 
-![](https://github.com/Soraya97/Odos-App/blob/main/images/pictures_02.png)
+Chaque photographie a la possiblité d'être ajoutée à une liste. En cliquant sur le petit coeur en dessous de la photo, l'utilisateur peut choisir dans quelle liste il souhaite intégrer l'image.
 
-![](https://github.com/Soraya97/Odos-App/blob/main/images/pictures_03.png)
+![](https://github.com/Soraya97/Odos-App/blob/main/images/pictures_04.png)![](https://github.com/Soraya97/Odos-App/blob/main/images/pictures_05.png)
 
 ## Page « Profil »
 
@@ -103,20 +99,19 @@ L'utilisateur a la possibilité de voir toutes ses propres photographies qu’il
 
 Sur cette page, l’utilisateur a la possibilité de modifier son nom, prénom d’utilisateur et/ou son mot de passe grâce à une modale box. Pour valider les changements effectués, il suffit de cliquer sur le bouton « Valider ».
 
-![](https://github.com/Soraya97/Odos-App/blob/main/images/Odos_profil_02.png)
+![](https://github.com/Soraya97/Odos-App/blob/main/images/Odos_profil_02.png)![](https://github.com/Soraya97/Odos-App/blob/main/images/Odos_profil_04.png)
 
 Il a également la possilbité de supprimer son compte en cliquant sur le lien « Suppression du compte ». Un modal box est proposé dans le cas où l’utilisateur souhaite « confirmer » ou se rétracter en annulant son choix.
 
-![](https://github.com/Soraya97/Odos-App/blob/main/images/Odos_profil_03.png)
+![](https://github.com/Soraya97/Odos-App/blob/main/images/Odos_profil_03.png)![](https://github.com/Soraya97/Odos-App/blob/main/images/Odos_profil_05.png)
 
 ## Ressources utilisées
 
 - **User**
-
-    - Username and/or email
+- Username and/or email
     - Password
     - Registration date
-
+    
 - **Pictures of places**
 
   - Description
