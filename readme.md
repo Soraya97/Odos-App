@@ -111,15 +111,17 @@ L'utilisateur a la possibilité de voir toutes ses propres photographies qu’il
 
 ### Paramètres
 
-Sur cette page, l’utilisateur a la possibilité de modifier son nom, prénom d’utilisateur et/ou son mot de passe grâce à une modale box. Pour valider les changements effectués, il suffit de cliquer sur le bouton « Valider ».
+La page des paramètres du compte se présente comme ceci :
 
 ![](https://github.com/Soraya97/Odos-App/blob/main/images/Odos_profil_02.png)
+
+Sur cette page, l’utilisateur a la possibilité de modifier son nom, prénom d’utilisateur et/ou son mot de passe grâce à une modale box. Pour valider les changements effectués, il suffit de cliquer sur le bouton « Valider ».
+
+![](https://github.com/Soraya97/Odos-App/blob/main/images/Odos_profil_03.png)
 
 ![](https://github.com/Soraya97/Odos-App/blob/main/images/Odos_profil_04.png)
 
 Il a également la possilbité de supprimer son compte en cliquant sur le lien « Suppression du compte ». Un modal box est proposé dans le cas où l’utilisateur souhaite « confirmer » ou se rétracter en annulant son choix.
-
-![](https://github.com/Soraya97/Odos-App/blob/main/images/Odos_profil_03.png)
 
 ![](https://github.com/Soraya97/Odos-App/blob/main/images/Odos_profil_05.png)
 
