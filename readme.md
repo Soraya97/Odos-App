@@ -73,7 +73,11 @@ Sur cette page, sur le haut droit, se trouve un bouton permettant d’ouvrir un 
 
 ![](https://github.com/Soraya97/Odos-App/blob/main/images/modalliste.png)
 
+L'utilisateur peut modifier une liste par son nom ou par ses images en les mettant à la "poubelle".
+
 ![](https://github.com/Soraya97/Odos-App/blob/main/images/modifyliste.png)
+
+Si l'utilisateur souhaite supprimer une liste dans son entièreté, une deuxième modal box lui est proposé dans le cas où il souhaite « confirmer » ou se rétracter en annulant son choix.
 
 ![](https://github.com/Soraya97/Odos-App/blob/main/images/supprimerliste.png)
 
