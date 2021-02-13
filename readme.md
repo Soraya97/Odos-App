@@ -14,9 +14,13 @@ Cliquez sur...
 
 Pour pouvoir utiliser notre application avec toutes ses fonctionnalités, un compte utilisateur est nécessaire. C’est pourquoi la première page de notre application est une page de login.
 
+![](https://github.com/Soraya97/Odos-App/blob/main/images/login.png)
+
 ### Logout
 
 Si l’utilisateur souhaite se déconnecter de l’application, il peut le faire, à tout moment, en se rendant sur la page « Home » ou "Profil", en cliquant sur l’icône présente sur le haut droit de l’application.
+
+![](https://github.com/Soraya97/Odos-App/blob/main/images/logout.png)
 
 ### Menu
 
@@ -27,31 +31,55 @@ Le menu de l’application est visible sur le bas de l’écran. Il comporte 4 �
 3. **Pictures :** permets de prendre et d’ajouter une photo avec     sa description et son lieu.
 4. **Profil :** permets d’avoir un aperçu de toutes les photos     que l’utilisateur a enregistrées comme « favoris » et de pouvoir régler     ses paramètres de connexions.
 
+![](https://github.com/Soraya97/Odos-App/blob/main/images/menu.png)
+
 ## Page « Home »
 
 Quand l’utilisateur ouvre l’application et s’il n’est pas logué, il ne pourra seulement voir que le « feed » avec les photos des autres utilisateurs. Donc, il ne pourra pas interagir avec, sauf pour ouvrir la carte afin de voir le lieu d’une photo en particulier.
+
+![](https://github.com/Soraya97/Odos-App/blob/main/images/Odos_home_01.png)
 
 ### Carte
 
 Sur la carte tous les lieux où une photographie a été prise sont indiqués. Autrement, pour une photo précise, la carte se centrera alors sur un lieu, mais tous les autres lieux des autres photos seront tout de même visibles.
 
+![](https://github.com/Soraya97/Odos-App/blob/main/images/carte_01.png)
+
 ## Page « Liste »
 
 la page « liste » se présente comme ceci :
+
+![](https://github.com/Soraya97/Odos-App/blob/main/images/liste.png)
 
 L’utilisateur à la vue d’ensemble de toutes ces listes.
 
 Sur le haut droit de l’application, un bouton est mis à disposition afin d’ajouter une liste.
 
+![](https://github.com/Soraya97/Odos-App/blob/main/images/button_liste.png)
+
 ### Ajouter une liste
 
 Lors de l’ajout d’une liste, l’utilisateur indique seulement le nom qu’il désire donner à une nouvelle liste.
+
+![](https://github.com/Soraya97/Odos-App/blob/main/images/addliste.png)
 
 ### Visualisation d’une liste
 
 L’utilisateur à la vue d’ensemble de toutes les photographies se rapportant à une liste.
 
+![](https://github.com/Soraya97/Odos-App/blob/main/images/viewliste.png)
+
 Sur cette page, sur le haut droit, se trouve un bouton permettant d’ouvrir un modal box pour soit modifier ou soit supprimer une liste.
+
+![](https://github.com/Soraya97/Odos-App/blob/main/images/modalliste.png)
+
+L'utilisateur peut modifier une liste par son nom ou par ses images en les mettant à la "poubelle".
+
+![](https://github.com/Soraya97/Odos-App/blob/main/images/modifyliste.png)
+
+Si l'utilisateur souhaite supprimer une liste dans son entièreté, une deuxième modal box lui est proposé dans le cas où il souhaite « confirmer » ou se rétracter en annulant son choix.
+
+![](https://github.com/Soraya97/Odos-App/blob/main/images/supprimerliste.png)
 
 ## Page « Pictures »
 
@@ -61,24 +89,49 @@ Les pages « pictures » fonctionnent en trois étapes :
 2. Géolocalisation et description
 3. Validation
 
+![](https://github.com/Soraya97/Odos-App/blob/main/images/pictures_01.png)
+
+![](https://github.com/Soraya97/Odos-App/blob/main/images/pictures_02.png)
+
+![](https://github.com/Soraya97/Odos-App/blob/main/images/pictures_03.png)
+
+Chaque photographie a la possiblité d'être ajoutée à une liste. En cliquant sur le petit coeur en dessous de la photo, l'utilisateur peut choisir dans quelle liste il souhaite intégrer l'image.
+
+![](https://github.com/Soraya97/Odos-App/blob/main/images/pictures_04.png)
+
+![](https://github.com/Soraya97/Odos-App/blob/main/images/pictures_05.png)
+
 ## Page « Profil »
 
 La page « Profil » se présente comme ceci :
 
-Il a la possibilité de voir toutes ses propres photographies qu’il a enregistrées.
+![](https://github.com/Soraya97/Odos-App/blob/main/images/Odos_profil_01.png)
+
+L'utilisateur a la possibilité de voir toutes ses propres photographies qu’il a enregistrées.
+
+### Paramètres
+
+La page des paramètres du compte se présente comme ceci :
+
+![](https://github.com/Soraya97/Odos-App/blob/main/images/Odos_profil_02.png)
 
 Sur cette page, l’utilisateur a la possibilité de modifier son nom, prénom d’utilisateur et/ou son mot de passe grâce à une modale box. Pour valider les changements effectués, il suffit de cliquer sur le bouton « Valider ».
 
+![](https://github.com/Soraya97/Odos-App/blob/main/images/Odos_profil_03.png)
+
+![](https://github.com/Soraya97/Odos-App/blob/main/images/Odos_profil_04.png)
+
 Il a également la possilbité de supprimer son compte en cliquant sur le lien « Suppression du compte ». Un modal box est proposé dans le cas où l’utilisateur souhaite « confirmer » ou se rétracter en annulant son choix.
+
+![](https://github.com/Soraya97/Odos-App/blob/main/images/Odos_profil_05.png)
 
 ## Ressources utilisées
 
 - **User**
-
-    - Username and/or email
+- Username and/or email
     - Password
     - Registration date
-
+    
 - **Pictures of places**
 
   - Description
