@@ -7,7 +7,7 @@ import { ActionSheetController, AlertController, ToastController, PopoverControl
 
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { FormControl, FormBuilder, FormGroup, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-param',
@@ -22,9 +22,16 @@ export class ParamPage implements OnInit {
   idUser: string;
   editable: boolean;
   notEditable: boolean;
+  paramForm: FormGroup;
 
-  constructor(private auth: AuthService, private userService: UserService, public actionsheetCtrl: ActionSheetController, public alertController: AlertController, public toastController: ToastController, private router: Router, public popoverController: PopoverController) {
+  constructor(private auth: AuthService, private userService: UserService, private formBuilder: FormBuilder, public actionsheetCtrl: ActionSheetController, public alertController: AlertController, public toastController: ToastController, private router: Router, public popoverController: PopoverController) {
     this.notEditable = true;
+
+    //ESSAI DE VALIDATION
+    this.paramForm.valueChanges.subscribe(formValues => {
+      console.log('Greeting changed to', formValues.username);
+      this.username = formValues.username;
+    });
   }
 
   // Open the menu to modify the user's information
