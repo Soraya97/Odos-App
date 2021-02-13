@@ -2,9 +2,9 @@
 
 ## Introduction
 
-Dans le cadre de notre formation à la HEIG-VD, nous avons réalisé une application mobile. L’application en question est une application de photographies géolocalisées. Un utilisateur peut ajouter les photographies qu’il a prises et indiquer le lieu ci-rapportant. Aussi des listes avec une fonction « favoris » sont disponibles. Le but de ce projet est de mettre en pratique les divers éléments vus lors des cours de « DevMobil » de Mathias Oberson.
+Dans le cadre de notre formation à la HEIG-VD, nous avons réalisé une application mobile. L’application en question est une application de photographies géolocalisées. Un utilisateur peut ajouter les photographies qu’il a prises et indiquer le lieu ci-rapportant. Des listes avec une fonction « favoris » sont aussi disponibles. Le but de ce projet est de mettre en pratique les divers éléments vus lors des cours de « DevMobil » de Mathias Oberson.
 
-Nous avons repris l’API que nous avion réalisé lors du précédent cours de « ArchiOWeb » donné par Simon Oulevay. Nous avons fait ce choix, car malgré des petites erreurs, nous avons su les corriger et nous voulions développer un projet qui nous était propre.
+Nous avons repris l’API que nous avions réalisée lors du précédent cours de « ArchiOWeb » donné par Simon Oulevay. Nous avons fait ce choix, car malgré des petites erreurs, nous avons su les corriger et nous voulions développer un projet qui nous était propre.
 
 ## Utilisation
 
@@ -18,7 +18,7 @@ Pour pouvoir utiliser notre application avec toutes ses fonctionnalités, un com
 
 ### Logout
 
-Si l’utilisateur souhaite se déconnecter de l’application, il peut le faire, à tout moment, en se rendant sur la page « Home » ou "Profil", en cliquant sur l’icône présente sur le haut droit de l’application.
+Si l’utilisateur souhaite se déconnecter de l’application, il peut le faire à tout moment, en se rendant sur la page « Home » ou « Profil », en cliquant sur l’icône présente sur le haut droit de l’application.
 
 ![](https://github.com/Soraya97/Odos-App/blob/main/images/logout.png)
 
@@ -26,32 +26,32 @@ Si l’utilisateur souhaite se déconnecter de l’application, il peut le faire
 
 Le menu de l’application est visible sur le bas de l’écran. Il comporte 4 éléments :
 
-1. **Home :** permets     de voir la fée et la carte avec toutes les photographies géolocalisées.
-2. **Favoris :** permets d’avoir accès à toutes les listes     favorites avec leurs photographies.
-3. **Pictures :** permets de prendre et d’ajouter une photo avec     sa description et son lieu.
-4. **Profil :** permets d’avoir un aperçu de toutes les photos     que l’utilisateur a enregistrées comme « favoris » et de pouvoir régler     ses paramètres de connexions.
+1. **Home :** permet de voir le *feed* et la carte avec toutes les photographies géolocalisées.
+2. **Favoris :** permet d’avoir accès à toutes les listes favorites avec leurs photographies.
+3. **Pictures :** permet de prendre et d’ajouter une photo avec sa description et son lieu.
+4. **Profil :** permet d’avoir un aperçu de toutes les photos que l’utilisateur a prises et de pouvoir régler ses paramètres de connexions.
 
 ![](https://github.com/Soraya97/Odos-App/blob/main/images/menu.png)
 
 ## Page « Home »
 
-Quand l’utilisateur ouvre l’application et s’il n’est pas logué, il ne pourra seulement voir que le « feed » avec les photos des autres utilisateurs. Donc, il ne pourra pas interagir avec, sauf pour ouvrir la carte afin de voir le lieu d’une photo en particulier.
+Quand l’utilisateur ouvre l’application et s’il n’est pas logué, il ne pourra seulement voir que le *feed* avec les photos des autres utilisateurs. Donc, il ne pourra pas interagir avec, sauf pour ouvrir la carte afin de voir le lieu d’une photo en particulier.
 
 ![](https://github.com/Soraya97/Odos-App/blob/main/images/Odos_home_01.png)
 
 ### Carte
 
-Sur la carte tous les lieux où une photographie a été prise sont indiqués. Autrement, pour une photo précise, la carte se centrera alors sur un lieu, mais tous les autres lieux des autres photos seront tout de même visibles.
+Sur la carte, tous les lieux où une photographie a été prise sont indiqués. Autrement, pour une photo précise, la carte se centrera alors sur un lieu, mais tous les autres lieux des autres photos sont tout de même visibles.
 
 ![](https://github.com/Soraya97/Odos-App/blob/main/images/carte_01.png)
 
 ## Page « Liste »
 
-la page « liste » se présente comme ceci :
+La page « liste » se présente comme ceci :
 
 ![](https://github.com/Soraya97/Odos-App/blob/main/images/liste.png)
 
-L’utilisateur à la vue d’ensemble de toutes ces listes.
+L’utilisateur à la vue d’ensemble de toutes ses listes.
 
 Sur le haut droit de l’application, un bouton est mis à disposition afin d’ajouter une liste.
 
@@ -69,15 +69,15 @@ L’utilisateur à la vue d’ensemble de toutes les photographies se rapportant
 
 ![](https://github.com/Soraya97/Odos-App/blob/main/images/viewliste.png)
 
-Sur cette page, sur le haut droit, se trouve un bouton permettant d’ouvrir un modal box pour soit modifier ou soit supprimer une liste.
+Sur cette page, sur le haut droit, se trouve un bouton permettant d’ouvrir un *modal box* pour, soit modifier, soit supprimer une liste.
 
 ![](https://github.com/Soraya97/Odos-App/blob/main/images/modalliste.png)
 
-L'utilisateur peut modifier une liste par son nom ou par ses images en les mettant à la "poubelle".
+L'utilisateur peut modifier une liste par son nom ou par ses images en les mettant à la « poubelle ».
 
 ![](https://github.com/Soraya97/Odos-App/blob/main/images/modifyliste.png)
 
-Si l'utilisateur souhaite supprimer une liste dans son entièreté, une deuxième modal box lui est proposé dans le cas où il souhaite « confirmer » ou se rétracter en annulant son choix.
+Si l'utilisateur souhaite supprimer une liste dans son entièreté, une deuxième *modal box* lui est proposé dans le cas où il souhaite « confirmer » ou se rétracter en annulant son choix.
 
 ![](https://github.com/Soraya97/Odos-App/blob/main/images/supprimerliste.png)
 
@@ -95,7 +95,7 @@ Les pages « pictures » fonctionnent en trois étapes :
 
 ![](https://github.com/Soraya97/Odos-App/blob/main/images/pictures_03.png)
 
-Chaque photographie a la possiblité d'être ajoutée à une liste. En cliquant sur le petit coeur en dessous de la photo, l'utilisateur peut choisir dans quelle liste il souhaite intégrer l'image.
+Chaque photographie a la possibilité d'être ajoutée à une liste. En cliquant sur le petit cœur en dessous de la photo, l'utilisateur peut choisir dans quelle liste il souhaite intégrer l'image. Il peut l'intégrer dans plusieurs listes.
 
 ![](https://github.com/Soraya97/Odos-App/blob/main/images/pictures_04.png)
 
@@ -115,23 +115,24 @@ La page des paramètres du compte se présente comme ceci :
 
 ![](https://github.com/Soraya97/Odos-App/blob/main/images/Odos_profil_02.png)
 
-Sur cette page, l’utilisateur a la possibilité de modifier son nom, prénom d’utilisateur et/ou son mot de passe grâce à une modale box. Pour valider les changements effectués, il suffit de cliquer sur le bouton « Valider ».
+Sur cette page, l’utilisateur a la possibilité de modifier son nom, prénom d’utilisateur et/ou son mot de passe grâce à un *modal box*. Pour valider les changements effectués, il suffit de cliquer sur le bouton « Valider ».
 
 ![](https://github.com/Soraya97/Odos-App/blob/main/images/Odos_profil_03.png)
 
 ![](https://github.com/Soraya97/Odos-App/blob/main/images/Odos_profil_04.png)
 
-Il a également la possilbité de supprimer son compte en cliquant sur le lien « Suppression du compte ». Un modal box est proposé dans le cas où l’utilisateur souhaite « confirmer » ou se rétracter en annulant son choix.
+Il a également la possibilité de supprimer son compte en cliquant sur le lien « Suppression du compte ». Un *modal box* est proposé dans le cas où l’utilisateur souhaite « confirmer » ou se rétracter en annulant son choix.
 
 ![](https://github.com/Soraya97/Odos-App/blob/main/images/Odos_profil_05.png)
 
 ## Ressources utilisées
 
 - **User**
-- Username and/or email
+    - Username 
+    - Email
     - Password
     - Registration date
-    
+
 - **Pictures of places**
 
   - Description
@@ -162,7 +163,7 @@ Les éléments suivants doivent être améliorés:
 
 ### Feed
 
-- La mise à jour du feed en cas d'ajout, de modification ou de suppression d'une photo, grâce au refresher.
+- La mise à jour du *feed* en cas d'ajout, de modification ou de suppression d'une photo, grâce au *refresher*.
 - L'icône de la carte disponible sur chaque photo, permettant d'ouvrir la carte sur le point où la photo a été prise.
 - L'icône du cœur doit être plein lorsque la photo se trouve en favoris.
 - L'icône de connexion doit switcher si l'utilisateur est connecté ou non.
