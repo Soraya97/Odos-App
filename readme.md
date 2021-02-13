@@ -112,6 +112,7 @@ Les éléments suivants doivent être améliorés:
 - La mise à jour du feed en cas d'ajout, de modification ou de suppression d'une photo.
 - L'icône de la carte disponible sur chaque photo, permettant d'ouvrir la carte sur le point où la photo a été prise.
 - L'icône du cœur doit être plein lorsque la photo se trouve en favoris.
+- L'icône de connexion doit switcher si l'utilisateur est connecté ou non.
 
 ### Lists & Pictures
 
