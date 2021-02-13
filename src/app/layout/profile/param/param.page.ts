@@ -7,7 +7,7 @@ import { ActionSheetController, AlertController, ToastController, PopoverControl
 
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
-import { FormControl, NgForm } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-param',
@@ -82,7 +82,7 @@ export class ParamPage implements OnInit {
         }, {
           text: 'Modifier',
           handler: () => {
-            this.saveUserUpdated(form );
+            this.saveUserUpdated(form);
           },
         }
       ]
@@ -101,17 +101,16 @@ export class ParamPage implements OnInit {
       let username = this.username;
       let email = this.email;
       let password = this.password;
-      this.userService.updateUser(username, email, password).subscribe(() =>{
+      this.userService.updateUser(username, email, password).subscribe(() => {
         console.log("logging out...");
         this.auth.logOut();
         this.router.navigateByUrl("login");
         this.toast("Veuillez vous reconnecter");
       },
-      (err) => {
-        console.warn(err);
-        this.toast("Les modifications n'ont pas pu être apportées");
-
-      });
+        (err) => {
+          console.warn(err);
+          this.alert("Problème", "modification impossible", 'Les modifications n\'ont pas pu être apportées parce que: ' + err.error.message);
+        });
     }
   }
 
@@ -139,10 +138,10 @@ export class ParamPage implements OnInit {
               this.auth.logOut();
               this.router.navigateByUrl("login");
             },
-            (err) => {
-              console.warn(err);
-              this.toast("Le compte n'a pas pu être supprimé");
-            });
+              (err) => {
+                console.warn(err);
+                this.toast("Le compte n'a pas pu être supprimé");
+              });
           }
         }
       ]
@@ -150,14 +149,34 @@ export class ParamPage implements OnInit {
     await alert.present();
   }
 
-    // Display a message
-    async toast(msg) {
-      const toast = await this.toastController.create({
-        message: msg,
-        duration: 2000
-      });
-      toast.present();
-    }
+  // Trigger an alert
+  async alert(head: string, sub: string, msg: string) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: head,
+      subHeader: sub,
+      message: msg,
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {
+            console.log('Confirm Ok');
+          }
+        }]
+
+    });
+
+    await alert.present();
+  }
+
+  // Display a message
+  async toast(msg) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 2000
+    });
+    toast.present();
+  }
 
   // Open the menu of options: Delete or Update
   ngOnInit() {

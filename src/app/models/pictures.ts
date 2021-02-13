@@ -1,6 +1,3 @@
-// import { Url } from "url";
-// import { User } from "./user";
-
 export class Picture {
   id: string;
   description: string;

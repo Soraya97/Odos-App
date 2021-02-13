@@ -43,18 +43,18 @@ export class AddPicListPage implements OnInit {
       return thestring;
     };
 
-    // this.listService.updateList(undefined, this.idPicture, this.idList).subscribe(() => {
-    //   this.listService.getList(this.idList).subscribe((list) => {
-    //     this.list = list;
-    //     this.toast(`La photo ${this.picture.description} a bien été ajoutée à la liste ${this.list.name}`);
-    //   }, err => {
-    //     console.warn(err);
-    //     this.toast(err.error.message);
-    //   });
-    // }, (err) => {
-    //   console.warn(err);
-    //   this.alert("Impossible", "Ajout impossible", "La photo n'a pas pu être ajoutée à la liste parce que: " + err.error.message);
-    // });
+    this.listService.updateList(undefined, this.idPicture, this.idList).subscribe(() => {
+      this.listService.getList(this.idList).subscribe((list) => {
+        this.list = list;
+        this.toast(`La photo ${this.picture.description} a bien été ajoutée à la liste ${this.list.name}`);
+      }, err => {
+        console.warn(err);
+        this.toast(err.error.message);
+      });
+    }, (err) => {
+      console.warn(err);
+      this.alert("Impossible", "Ajout impossible", "La photo n'a pas pu être ajoutée à la liste parce que: " + err.error.message);
+    });
   }
 
   // Trigger a toast

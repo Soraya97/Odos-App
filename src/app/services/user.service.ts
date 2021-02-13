@@ -2,10 +2,8 @@ import { Injectable } from '@angular/core';
 import { User } from '../models/user';
 import { Observable } from 'rxjs/internal/Observable';
 import { HttpClient } from '@angular/common/http';
-import { of } from 'rxjs/internal/observable/of';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../auth/auth.service';
-import {SignRequest} from '../models/sign-request';
 
 const API_URL = `${environment.apiUrl}/users`;
 const API_URL_FINALE = `${environment.apiUrl}/users/`;

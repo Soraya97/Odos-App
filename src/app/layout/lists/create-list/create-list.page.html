@@ -6,7 +6,7 @@
     </ion-buttons>
 
     <ion-buttons slot="end">
-      <ion-button (click)="validateList(nameForm)" [disabled]="nameForm.invalid" >Terminer</ion-button>
+      <ion-button (click)="validateList(nameForm)" [disabled]="nameForm.invalid">Terminer</ion-button>
     </ion-buttons>
 
     <ion-title>Nouvelle Liste</ion-title>
@@ -19,11 +19,14 @@
   <form #nameForm="ngForm">
     <ion-item>
       <ion-label position="stacked">Nom de la liste</ion-label>
-      <ion-input type="text" [(ngModel)]="name" name="name" required #nameInput="ngModel"></ion-input>
-      <p *ngIf="nameInput.invalid && nameInput.dirty" class="small">
-          Un nom est requis
-        </p>
+      <ion-input type="text" [(ngModel)]="name" name="name" required #nameInput="ngModel" minlength="3"></ion-input>
     </ion-item>
+    <p *ngIf="nameInput.hasError('required') && nameInput.invalid && nameInput.dirty" class="small">
+      Un nom est requis
+    </p>
+    <p *ngIf="nameInput.hasError('minlength') && nameInput.invalid && nameInput.dirty" class="small">
+      Le nom doit faire minimum 3 caractères
+    </p>
   </form>
 
 </ion-content>

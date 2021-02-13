@@ -1,8 +1,7 @@
 import { Observable } from 'rxjs/internal/Observable';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
-import { retry, catchError } from 'rxjs/operators';
 import { List } from '../models/list';
 import { ListRequest } from '../models/list-request';
 import { Injectable } from '@angular/core';
@@ -19,8 +18,6 @@ export class ListService {
   idUser: string;
 
   constructor(private http: HttpClient, private auth: AuthService) {
-    // console.log('Hello ListService Provider');
-    // console.log('@@@ http client', !!this.http);
     this.auth.getUser().subscribe((user) => {
       this.idUser = user._id;
     }, err => {

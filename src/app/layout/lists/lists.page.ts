@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 
-import { ViewDidEnter } from '@ionic/angular';
 import { User } from "../../models/user";
 import { ListService } from 'src/app/services/list.service';
 import { List } from 'src/app/models/list';
 import { AuthService } from 'src/app/auth/auth.service';
-import { environment } from "src/environments/environment";
 import { ActivatedRoute } from '@angular/router';
 import { TabElementsService } from 'src/app/services/tab-elements.service';
 
@@ -27,8 +25,6 @@ export class ListsPage implements OnInit {
     private auth: AuthService,
     // Inject the HTTP client
     public http: HttpClient,
-    // Inject the ListService
-    private listService: ListService,
     public tabLists: TabElementsService,
     // Inject the ActivatedRoute
     private route: ActivatedRoute
@@ -44,14 +40,6 @@ export class ListsPage implements OnInit {
       console.warn(err);
       alert(err.message);
     });
-
-    // this.listService.getAllLists().subscribe((list) => {
-    //   this.lists = list;
-    //   console.log(this.lists);
-    // }, err => {
-    //   console.warn(err);
-    //   alert(err.message);
-    // });
 
   }
 

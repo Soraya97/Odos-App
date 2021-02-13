@@ -6,7 +6,6 @@ import { PictureService } from 'src/app/services/picture.service';
 import { Picture } from 'src/app/models/pictures';
 
 import { ActionSheetController, AlertController, ToastController, ModalController } from '@ionic/angular';
-import { async } from '@angular/core/testing';
 import { User } from 'src/app/models/user';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
@@ -90,11 +89,32 @@ export class userPicPage implements OnInit {
         this.picture.description = this.descr;
       },
         (err) => {
-          this.toast('La photo n\'a pas pu être modifiée parce que: ' + err.error.message);
+          console.warn(err);
+          this.alert("Problème", "Ajout impossible", 'La photo n\'a pas pu être ajoutée parce que: ' + err.error.message);
         });
 
     }
 
+  }
+
+  // Trigger an alert
+  async alert(head: string, sub: string, msg: string) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: head,
+      subHeader: sub,
+      message: msg,
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {
+            console.log('Confirm Ok');
+          }
+        }]
+
+    });
+
+    await alert.present();
   }
 
   // Alert activated when Delete selected on the menu of options
@@ -135,6 +155,7 @@ export class userPicPage implements OnInit {
 
     await alert.present();
   }
+
   // Display a message
   async toast(msg) {
     const toast = await this.toastController.create({

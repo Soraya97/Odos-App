@@ -1,17 +1,18 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
-import {UserService} from '../../services/user.service';
-import {User} from '../../models/user';
-import {Router} from '@angular/router';
-import {AuthRequest} from '../../models/auth-request';
-import {AuthService} from '../../auth/auth.service';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserService } from '../../services/user.service';
+import { User } from '../../models/user';
+import { Router } from '@angular/router';
+import { AuthRequest } from '../../models/auth-request';
+import { AuthService } from '../../auth/auth.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent implements OnInit{
+export class RegisterComponent implements OnInit {
 
   private password2: string;
   user: User = new User();
@@ -19,7 +20,7 @@ export class RegisterComponent implements OnInit{
 
   form = new FormGroup({
     username: new FormControl('', Validators.minLength(3)),
-    email: new FormControl('' ),
+    email: new FormControl(''),
     password: new FormControl('', Validators.minLength(2)),
     password2: new FormControl('', Validators.minLength(2))
   });
@@ -34,46 +35,56 @@ export class RegisterComponent implements OnInit{
   errorMessage: string;
 
   constructor(private fb: FormBuilder,
-              private userService: UserService,
-              private router: Router,
-              private auth: AuthService) { }
+    private userService: UserService,
+    private router: Router,
+    public toastController: ToastController) { }
 
   ngOnInit(): void {
     this.authRequest = new AuthRequest();
   }
 
-  onSubmit(form: FormGroup){
+  onSubmit(form: FormGroup) {
     console.log(form);
     if (form.invalid) {
       return;
     }
-    this.user.username = this.signForm.get('username')?.value;
-    this.user.email = this.signForm.get('email')?.value;
-    this.user.password = this.signForm.get('password')?.value;
-    this.password2 = this.signForm.get('password2')?.value;
-    if (form.get('password').value !== form.get('password2').value){
+    this.user.username = this.signForm.get('username') ?.value;
+    this.user.email = this.signForm.get('email') ?.value;
+    this.user.password = this.signForm.get('password') ?.value;
+    this.password2 = this.signForm.get('password2') ?.value;
+    if (form.get('password').value !== form.get('password2').value) {
       this.signInError = true;
-      this.errorMessage = 'Passwords must be identical';
+      this.errorMessage = 'Les mots de passe sont différents';
       console.error('Les passwords sont différents');
       return;
     }
     this.userService.register(this.user).subscribe(
-        (user: User) => {
-          console.log('Utilisateur enregistré:', user);
-          this.authRequest.username = user.username;
-          this.authRequest.password = user.password;
-          this.router.navigateByUrl("/login");
-        },
-        (resp)  => this.processError(resp)
+      (user: User) => {
+        console.log('Utilisateur enregistré:', user);
+        this.authRequest.username = user.username;
+        this.authRequest.password = user.password;
+        this.toast("Votre compte a bien été créé !");
+        this.router.navigateByUrl("/login");
+      },
+      (resp) => this.processError(resp)
     );
 
   }
 
+  // Display a message
+  async toast(msg) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 2000
+    });
+    toast.present();
+  }
+
   private processError(error: any) {
-      console.log('erreur: ', error.status);
-      if (error.status === 422) {
-        console.error(error.status + ' ' + error.error.message);
-        this.errorMessage = error.error.message;
+    console.log('erreur: ', error.status);
+    if (error.status === 422) {
+      console.error(error.status + ' ' + error.error.message);
+      this.errorMessage = error.error.message;
     } else {
       console.error('other reason');
     }

@@ -2,11 +2,11 @@
   <ion-toolbar>
 
     <ion-buttons slot="start">
-      <ion-back-button text="Annuler" icon="" defaultHref></ion-back-button>
+      <ion-back-button text="Retour" icon="" defaultHref></ion-back-button>
     </ion-buttons>
 
     <ion-buttons slot="end">
-      <ion-button (click)="validateList(nameForm)" [disabled]="nameForm.invalid" >Terminer</ion-button>
+      <ion-button (click)="validateList(nameForm)" [disabled]="nameForm.invalid">Terminer</ion-button>
     </ion-buttons>
 
     <ion-title>Modifier la Liste</ion-title>
@@ -19,19 +19,22 @@
   <form #nameForm="ngForm">
     <ion-item>
       <ion-label position="stacked">Changer le nom de la liste {{list?.name}} par:</ion-label>
-      <ion-input type="text" [(ngModel)]="name" name="name" required #nameInput="ngModel"></ion-input>
-      <p *ngIf="nameInput.invalid && nameInput.dirty" class="small">
-          Un nom est requis
-        </p>
+      <ion-input type="text" [(ngModel)]="name" name="name" required #nameInput="ngModel" minlength="3"></ion-input>
     </ion-item>
+    <p *ngIf="nameInput.hasError('required') && nameInput.invalid && nameInput.dirty" class="small">
+      Un nom est requis
+    </p>
+    <p *ngIf="nameInput.hasError('minlength') && nameInput.invalid && nameInput.dirty" class="small">
+      Le nom doit faire minimum 3 caractères
+    </p>
     <ion-grid>
       <ion-row>
-    <ion-col size="6" *ngFor="let picture of pictures">
-      <img [src]="picture?.picture" [id]="picture?.id" [routerLink]="['/profile/userPic', picture.id]">
-      <ion-icon name="trash-outline" (click)="deletePicList()"></ion-icon>
-    </ion-col>
-    </ion-row>
-  </ion-grid>
+        <ion-col size="6" *ngFor="let picture of pictures">
+          <img [src]="picture?.picture" [id]="picture?.id" [routerLink]="['/profile/userPic', picture.id]">
+          <ion-icon name="trash-outline" (click)="deletePicList()"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </form>
 
 </ion-content>

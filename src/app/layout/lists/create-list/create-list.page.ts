@@ -13,14 +13,6 @@ import { TabElementsService } from 'src/app/services/tab-elements.service';
 })
 export class CreateListPage implements OnInit {
   name: string;
-  creationDate: Date;
-  modifiactionDate: Date;
-  user: { type: "User" };
-  picture: { type: "Picture" };
-  public: boolean;
-  displayedName: string;
-  list: string;
-
 
   constructor(
     // Inject the ListService
@@ -37,9 +29,9 @@ export class CreateListPage implements OnInit {
         this.tabLists.changeList();
         this.router.navigateByUrl("/lists");
       }, err => {
-
+        console.warn(err);
+        this.alert("Problème", "Ajout impossible", 'La liste n\'a pas pu être ajoutée parce que: ' + err.error.message);
       });
-      // TODO: if no errors
     }
   }
 
@@ -52,26 +44,26 @@ export class CreateListPage implements OnInit {
     toast.present();
   }
 
-  async nameAlreadyTaken() {
+  // Trigger an alert
+  async alert(head: string, sub: string, msg: string) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
-      header: 'Attention',
-      subHeader: `Le nom ${this.name} est déjà utilisé`,
-      message: "Merci d'en choisir un autre",
-      buttons: ['OK']
+      header: head,
+      subHeader: sub,
+      message: msg,
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {
+            console.log('Confirm Ok');
+          }
+        }]
+
     });
 
     await alert.present();
   }
 
   ngOnInit() {
-    console.log("URL:" + this.listService.currentListURL);
-    this.list = this.listService.currentListURL;
-
-    err => {
-      console.warn(err);
-      alert(err.message);
-
-    }
   };
 }

@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 
 import { AuthService } from 'src/app/auth/auth.service';
 import { WebsocketService } from 'src/app/services/websocket.service';
-import { PictureService } from 'src/app/services/picture.service';
 import { Picture } from 'src/app/models/pictures';
 import {FeedService} from '../../services/feed.service';
 
@@ -52,13 +51,13 @@ export class FeedPage implements OnInit {
   }
 
   sortPicsBy() {
-    
+
     if (this.sortBy === 'Date de parution') {
-      
+
       this.pictures = this.pictures.sort((a: Picture, b: Picture) =>
           new Date(b.creation_date).getTime() - new Date(a.creation_date).getTime());
     } else {
-      
+
       this.pictures = this.pictures.sort( (a, b) => a.userId.username.localeCompare(b.userId.username));
     }
   }

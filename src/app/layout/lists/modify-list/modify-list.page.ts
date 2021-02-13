@@ -3,7 +3,7 @@ import { ListService } from "../../../services/list.service";
 import { NgForm } from '@angular/forms';
 import { User } from "../../../models/user";
 import { List } from 'src/app/models/list';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
 import { AuthService } from 'src/app/auth/auth.service';
 import { PictureService } from 'src/app/services/picture.service';
@@ -16,23 +16,13 @@ import { Picture } from 'src/app/models/pictures';
 })
 export class ModifyListPage implements OnInit {
   name: string;
-  creationDate: Date;
-  modifiactionDate: Date;
   user: User;
-  picture: { type: "Picture" };
-  public: boolean;
-  displayedName: string;
   list: List;
-  editable: boolean;
-  notEditable: boolean;
   idList: string;
   pictures: Picture[] = [];
 
 
-  constructor(
-    // Inject the ListService
-    private pictureService: PictureService, private listService: ListService, private router: Router, public alertController: AlertController, public toastController: ToastController, private route: ActivatedRoute, private auth: AuthService
-  ) {
+  constructor(private pictureService: PictureService, private listService: ListService, public alertController: AlertController, public toastController: ToastController, private route: ActivatedRoute, private auth: AuthService) {
     this.idList = this.route.snapshot.paramMap.get('id');
   }
 
@@ -44,61 +34,52 @@ export class ModifyListPage implements OnInit {
     toast.present();
   }
 
-  async nameAlreadyTaken() {
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'Attention',
-      subHeader: `Le nom ${this.name} est déjà utilisé`,
-      message: "Merci d'en choisir un autre",
-      buttons: ['OK']
-    });
-
-    await alert.present();
-  }
-
   // Save the new name list in the db
   validateList(form: NgForm) {
     if (form.valid) {
-      this.editable = false;
-      this.notEditable = true;
-      console.log(this.name);
-
       let name = this.name;
       let idList = this.idList;
-      this.listService.updateList(name, null, idList).subscribe(() => {
+      this.listService.updateList(name, undefined, idList).subscribe(() => {
         this.toast('Le nom de la liste a bien été modifiée');
         this.list.name = this.name;
       },
         (err) => {
-          this.toast(err.error.message);
+          console.warn(err);
+          this.alert("Problème", "Ajout impossible", 'La liste n\'a pas pu être ajoutée parce que: ' + err.error.message);
         });
     }
   }
 
   // Delete a Pic from a List
   deletePicList() {
-    // TODO: trouver comment récupérer l'id de la photo :)
     let idPic = this.list.picture;
     this.listService.deletePicList(this.idList, idPic).subscribe(() => {
-      // réussite
       this.toast('La photo a bien été supprimée de la liste');
     }, (err) => {
-      // échec
-      this.toast('La photo n\'a pas pu être supprimée de la liste');
-      // console.warn(err);
-      // alert(err.message);
+      console.warn(err);
+      this.alert("Problème", "Suppression impossible", 'La liste n\'a pas pu être supprimée parce que: ' + err.error.message);
     })
   }
 
-  // Confirmation that the liste is updated
-  async updatedListToast() {
-    const toast = await this.toastController.create({
-      message: 'La liste a bien été modifiée',
-      duration: 2000
-    });
-    toast.present();
-  }
+  // Trigger an alert
+  async alert(head: string, sub: string, msg: string) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: head,
+      subHeader: sub,
+      message: msg,
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {
+            console.log('Confirm Ok');
+          }
+        }]
 
+    });
+
+    await alert.present();
+  }
 
 
   // Display a message
@@ -114,31 +95,28 @@ export class ModifyListPage implements OnInit {
     this.auth.getUser().subscribe((user) => {
       this.user = user;
     }, err => {
-      // console.warn(err);
-      // alert(err.message);
+      console.warn(err);
+      alert(err.message);
     });
 
     this.listService.getList(this.idList).subscribe((list) => {
       this.list = list;
-      console.log(this.list._id);
 
-      // console.log(this.list.picture.length);
       if (this.list.picture.length > 0) {
         for (let i = 0; i < this.list.picture.length; i++) {
-          // console.log(this.list.picture[i]);
 
           this.pictureService.getPicture(this.list.picture[i]).subscribe((picture) => {
             this.pictures.push(picture);
           }, err => {
-            // console.warn(err);
+            console.warn(err);
             // alert(err.message);
           })
         }
       }
 
     }, err => {
-      // console.warn(err);
-      // alert(err.message);
+      console.warn(err);
+      alert(err.message);
     });
 
   }
