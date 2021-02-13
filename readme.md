@@ -99,8 +99,26 @@ Il a également la possilbité de supprimer son compte en cliquant sur le lien �
 
 ## API
 
-https://odos-archioweb.herokuapp.com
+Le lien de l'API utilisée: https://odos-archioweb.herokuapp.com
 
-It is possible to see the documentation of the API there: http://odos-archioweb.herokuapp.com/apiDoc
+Il est possible de voir la document de l'API ici: http://odos-archioweb.herokuapp.com/apiDoc
 
- 
+## Améliorations
+
+Les éléments suivants doivent être améliorés:
+
+### Feed
+
+- La mise à jour du feed en cas d'ajout, de modification ou de suppression d'une photo.
+- L'icône de la carte disponible sur chaque photo, permettant d'ouvrir la carte sur le point où la photo a été prise.
+- L'icône du cœur doit être plein lorsque la photo se trouve en favoris.
+
+### Lists & Pictures
+
+- La suppression d'une photo d'une liste devrait se voir directement.
+- Le code de mise à jour de la liste des listes et des photos devrait être mieux implémenté.
+- Il devrait être possible de voir le lieu où la photo a été prise sur chaque photo.
+
+### Forms
+
+- Les validations des formulaires devraient prendre en compte si le nom (d'utilisateur, de photo ou de liste) existe déjà ou non dans la base de données.
