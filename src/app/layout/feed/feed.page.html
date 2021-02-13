@@ -20,14 +20,6 @@
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content refreshingSpinner="crescent"></ion-refresher-content>
   </ion-refresher>
-<<<<<<< HEAD
-  <h3>Dernières photos : </h3>
-  <app-pic-widget *ngFor="let picture of pictures" [picture]='picture'></app-pic-widget>
-  <!-- <ion-grid>
-    <ion-row>
-      <h3>Dernières photos : </h3>
-    </ion-row>
-=======
   <ion-grid>
     <ion-item>
       <ion-label>Sort by:</ion-label>
@@ -36,14 +28,8 @@
         <ion-select-option>utilisateur</ion-select-option>
       </ion-select>
     </ion-item>
->>>>>>> f7f6a0ac188a7917f43523d1f572cbacea1d7468
     <ion-row>
-      <app-pic-widget *ngFor="let picture of pictures" [picture]='picture'></app-pic-widget>
+      <app-pic-widget size="3" *ngFor="let picture of pictures" [picture]='picture'></app-pic-widget>
     </ion-row>
-<<<<<<< HEAD
-  </ion-grid> -->
-</ion-content>
-=======
   </ion-grid>
 </ion-content>
->>>>>>> f7f6a0ac188a7917f43523d1f572cbacea1d7468
