@@ -8,7 +8,33 @@ Nous avons repris l’API que nous avions réalisée lors du précédent cours d
 
 ## Utilisation
 
-Cliquez sur...
+Pour pouvoir tester l'application il faut : 
+
+1. Dans votre invite de commande exécuter la commande suivante :
+
+```
+git clone git@github.com:Soraya97/Odos-App.git
+```
+
+2. Toujours dans l'invite de commande, aller à la racine du dossier, soit : Odos-App
+
+```
+cd Users/[nom]/Odos-App
+```
+
+3. Depuis, Odos-App, Installer tous les modules nécessaire avec la commende suivante :
+
+```
+npm install
+```
+
+4. Une fois que tout est installer exécuter une dernière commande qui ouvrira une fenêtre sur votre navigateur
+
+```
+ionic serve
+```
+
+5. Visualiser l'application sur votre navigateur.
 
 ## Login
 
