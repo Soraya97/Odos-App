@@ -34,7 +34,7 @@
   <p class="description" *ngIf='notEditable'>{{picture?.description}}</p>
   <form #descrForm="ngForm" *ngIf='editable'>
     <ion-input type="text" [(ngModel)]="descr" name="descr" required #descrInput="ngModel" placeholder="{{picture?.description}}" minlength="3" maxlength="50"></ion-input>
-    <p *ngIf="descrForm.invalid && descrForm.dirty" class="small">
+    <p *ngIf="descrForm.invalid && descrForm.dirty" class="small" color="danger">
       La description doit faire en 3 et 50 caractères
     </p>
     <ion-button (click)=savePictureUpdated(descrForm) type="submit" [disabled]="descrForm.invalid">Valider</ion-button>

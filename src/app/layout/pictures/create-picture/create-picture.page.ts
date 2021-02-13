@@ -85,7 +85,7 @@ export class CreatePicturePage implements OnInit {
       }
     })
       .catch(function(err) {
-        this.alert("Géolocalisation", "Géolocalisation désactivée", "Votre photo sera géolocalisée au Pôle sud par défaut");
+        alert("Votre photo sera géolocalisée au Pôle sud par défaut");
       });
   }
 
