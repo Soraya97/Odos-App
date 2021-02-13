@@ -1,3 +1,6 @@
+// import { Url } from "url";
+// import { User } from "./user";
+
 export class Picture {
   id: string;
   description: string;
@@ -5,5 +8,5 @@ export class Picture {
   picture: string;
   creation_date: string;
   last_mod_date: string;
-  userId: number;
+  userId: { _id: string, username: string, email: string, registrationDate: string};
 }
