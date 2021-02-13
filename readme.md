@@ -89,9 +89,9 @@ Les pages « pictures » fonctionnent en trois étapes :
 2. Géolocalisation et description
 3. Validation
 
-![](https://github.com/Soraya97/Odos-App/blob/main/images/pictures_01.png)
+![](https://github.com/Soraya97/Odos-App/blob/main/images/pictures_01-1.png)
 
-![](https://github.com/Soraya97/Odos-App/blob/main/images/pictures_02.png)
+![](https://github.com/Soraya97/Odos-App/blob/main/images/pictures_02-1.png)
 
 ![](https://github.com/Soraya97/Odos-App/blob/main/images/pictures_03.png)
 
