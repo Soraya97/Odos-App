@@ -25,8 +25,8 @@ ion-title {
   font-size: 1rem;
 }
 
-ion-textarea.ng-invalid.ng-dirty {
-  color: red;
+ion-textarea.ng-invalid.ng-dirty, ion-input.ng-invalid.ng-dirty {
+  color: #eb445a;
 }
 
 .small {
@@ -37,6 +37,4 @@ ion-textarea.ng-invalid.ng-dirty {
   text-align: center;
 }
 
-ion-input.ng-invalid.ng-dirty {
-  color: red
-}
+ 
