@@ -23,12 +23,14 @@
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content refreshingSpinner="crescent"></ion-refresher-content>
   </ion-refresher>
-  <ion-grid>
+  <h3>Dernières photos : </h3>
+  <app-pic-widget *ngFor="let picture of pictures" [picture]='picture'></app-pic-widget>
+  <!-- <ion-grid>
     <ion-row>
-      <h3>Dernières photos: </h3>
+      <h3>Dernières photos : </h3>
     </ion-row>
     <ion-row>
-      <app-pic-widget size="3" *ngFor="let picture of pictures" [picture]='picture'></app-pic-widget>
+      <app-pic-widget *ngFor="let picture of pictures" [picture]='picture'></app-pic-widget>
     </ion-row>
-  </ion-grid>
+  </ion-grid> -->
 </ion-content>
