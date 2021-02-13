@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs/internal/observable/of';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../auth/auth.service';
+import {SignRequest} from '../models/sign-request';
 
 const API_URL = `${environment.apiUrl}/users`;
 const API_URL_FINALE = `${environment.apiUrl}/users/`;
@@ -15,7 +16,7 @@ const API_URL_FINALE = `${environment.apiUrl}/users/`;
 export class UserService {
   idUser: string;
 
-  constructor(private http: HttpClient, private auth: AuthService) { 
+  constructor(private http: HttpClient, private auth: AuthService) {
     this.auth.getUser().subscribe((user) => {
       this.idUser = user._id;
     }, err => {
@@ -30,7 +31,7 @@ export class UserService {
   }
 
   // Update an user
-  updateUser(username, email, password) : Observable<User> {
+  updateUser(username, email, password): Observable<User> {
     const requestBody = {
       username: username,
       email: email,
@@ -42,5 +43,15 @@ export class UserService {
   // delete an user
   deleteUser() : Observable<User> {
     return this.http.delete<User>(API_URL_FINALE + `${this.idUser}`);
+  }
+
+  register(newUser: User): Observable<User>{
+    console.log(newUser);
+    const requestBody = {
+      username: newUser.username,
+      email: newUser.email,
+      password: newUser.password
+    };
+    return this.http.post<User>(API_URL_FINALE, requestBody);
   }
 }

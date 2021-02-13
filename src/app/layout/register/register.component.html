@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form name="signForm" role="form" (ngSubmit)="onSubmit(signForm)" [formGroup]="signForm">
+    <ion-list>
+      <!-- Username input -->
+      <ion-item>
+        <ion-label position="floating">Username</ion-label>
+        <ion-input inputmode="text" required="true" name="username" formControlName="username"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input inputmode="text" required="true" name="email" formControlName="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input inputmode="text" required="true" type="password" name="password" formControlName="password"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Password Confirmation</ion-label>
+        <ion-input inputmode="text" required="true" type="password" name="password2" formControlName="password2"></ion-input>
+      </ion-item>
+      <!-- Error message displayed if the password is invalid -->
+    </ion-list>
+    <div class="ion-padding">
+      <!-- Submit button -->
+      <ion-button type="submit" expand="block" [disabled]="signForm.invalid">Sign in</ion-button>
+
+      <!-- Error message displayed if the login failed -->
+      <ion-text color="danger"> {{ errorMessage }}</ion-text>
+    </div>
+  </form>
+</ion-content>

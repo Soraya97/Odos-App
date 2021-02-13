@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { AuthService } from 'src/app/auth/auth.service';
 import { WebsocketService } from 'src/app/services/websocket.service';
 import { PictureService } from 'src/app/services/picture.service';
 import { Picture } from 'src/app/models/pictures';
-import { FeedService } from '../../services/feed.service';
+import {FeedService} from '../../services/feed.service';
 
 @Component({
   selector: 'app-feed',
@@ -15,18 +15,17 @@ import { FeedService } from '../../services/feed.service';
 export class FeedPage implements OnInit {
   sumPictures: number;
   pictures: Picture[];
-  pictureId: string;
+  sortBy: string;
 
   constructor(private auth: AuthService,
-    private router: Router,
-    private wsService: WebsocketService,
-    private feedService: FeedService, private route: ActivatedRoute) {
-    console.log('constructor');
-    this.feedService.getAllPictures().subscribe((pictures) => {
-      this.pictures = pictures.sort((a: Picture, b: Picture) =>
-        new Date(b.creation_date).getTime() - new Date(a.creation_date).getTime());
+              private router: Router,
+              private wsService: WebsocketService,
+              private feedService: FeedService) {
+    this.feedService.getAllPictures().subscribe( (pictures) => {
+      this.pictures = pictures;
+      this.sortBy = 'Date de parution';
+      this.sortPicsBy();
     });
-    this.pictureId = this.route.snapshot.paramMap.get('id');
   }
 
   doRefresh(event) {
@@ -50,6 +49,18 @@ export class FeedPage implements OnInit {
     console.log('logging out...');
     this.auth.logOut();
     this.router.navigateByUrl('/login');
+  }
+
+  sortPicsBy() {
+    
+    if (this.sortBy === 'Date de parution') {
+      
+      this.pictures = this.pictures.sort((a: Picture, b: Picture) =>
+          new Date(b.creation_date).getTime() - new Date(a.creation_date).getTime());
+    } else {
+      
+      this.pictures = this.pictures.sort( (a, b) => a.userId.username.localeCompare(b.userId.username));
+    }
   }
 
 

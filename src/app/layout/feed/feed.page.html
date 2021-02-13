@@ -2,20 +2,17 @@
   <ion-toolbar>
     <ion-title>Feed</ion-title>
 
-    <ion-buttons slot="start">
-      <ion-button routerLink="/feed/map">
-        <ion-icon name="navigate-circle-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-
     <!-- Logout button -->
     <ion-buttons slot="end">
       <ion-button (click)="logOut()">
         <ion-icon name="log-out"></ion-icon>
       </ion-button>
     </ion-buttons>
-
   </ion-toolbar>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content refreshingSpinner="crescent"></ion-refresher-content>
+  </ion-refresher>
+  <a routerLink="/feed/map">Carte</a>
 
 </ion-header>
 
@@ -23,14 +20,30 @@
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content refreshingSpinner="crescent"></ion-refresher-content>
   </ion-refresher>
+<<<<<<< HEAD
   <h3>Dernières photos : </h3>
   <app-pic-widget *ngFor="let picture of pictures" [picture]='picture'></app-pic-widget>
   <!-- <ion-grid>
     <ion-row>
       <h3>Dernières photos : </h3>
     </ion-row>
+=======
+  <ion-grid>
+    <ion-item>
+      <ion-label>Sort by:</ion-label>
+      <ion-select [(ngModel)]="sortBy" (ionChange)="sortPicsBy()">
+        <ion-select-option>Date de parution</ion-select-option>
+        <ion-select-option>utilisateur</ion-select-option>
+      </ion-select>
+    </ion-item>
+>>>>>>> f7f6a0ac188a7917f43523d1f572cbacea1d7468
     <ion-row>
       <app-pic-widget *ngFor="let picture of pictures" [picture]='picture'></app-pic-widget>
     </ion-row>
+<<<<<<< HEAD
   </ion-grid> -->
 </ion-content>
+=======
+  </ion-grid>
+</ion-content>
+>>>>>>> f7f6a0ac188a7917f43523d1f572cbacea1d7468
