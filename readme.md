@@ -31,6 +31,8 @@ Le menu de l’application est visible sur le bas de l’écran. Il comporte 4 �
 
 Quand l’utilisateur ouvre l’application et s’il n’est pas logué, il ne pourra seulement voir que le « feed » avec les photos des autres utilisateurs. Donc, il ne pourra pas interagir avec, sauf pour ouvrir la carte afin de voir le lieu d’une photo en particulier.
 
+![](https://github.com/Soraya97/Odos-App/blob/master/images/Odos_home_01.png)
+
 ### Carte
 
 Sur la carte tous les lieux où une photographie a été prise sont indiqués. Autrement, pour une photo précise, la carte se centrera alors sur un lieu, mais tous les autres lieux des autres photos seront tout de même visibles. 
@@ -65,7 +67,7 @@ Les pages « pictures » fonctionnent en trois étapes :
 
 La page « Profil » se présente comme ceci :
 
-Il a la possibilité de voir toutes ses propres photographies qu’il a enregistrées.
+L'utilisateur a la possibilité de voir toutes ses propres photographies qu’il a enregistrées.
 
 Sur cette page, l’utilisateur a la possibilité de modifier son nom, prénom d’utilisateur et/ou son mot de passe grâce à une modale box. Pour valider les changements effectués, il suffit de cliquer sur le bouton « Valider ».
 
