@@ -16,12 +16,13 @@
     </ion-buttons>
 
   </ion-toolbar>
-  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content refreshingSpinner="crescent"></ion-refresher-content>
-  </ion-refresher>
+
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content refreshingSpinner="crescent"></ion-refresher-content>
+  </ion-refresher>
   <ion-grid>
     <ion-row>
       <h3>Dernières photos: </h3>

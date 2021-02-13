@@ -31,8 +31,9 @@ export class FeedPage implements OnInit {
 
   doRefresh(event) {
     console.log('Begin async operation');
-    this.wsService.refreshPage();
     setTimeout(() => {
+      // this.wsService.refreshPage();
+      document.location.reload(true);
       console.log('Async operation has ended');
       event.target.complete();
     }, 2000);
