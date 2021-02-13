@@ -17,7 +17,7 @@
   <ion-item class="email" *ngIf='notEditable'>Email : {{user?.email}}</ion-item>
   <ion-item class="password" *ngIf='notEditable'>Mot de passe : •••••</ion-item>
 
-  <!-- <form #paramForm="ngForm" *ngIf='editable'>
+  <form #paramForm="ngForm" *ngIf='editable'>
     <ion-item>
       <ion-label>Nom d'utilisateur</ion-label>
       <ion-input type="text" [(ngModel)]="username" name="username" pattern="[a-zA-Z ]*" min-length="1" max-length="3" #paramInput="ngModel" placeholder="{{user?.username}}"></ion-input>
@@ -35,28 +35,6 @@
     
     <p *ngIf="paramInput.hasError('required') && paramInput.dirty">
       Name is required
-    </p>
-  </form> -->
-
-  <form [formGroup]="ngForm" *ngIf='editable'>
-    <ion-item>
-      <ion-label>Nom d'utilisateur</ion-label>
-      <ion-input type="text" [(ngModel)]="username" name="username" required pattern="[a-zA-Z ]*" min-length="1" max-length="3" formControlName="username" placeholder="{{user?.username}}"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Email</ion-label>
-      <ion-input type="email" [(ngModel)]="email" name="email" #paramInput="ngModel" placeholder="{{user?.email}}"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Mot de passe</ion-label>
-      <ion-input type="password" [(ngModel)]="password" name="password" #paramInput="ngModel" placeholder="•••••"></ion-input>
-    </ion-item>
-    <ion-button (click)=updateConfirm(paramForm) type="submit" [disabled]="paramForm.invalid">Valider</ion-button>
-    <ion-button (click)=notEditUser() type="cancel" fill="outline">Annuler</ion-button>
-    
-    <p *ngIf="paramForm.get('username').hasError('required')
-    && paramForm.get('username').dirty">
-    Name is required
     </p>
   </form>
 
