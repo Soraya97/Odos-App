@@ -8,27 +8,27 @@ Nous avons repris l’API que nous avions réalisée lors du précédent cours d
 
 ## Utilisation
 
-Pour pouvoir tester l'application il faut : 
+Pour pouvoir tester l'application, il faut : 
 
-1. Dans votre invite de commande exécuter la commande suivante :
+1. Dans l'invité de commande, exécuter la commande suivante :
 
 ```
 git clone git@github.com:Soraya97/Odos-App.git
 ```
 
-2. Toujours dans l'invite de commande, aller à la racine du dossier, soit : Odos-App
+2. Toujours dans l'invité de commande, aller à la racine du dossier, soit : Odos-App
 
 ```
 cd Users/[nom]/Odos-App
 ```
 
-3. Depuis, Odos-App, Installer tous les modules nécessaire avec la commende suivante :
+3. Depuis Odos-App, installer tous les modules nécessaire avec la commande suivante :
 
 ```
 npm install
 ```
 
-4. Une fois que tout est installer exécuter une dernière commande qui ouvrira une fenêtre sur votre navigateur
+4. Une fois que tout est installé, exécuter une dernière commande qui ouvrira une fenêtre sur votre navigateur:
 
 ```
 ionic serve
@@ -41,6 +41,12 @@ ionic serve
 Pour pouvoir utiliser notre application avec toutes ses fonctionnalités, un compte utilisateur est nécessaire. C’est pourquoi la première page de notre application est une page de login.
 
 ![](https://github.com/Soraya97/Odos-App/blob/main/images/login.png)
+
+### Créer un compte
+
+L'utilisateur peut se créer un compte s'il n'en possède pas encore. Un pseudo, un e-mail et un mot de passe sont alors nécessaires à cette opération. Il est ensuite redirigé sur la page de login pour se connecter.
+
+![](https://github.com/Soraya97/Odos-App/blob/main/images/account.png)
 
 ### Logout
 
@@ -61,9 +67,13 @@ Le menu de l’application est visible sur le bas de l’écran. Il comporte 4 �
 
 ## Page « Home »
 
-Quand l’utilisateur ouvre l’application et s’il n’est pas logué, il ne pourra seulement voir que le *feed* avec les photos des autres utilisateurs. Donc, il ne pourra pas interagir avec, sauf pour ouvrir la carte afin de voir le lieu d’une photo en particulier.
+Quand l’utilisateur ouvre l’application et s’il n’est pas logué, il ne pourra seulement voir que le *feed* avec les photos des autres utilisateurs. Donc, il ne pourra pas interagir avec, sauf pour ouvrir la carte afin de voir le lieu d’une photo en particulier. 
 
 ![](https://github.com/Soraya97/Odos-App/blob/main/images/Odos_home_01.png)
+
+L'utilisateur peut aussi changer l'affichage des photos en les triant par date de parution ou par utilisateur.
+
+![](https://github.com/Soraya97/Odos-App/blob/main/images/Odos_home_02.png)
 
 ### Carte
 
@@ -103,7 +113,7 @@ L'utilisateur peut modifier une liste par son nom ou par ses images en les metta
 
 ![](https://github.com/Soraya97/Odos-App/blob/main/images/modifyliste.png)
 
-Si l'utilisateur souhaite supprimer une liste dans son entièreté, une deuxième *modal box* lui est proposé dans le cas où il souhaite « confirmer » ou se rétracter en annulant son choix.
+Si l'utilisateur souhaite supprimer une liste dans son entièreté, un deuxième *modal box* lui est proposé dans le cas où il souhaite « confirmer » ou se rétracter en annulant son choix.
 
 ![](https://github.com/Soraya97/Odos-App/blob/main/images/supprimerliste.png)
 
@@ -133,7 +143,7 @@ La page « Profil » se présente comme ceci :
 
 ![](https://github.com/Soraya97/Odos-App/blob/main/images/Odos_profil_01.png)
 
-L'utilisateur a la possibilité de voir toutes ses propres photographies qu’il a enregistrées.
+L'utilisateur a la possibilité de voir toutes ses photographies.
 
 ### Paramètres
 
@@ -200,6 +210,7 @@ Les éléments suivants doivent être améliorés:
 - Le code de mise à jour de la liste des listes et des photos devrait être mieux implémenté.
 - Il devrait être possible de voir le lieu où la photo a été prise sur chaque photo.
 
-### Forms
+### Autre
 
 - Les validations des formulaires devraient prendre en compte si le nom (d'utilisateur, de photo ou de liste) existe déjà ou non dans la base de données.
+- Mettre en place les éléments en temps réel.
