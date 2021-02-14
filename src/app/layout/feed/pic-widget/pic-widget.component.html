@@ -1,13 +1,23 @@
 <div class="desc" id="head">
-  <p> {{ picture?.userId?.username }}</p>
+  <p class="user"> {{ picture?.userId?.username }}</p>
 <p class="title"> {{picture.description | uppercase}} </p>
 </div>
 <img [src]="picture?.picture" [id]="picture?.id" [routerLink]="['/profile/userPic', picture?.id]">
-<div class="desc">
+<!-- <div class="desc">
   <p class="creation-date">publié le: {{ picture.creation_date | date: 'dd/MM/yyyy' }}  </p>
   <span>
       <p slot="end">
           <ion-icon class="listBtn" size="large" name="heart-outline" [routerLink]="['add-pic-list', picture?.id]"></ion-icon>
       </p>
-  </span>
-</div>
+  </span> -->
+
+  <ion-toolbar>
+    <p slot="start" class="date">Publié le</p>
+    <ion-datetime readonly="true" value="{{picture?.creation_date}}" displayFormat="DD MMM, YYYY">
+    </ion-datetime>
+
+    <p slot="end" class="title">
+      <ion-icon size="large" name="heart-outline" [routerLink]="['add-pic-list', picture?.id]"></ion-icon>
+    </p>
+  </ion-toolbar>
+<!-- </div> -->

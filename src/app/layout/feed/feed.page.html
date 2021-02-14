@@ -24,7 +24,6 @@
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content refreshingSpinner="crescent"></ion-refresher-content>
   </ion-refresher>
-  <ion-grid>
     <ion-item>
       <ion-label>Trier par:</ion-label>
       <ion-select [(ngModel)]="sortBy" (ionChange)="sortPicsBy()">
@@ -32,8 +31,6 @@
         <ion-select-option>utilisateur</ion-select-option>
       </ion-select>
     </ion-item>
-    <ion-row>
-      <app-pic-widget size="3" *ngFor="let picture of pictures" [picture]='picture'></app-pic-widget>
-    </ion-row>
-  </ion-grid>
+    <app-pic-widget size="3" *ngFor="let picture of pictures" [picture]='picture'></app-pic-widget>
+   
 </ion-content>
