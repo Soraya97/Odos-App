@@ -8,7 +8,7 @@ Nous avons repris l’API que nous avions réalisée lors du précédent cours d
 
 ## Utilisation
 
-Pour pouvoir tester l'application, il faut : 
+Pour pouvoir tester l'application, il faut :
 
 1. Dans l'invité de commande, exécuter la commande suivante :
 
@@ -67,7 +67,7 @@ Le menu de l’application est visible sur le bas de l’écran. Il comporte 4 �
 
 ## Page « Home »
 
-Quand l’utilisateur ouvre l’application et s’il n’est pas logué, il ne pourra seulement voir que le *feed* avec les photos des autres utilisateurs. Donc, il ne pourra pas interagir avec, sauf pour ouvrir la carte afin de voir le lieu d’une photo en particulier. 
+Quand l’utilisateur ouvre l’application et s’il n’est pas logué, il ne pourra seulement voir que le *feed* avec les photos des autres utilisateurs. Donc, il ne pourra pas interagir avec, sauf pour ouvrir la carte afin de voir le lieu d’une photo en particulier.
 
 ![](https://github.com/Soraya97/Odos-App/blob/main/images/Odos_home_01.png)
 
@@ -164,7 +164,7 @@ Il a également la possibilité de supprimer son compte en cliquant sur le lien 
 ## Ressources utilisées
 
 - **User**
-    - Username 
+    - Username
     - Email
     - Password
     - Registration date
@@ -209,6 +209,7 @@ Les éléments suivants doivent être améliorés:
 - La suppression d'une photo d'une liste devrait se voir directement.
 - Le code de mise à jour de la liste des listes et des photos devrait être mieux implémenté.
 - Il devrait être possible de voir le lieu où la photo a été prise sur chaque photo.
+- La suppression et la modification d'une liste ne devrait pas être visible sur une photo d'un autre utilisateur.
 
 ### Autre
 
