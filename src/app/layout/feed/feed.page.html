@@ -25,10 +25,10 @@
     <ion-refresher-content refreshingSpinner="crescent"></ion-refresher-content>
   </ion-refresher>
     <ion-item>
-      <ion-label>Trier par:</ion-label>
+      <ion-label>Trier par :</ion-label>
       <ion-select [(ngModel)]="sortBy" (ionChange)="sortPicsBy()">
         <ion-select-option>Date de parution</ion-select-option>
-        <ion-select-option>utilisateur</ion-select-option>
+        <ion-select-option>Utilisateur</ion-select-option>
       </ion-select>
     </ion-item>
     <app-pic-widget size="3" *ngFor="let picture of pictures" [picture]='picture'></app-pic-widget>
