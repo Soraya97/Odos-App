@@ -107,7 +107,7 @@ Sur la carte, tous les lieux où une photographie a été prise sont indiqués. 
 
 La page « liste » se présente comme ceci :
 
-![](https://github.com/Soraya97/Odos-App/blob/main/images/liste.png)
+![](https://github.com/Soraya97/Odos-App/blob/main/images/liste_01.png)
 
 L’utilisateur à la vue d’ensemble de toutes ses listes.
 
