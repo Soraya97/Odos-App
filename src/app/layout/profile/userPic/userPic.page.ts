@@ -90,7 +90,7 @@ export class userPicPage implements OnInit {
       },
         (err) => {
           console.warn(err);
-          this.alert("Problème", "Ajout impossible", 'La photo n\'a pas pu être ajoutée parce que: ' + err.error.message);
+          this.alert("Problème", "Ajout impossible", 'La photo n\'a pas pu être modifiée parce que: ' + err.error.message);
         });
 
     }
