@@ -28,13 +28,35 @@ cd Users/[nom]/Odos-App
 npm install
 ```
 
-4. Une fois que tout est installé, exécuter une dernière commande qui ouvrira une fenêtre sur votre navigateur:
+4. Dupliquer le fichier ```environment.sample.ts``` qui se trouve ici dans le dossier ``` src/environment/environment.sample.ts ``` deux fois :
+Premier fichier, le renommer ``` environment.ts ``` et changer son contenu comme ceci:
+
+```
+export const environment = {
+  production: false,
+  apiUrl: "http://odos-archioweb.herokuapp.com",
+  qimgUrl: 'https://comem-qimg.herokuapp.com/api',
+  qimgSecret: 'changerAvecLaCléFournieParMail'
+};
+```
+​		Deuxième fichier, le renommer ``` environment.prod.ts ``` et changer son contenu comme ceci:
+
+```
+export const environment = {
+  production: true,
+  apiUrl: "http://odos-archioweb.herokuapp.com",
+  qimgUrl: 'https://comem-qimg.herokuapp.com/api',
+  qimgSecret: 'changerAvecLaCléFournieParMail'
+};
+```
+
+5. Une fois que tout est installé, exécuter une dernière commande qui ouvrira une fenêtre sur votre navigateur:
 
 ```
 ionic serve
 ```
 
-5. Visualiser l'application sur votre navigateur.
+6. Visualiser l'application sur votre navigateur.
 
 ## Login
 
