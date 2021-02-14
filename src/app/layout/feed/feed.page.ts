@@ -27,6 +27,7 @@ export class FeedPage implements OnInit {
     });
   }
 
+  // Refresh the page
   doRefresh(event) {
     console.log('Begin async operation');
     setTimeout(() => {
@@ -44,12 +45,14 @@ export class FeedPage implements OnInit {
   ngOnInit() {
   }
 
+  // Logout
   logOut() {
     console.log('logging out...');
     this.auth.logOut();
     this.router.navigateByUrl('/login');
   }
 
+  //Sort Pictures by date of creation or by user
   sortPicsBy() {
 
     if (this.sortBy === 'Date de parution') {

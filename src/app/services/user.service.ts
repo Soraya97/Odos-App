@@ -42,7 +42,7 @@ export class UserService {
   deleteUser() : Observable<User> {
     return this.http.delete<User>(API_URL_FINALE + `${this.idUser}`);
   }
-
+  // create a new user
   register(newUser: User): Observable<User>{
     console.log(newUser);
     const requestBody = {

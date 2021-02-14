@@ -84,11 +84,12 @@ export class ListService {
     //.pipe(retry(2), catchError(this.handleError));
   }
 
-  // TO DO
+  // delete a list
   deleteList(idList): Observable<List> {
     return this.http.delete<List>(API_URL + `${this.idUser}/lists/` + idList);
   }
 
+  // delete a pic in a list
   deletePicList(idList, idPic): Observable<List> {
     return this.http.delete<List>(API_URL + `${this.idUser}/lists/` + idList + `/picture/` + idPic);
   }

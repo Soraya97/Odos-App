@@ -34,6 +34,7 @@ export class ListsPage implements OnInit {
 
 
   ngOnInit() {
+    //get and display the users
     this.auth.getUser().subscribe((user) => {
       this.user = user;
     }, err => {

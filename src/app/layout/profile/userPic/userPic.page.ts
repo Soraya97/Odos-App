@@ -46,7 +46,6 @@ export class userPicPage implements OnInit {
             this.deletePhotoAlert();
           }
         }, {
-          // TODO: warn if name already taken
           text: 'Modifier',
           role: 'modify',
           handler: () => {
@@ -140,8 +139,6 @@ export class userPicPage implements OnInit {
               this.toast('La photo a bien été supprimée');
               this.tabPictures.changePic();
               this.router.navigateByUrl("profile");
-
-              //TODO: Must not see the picture in the gallery
             }, (err) => {
               console.warn(err);
               this.toast("Un problème est survenu");

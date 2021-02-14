@@ -23,6 +23,7 @@ export class ProfilePage implements OnInit {
 
 
   ngOnInit() {
+  //get & display users
     this.auth.getUser().subscribe((user) => {
       this.user = user;
     }, err => {

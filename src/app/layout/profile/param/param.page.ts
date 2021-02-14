@@ -33,7 +33,6 @@ export class ParamPage implements OnInit {
       header: 'Options du compte',
       buttons: [
         {
-          // TODO: warn if name already taken
           text: 'Modifier les informations',
           role: 'modify',
           handler: () => {

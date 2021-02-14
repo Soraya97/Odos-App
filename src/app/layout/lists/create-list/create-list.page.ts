@@ -19,11 +19,12 @@ export class CreateListPage implements OnInit {
     private listService: ListService, private router: Router, public alertController: AlertController, public toastController: ToastController, public tabLists: TabElementsService
   ) { }
 
+  // Form validation
   validateList(form: NgForm) {
     if (form.valid) {
       // console.log("Liste à enregistrer");
       let name = this.name;
-
+    //Form creation
       this.listService.createList(name).subscribe(() => {
         this.newListToast();
         this.tabLists.changeList();
@@ -35,7 +36,7 @@ export class CreateListPage implements OnInit {
     }
   }
 
-
+  // Display creation message
   async newListToast() {
     const toast = await this.toastController.create({
       message: 'La liste a bien été ajoutée',

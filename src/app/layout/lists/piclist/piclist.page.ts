@@ -46,7 +46,7 @@ export class PiclistPage implements OnInit {
     this.idList = this.route.snapshot.paramMap.get('id');
   }
 
-
+  // Open the menu list to modify or delete a list
   async openMenuList() {
     const actionSheet = await this.actionsheetCtrl.create({
       header: 'Options de la liste',
@@ -128,7 +128,7 @@ export class PiclistPage implements OnInit {
       console.warn(err);
       alert(err.message);
     });
-
+   // Get and display the lists
     this.listService.getList(this.idList).subscribe((list) => {
       this.list = list;
       console.log(this.list._id);

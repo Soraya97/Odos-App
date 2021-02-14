@@ -25,7 +25,7 @@ export class ModifyListPage implements OnInit {
   constructor(private pictureService: PictureService, private listService: ListService, public alertController: AlertController, public toastController: ToastController, private route: ActivatedRoute, private auth: AuthService) {
     this.idList = this.route.snapshot.paramMap.get('id');
   }
-
+ //Display form update message
   async newListToast() {
     const toast = await this.toastController.create({
       message: 'Le nom de la liste a bien été modifié',
@@ -98,7 +98,7 @@ export class ModifyListPage implements OnInit {
       console.warn(err);
       alert(err.message);
     });
-
+    //Display & get List
     this.listService.getList(this.idList).subscribe((list) => {
       this.list = list;
 
